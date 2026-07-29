@@ -1,51 +1,31 @@
-# State Management
+# Web-Holos State Management
 
-> How state is managed in this project.
+> **Don't reach for Pinia on every problem.**
 
----
+## Decision Tree
 
-## Overview
+| Where the state lives | Use |
+|---|---|
+| One component, one render | `ref()` / `reactive()` |
+| One component, multiple children | provide / inject |
+| Cross-route but app-global | `preferences` store |
+| Cross-route user data | Pinia store |
+| Server cache | API request |
+| Cross-iframe / cross-tab | localStorage (only `preferences` writes there) |
 
-<!--
-Document your project's state management conventions here.
+## Pinia stores used in web-holos
 
-Questions to answer:
-- What state management solution do you use?
-- How is local vs global state decided?
-- How do you handle server state?
-- What are the patterns for derived state?
--->
+- `useAccessStore` — tokens, access routes, access flags
+- `useAuthStore` — login / register / logout
+- `useUserStore` — current user info (`userInfo`, `avatar`, `homePath`)
 
-(To be filled by the team)
+## Persistence
 
----
+- **Only `preferences` is persisted** in localStorage under `vben-web-tdesign-5.7.0-dev-preferences`
+- **No persistence** for auth tokens (controlled by backend-mock or future real backend)
 
-## State Categories
+## Forbidden
 
-<!-- Local state, global state, server state, URL state -->
-
-(To be filled by the team)
-
----
-
-## When to Use Global State
-
-<!-- Criteria for promoting state to global -->
-
-(To be filled by the team)
-
----
-
-## Server State
-
-<!-- How server data is cached and synchronized -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- State management mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't persist auth tokens in localStorage (XSS)
+- ❌ Don't add new pinia stores without a clear cross-component consumer
+- ❌ Don't mutate preferences outside the store API (`updatePreferences(...)`)

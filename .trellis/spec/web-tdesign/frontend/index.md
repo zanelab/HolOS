@@ -1,39 +1,65 @@
-# Frontend Development Guidelines
+# @vben/web-tdesign
 
-> Best practices for frontend development in this project.
-
----
+> vben monorepo package `@vben/web-tdesign` (v5.7.0) — HolOS built with this package and customized config.
 
 ## Overview
 
-This directory contains guidelines for frontend development. Fill in each file with your project's specific conventions.
+Application package **@vben/web-tdesign** — a vite-based frontend app for the vben monorepo.
 
----
+- **Version**: 5.7.0
+- **Type**: module
+- **Scripts**: build, build:analyze, dev, preview, typecheck
+- **Deps** (top): @vben/access, @vben/common-ui, @vben/constants, @vben/hooks, @vben/icons, @vben/layouts, @vben/locales, @vben/plugins
 
-## Guidelines Index
+> HolOS (`@vben/web-holos`) consumes this package via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
 
-| Guide | Description | Status |
-|-------|-------------|--------|
-| [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
-| [Component Guidelines](./component-guidelines.md) | Component patterns, props, composition | To fill |
-| [Hook Guidelines](./hook-guidelines.md) | Custom hooks, data fetching patterns | To fill |
-| [State Management](./state-management.md) | Local state, global state, server state | To fill |
-| [Quality Guidelines](./quality-guidelines.md) | Code standards, forbidden patterns | To fill |
-| [Type Safety](./type-safety.md) | Type patterns, validation | To fill |
+## Directory Structure
 
----
+```
+adapter/
+  component/
+api/
+  core/
+layouts/
+locales/
+  langs/
+    en-US/
+    zh-CN/
+router/
+  routes/
+    modules/
+store/
+views/
+  _core/
+    about/
+    authentication/
+    fallback/
+    profile/
+  dashboard/
+    analytics/
+    workspace/
+  demos/
+    tdesign/
+app.vue
+```
 
-## How to Fill These Guidelines
+## Conventions for @vben/web-tdesign
 
-For each guideline file:
+1. Vite + Vue 3 + TS, port 5666-ish (configured in `vite.config.ts`)
+2. Use `defineOverridesPreferences` from `src/preferences.ts` to override defaults
+3. i18n keys live in `src/locales/langs/<locale>/*.json` — nested under `page.*`, `demos.*`, `auth.*`, etc.
+4. Routes: `core.ts` (BasicLayout/Auth/404) + `modules/<name>.ts` (per-feature, auto-globbed)
+5. Custom layouts override `apps/<app-name>/src/layouts/`
 
-1. Document your project's **actual conventions** (not ideals)
-2. Include **code examples** from your codebase
-3. List **forbidden patterns** and why
-4. Add **common mistakes** your team has made
+## Forbidden Patterns
 
-The goal is to help AI assistants and new team members understand how YOUR project works.
+- ❌ Don't deep-import from package subdirs (`@vben/foo/internals/util`) — use public `index.ts` only
+- ❌ Don't bypass `src/index.ts` with direct file imports — that defeats tree-shaking
+- ❌ Don't introduce new build configurations in this directory — extend the base config from `@vben/web`
+- ❌ Don't commit `dist/`, `node_modules/`, or platform lockfiles — already in `.gitignore`
 
----
+## Related
 
-**Language**: All documentation should be written in **English**.
+- See `.trellis/spec/lint-configs/` for shared lint conventions
+- See `.trellis/spec/frontend-guidelines/index.md` for cross-package frontend patterns
+- See `.trellis/workflow.md` for the development workflow

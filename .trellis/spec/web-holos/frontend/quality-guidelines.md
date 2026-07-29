@@ -1,51 +1,32 @@
-# Quality Guidelines
+# Web-Holos Quality Guidelines
 
-> Code quality standards for frontend development.
+> Adopted from the team's `commitlint-config` + `eslint-config` + TDesign Vue best practices.
 
----
+## Coding Style
 
-## Overview
+- **4 spaces indent**, 2-space JSX
+- **Single quotes** for strings, **double quotes** for JSX/HTML attributes
+- **No semicolons in JS** if using Vben default (`@vben/eslint-config`) — keep that consistent
+- **Trailing newline** required at end of every file
+- **Max line length** 120 (ESLint default)
 
-<!--
-Document your project's quality standards here.
+## Naming
 
-Questions to answer:
-- What patterns are forbidden?
-- What linting rules do you enforce?
-- What are your testing requirements?
-- What code review standards apply?
--->
+- Components / Vue files: `PascalCase.vue` for pages, `kebab-case.vue` for parts
+- Composables: `useCamelCase`
+- Utility: `kebab-case.ts`
+- Constants: `UPPER_SNAKE_CASE`
 
-(To be filled by the team)
+## Forbidden
 
----
+- ❌ Don't use `any` — use `unknown` + narrowing or define a typed interface
+- ❌ Don't use `@ts-ignore` — fix the type, or refactor to a `// @ts-expect-error` with a comment
+- ❌ Don't commit `.env`, tokens, or API keys
+- ❌ Don't use `console.log` for production diagnostics — use `logger` package
+- ❌ Don't bypass committed hooks (pre-commit / pre-push)
 
-## Forbidden Patterns
+## Commit Messages (commitlint)
 
-<!-- Patterns that should never be used and why -->
+`feat(web-holos): ...` / `fix(web-holos): ...` / `chore: ...`
 
-(To be filled by the team)
-
----
-
-## Required Patterns
-
-<!-- Patterns that must always be used -->
-
-(To be filled by the team)
-
----
-
-## Testing Requirements
-
-<!-- What level of testing is expected -->
-
-(To be filled by the team)
-
----
-
-## Code Review Checklist
-
-<!-- What reviewers should check -->
-
-(To be filled by the team)
+Scopes accepted: `web-holos`, `web-tdesign`, `web-antd`, etc.

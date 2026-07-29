@@ -1,38 +1,41 @@
-# Backend Development Guidelines
+# @vben/tailwind-config
 
-> Best practices for backend development in this project.
-
----
+> vben monorepo package `@vben/tailwind-config` (v5.7.0) — HolOS built with this package and customized config.
 
 ## Overview
 
-This directory contains guidelines for backend development. Fill in each file with your project's specific conventions.
+Configuration package for **@vben/tailwind-config** — provides shared TS / lint / style config used across the monorepo.
 
----
+- **Version**: 5.7.0
+- **Type**: module
+- **Scripts**: (no scripts)
+- **Deps** (top): @iconify/tailwind4, @tailwindcss/typography, tailwindcss, tw-animate-css
 
-## Guidelines Index
+> HolOS (`@vben/web-holos`) consumes this package via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
 
-| Guide | Description | Status |
-|-------|-------------|--------|
-| [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
-| [Database Guidelines](./database-guidelines.md) | ORM patterns, queries, migrations | To fill |
-| [Error Handling](./error-handling.md) | Error types, handling strategies | To fill |
-| [Quality Guidelines](./quality-guidelines.md) | Code standards, forbidden patterns | To fill |
-| [Logging Guidelines](./logging-guidelines.md) | Structured logging, log levels | To fill |
+## Directory Structure
 
----
+```
+index.ts
+theme.css
+```
 
-## How to Fill These Guidelines
+## Conventions for @vben/tailwind-config
 
-For each guideline file:
+1. Re-export via `src/index.ts` — single entry, no internal deep imports
+2. Use `'.'` relative imports for sibling files; use workspace name for cross-package imports
+3. Version bump is mandatory when adding new rules to **@vben/tailwind-config**
+4. Test on at least 1 app (`@vben/web-antd` or web-holos) before merging
 
-1. Document your project's **actual conventions** (not ideals)
-2. Include **code examples** from your codebase
-3. List **forbidden patterns** and why
-4. Add **common mistakes** your team has made
+## Forbidden Patterns
 
-The goal is to help AI assistants and new team members understand how YOUR project works.
+- ❌ Don't deep-import from package subdirs (`@vben/foo/internals/util`) — use public `index.ts` only
+- ❌ Don't bypass `src/index.ts` with direct file imports — that defeats tree-shaking
+- ❌ Don't introduce new build configurations in this directory — extend the base config from `@vben/vite-config`
+- ❌ Don't commit `dist/`, `node_modules/`, or platform lockfiles — already in `.gitignore`
 
----
+## Related
 
-**Language**: All documentation should be written in **English**.
+- See `.trellis/spec/lint-configs/` for shared lint conventions
+- See `.trellis/spec/frontend-guidelines/index.md` for cross-package frontend patterns
+- See `.trellis/workflow.md` for the development workflow

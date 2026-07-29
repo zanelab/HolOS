@@ -1,51 +1,35 @@
-# Hook Guidelines
+# Web-Holos Custom Hooks Guidelines
 
-> How hooks are used in this project.
+> Don't write new hooks unless absolutely necessary.
 
----
+## Most actions map to existing helpers
 
-## Overview
+| Action | Use |
+|---|---|
+| Read/write app config | `usePreferences` from `@vben/preferences` |
+| Call API | `requestClient.get/post` from `@vben/request` |
+| Update user data | `useUserStore().setUserInfo(...)` |
+| Login / logout | `useAuthStore()` methods |
+| Permission check | `useAccessStore()` |
 
-<!--
-Document your project's hook conventions here.
+## Conventions
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+- **One-line composable** rules: if `useFoo()` does not return reactive state or a stable function, **don't make it a hook** — make it a normal helper in `src/utils/`
+- **Naming**: `useFoo` (camel case, starts with `use`)
+- **File location**:
+  - cross-module hooks → `src/hooks/`
+  - page-scoped composables → co-located `useXxx.ts` next to the view
 
-(To be filled by the team)
+## Available built-ins (no need to re-implement)
 
----
+- `usePreferences` from `@vben/preferences` — read/write app config
+- `useAccessStore` / `useUserStore` / `useAuthStore` from `@vben/stores`
+- `useRouter` / `useRoute` from `vue-router`
+- `useI18n` from `vue-i18n`
+- `useDark`, `useScroll`, `useThrottleFn` from `@vueuse/core`
 
-## Custom Hook Patterns
+## Forbidden
 
-<!-- How to create and structure custom hooks -->
-
-(To be filled by the team)
-
----
-
-## Data Fetching
-
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't create wrapper hooks that just `return usePreferences()` — call `usePreferences()` directly
+- ❌ Don't put business logic in hooks unless **stateful across renders**
+- ❌ Don't use `watch` inside hooks without explicit `immediate: true`

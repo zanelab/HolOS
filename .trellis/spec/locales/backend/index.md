@@ -1,38 +1,45 @@
-# Backend Development Guidelines
+# @vben/locales
 
-> Best practices for backend development in this project.
-
----
+> vben monorepo package `@vben/locales` (v5.7.0) — HolOS built with this package and customized config.
 
 ## Overview
 
-This directory contains guidelines for backend development. Fill in each file with your project's specific conventions.
+Package **@vben/locales** (v5.7.0) — vben monorepo shared library.
 
----
+- **Version**: 5.7.0
+- **Type**: module
+- **Scripts**: (no scripts)
+- **Deps** (top): @intlify/core-base, @vben-core/composables, vue, vue-i18n
 
-## Guidelines Index
+> HolOS (`@vben/web-holos`) consumes this package via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
 
-| Guide | Description | Status |
-|-------|-------------|--------|
-| [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
-| [Database Guidelines](./database-guidelines.md) | ORM patterns, queries, migrations | To fill |
-| [Error Handling](./error-handling.md) | Error types, handling strategies | To fill |
-| [Quality Guidelines](./quality-guidelines.md) | Code standards, forbidden patterns | To fill |
-| [Logging Guidelines](./logging-guidelines.md) | Structured logging, log levels | To fill |
+## Directory Structure
 
----
+```
+langs/
+  en-US/
+  zh-CN/
+i18n.ts
+index.ts
+typing.ts
+```
 
-## How to Fill These Guidelines
+## Conventions for @vben/locales
 
-For each guideline file:
+1. Single `src/index.ts` entry — re-export public API only
+2. Internal helpers stay in `helpers/` or `utils/` subdirs
+3. Use TypeScript strict mode; no `any` (use `unknown` + narrowing)
+4. Consume via `@vben` workspace alias (not relative paths)
 
-1. Document your project's **actual conventions** (not ideals)
-2. Include **code examples** from your codebase
-3. List **forbidden patterns** and why
-4. Add **common mistakes** your team has made
+## Forbidden Patterns
 
-The goal is to help AI assistants and new team members understand how YOUR project works.
+- ❌ Don't deep-import from package subdirs (`@vben/foo/internals/util`) — use public `index.ts` only
+- ❌ Don't bypass `src/index.ts` with direct file imports — that defeats tree-shaking
+- ❌ Don't introduce new build configurations in this directory — extend the base config from `@vben/locales`
+- ❌ Don't commit `dist/`, `node_modules/`, or platform lockfiles — already in `.gitignore`
 
----
+## Related
 
-**Language**: All documentation should be written in **English**.
+- See `.trellis/spec/lint-configs/` for shared lint conventions
+- See `.trellis/spec/frontend-guidelines/index.md` for cross-package frontend patterns
+- See `.trellis/workflow.md` for the development workflow

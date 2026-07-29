@@ -1,51 +1,27 @@
-# Type Safety
+# Web-Holos Type Safety
 
-> Type safety patterns in this project.
+## Conventions
 
----
+- `tsconfig.json` extends `@vben/tsconfig/web-app.json`
+- Strict mode **ON** by default
+- All entry points (`main.ts`, `bootstrap.ts`, `App.tsx`, route components, store factories) **must** be strongly typed
+- `vue-tsc --noEmit --skipLibCheck` is the typecheck command
 
-## Overview
+## Type imports
 
-<!--
-Document your project's type safety conventions here.
+```ts
+import type { RouteRecordRaw } from 'vue-router';
+import type { ComponentRecordType, GenerateMenuAndRoutesOptions } from '@vben/types';
+```
 
-Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
--->
+## Type safety rules
 
-(To be filled by the team)
+- Use `unknown` for genuinely unknown values (then narrow with `instanceof` / type guards)
+- Use `as const` for literal objects
+- Avoid `as` cast; prefer refactor
 
----
+## Forbidden
 
-## Type Organization
-
-<!-- Where types are defined, shared types vs local types -->
-
-(To be filled by the team)
-
----
-
-## Validation
-
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Patterns
-
-<!-- Type utilities, generics, type guards -->
-
-(To be filled by the team)
-
----
-
-## Forbidden Patterns
-
-<!-- any, type assertions, etc. -->
-
-(To be filled by the team)
+- ❌ Don't use `any`. If framework types force a cast, use `Recordable<unknown>` and cast in one place
+- ❌ Don't disable strict mode per-file with `// @ts-nocheck`
+- ❌ Don't add `@ts-ignore` or `@ts-expect-error` without a justified comment
