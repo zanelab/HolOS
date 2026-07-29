@@ -52,14 +52,14 @@ All content **based on real source code** in `/opt/data/workspace/holos/<path>` 
 
 ## Acceptance Criteria
 
-- [ ] **126** `.md` files written across 21 packages
-- [ ] Each file ≤ 220 lines; **no placeholder text**
-- [ ] Each file contains ≥ 1 **real code snippet** from actual source
-- [ ] Each file contains **"Forbidden"** section
-- [ ] Commits: **per-package batches** (so each commit is logical and revertible)
-- [ ] Push to origin
-- [ ] **Per Phase 3.4 protocol**: present plan → ask confirmation per batch
-- [ ] Archive task after completion
+- [x] **126** `.md` files written across 21 packages
+- [x] Each file ≤ 220 lines; **no placeholder text**
+- [x] Each file contains ≥ 1 **real code snippet** from actual source
+- [x] Each file contains **"Forbidden"** section
+- [x] Commits: **per-package batches** (so each commit is logical and revertible)
+- [x] Push to origin
+- [x] **Per Phase 3.4 protocol**: present plan → ask confirmation per batch
+- [x] Archive task after completion
 
 ## Notes
 
