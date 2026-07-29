@@ -1,51 +1,31 @@
-# Hook Guidelines
+# @vben/web-ele Custom Hooks
 
-> How hooks are used in this project.
+> Don't write new hooks unless absolutely necessary.
 
----
+## Built-ins (always check first)
 
-## Overview
+| Concern | Hook | Source |
+|---|---|---|
+| App config | usePreferences() | @vben/preferences |
+| Pinia stores | useAccessStore, useUserStore, useAuthStore | @vben/stores |
+| i18n | useI18n() | vue-i18n |
+| Router | useRouter(), useRoute() | vue-router |
+| Form | useVbenForm() | @vben/common-ui |
+| Table | useVbenVxeGrid() | @vben/plugins/vxe-table |
 
-<!--
-Document your project's hook conventions here.
+## When to Write a New Hook
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+- Used by >= 3 views / components
+- Returns reactive state OR stable async function
+- Non-trivial logic (> 10 lines)
 
-(To be filled by the team)
+## Convention
 
----
+- use-<name>.ts (kebab-case, `use` prefix)
+- Co-located for one-feature hooks; shared under src/hooks/
 
-## Custom Hook Patterns
+## Forbidden
 
-<!-- How to create and structure custom hooks -->
-
-(To be filled by the team)
-
----
-
-## Data Fetching
-
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- Don't wrap usePreferences() in another useFoo()
+- Don't put pure business logic in a hook
+- Don't use hooks outside <script setup>

@@ -1,51 +1,29 @@
-# Quality Guidelines
+# @vben/web-antdv-next Quality Guidelines
 
-> Code quality standards for frontend development.
+> Strict-mode TS + 4-space + OxLint + ESLint + Stylelint + Commitlint.
 
----
+## Style
 
-## Overview
+- 4 spaces indent
+- Single quotes TS; double quotes HTML
+- No semicolons
+- Max line 120
+- Trailing newline
 
-<!--
-Document your project's quality standards here.
+## Naming
 
-Questions to answer:
-- What patterns are forbidden?
-- What linting rules do you enforce?
-- What are your testing requirements?
-- What code review standards apply?
--->
+| Thing | Convention |
+|---|---|
+| Page file | PascalCase.vue |
+| Component | kebab-case.vue |
+| Composable | useCamelCase |
+| Utility | kebab-case.ts |
+| Pinia store | useXxxStore |
+| Constant | UPPER_SNAKE_CASE |
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Forbidden Patterns
-
-<!-- Patterns that should never be used and why -->
-
-(To be filled by the team)
-
----
-
-## Required Patterns
-
-<!-- Patterns that must always be used -->
-
-(To be filled by the team)
-
----
-
-## Testing Requirements
-
-<!-- What level of testing is expected -->
-
-(To be filled by the team)
-
----
-
-## Code Review Checklist
-
-<!-- What reviewers should check -->
-
-(To be filled by the team)
+- Don't use any
+- Don't add @ts-ignore without comment
+- Don't bypass hooks with --no-verify
+- Don't commit .env or secrets

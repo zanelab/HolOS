@@ -1,51 +1,20 @@
-# Quality Guidelines
+# @vben/stores Quality Guidelines
 
-> Code quality standards for frontend development.
+> Strict-mode TS, setup-style stores.
 
----
+## Style
 
-## Overview
+- 4 spaces TS, single quotes, no any
 
-<!--
-Document your project's quality standards here.
+## Naming
 
-Questions to answer:
-- What patterns are forbidden?
-- What linting rules do you enforce?
-- What are your testing requirements?
-- What code review standards apply?
--->
+| Thing | Convention |
+|---|---|
+| Store hook | useXxxStore |
+| State | camelCase |
+| Action | verb + noun |
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Forbidden Patterns
-
-<!-- Patterns that should never be used and why -->
-
-(To be filled by the team)
-
----
-
-## Required Patterns
-
-<!-- Patterns that must always be used -->
-
-(To be filled by the team)
-
----
-
-## Testing Requirements
-
-<!-- What level of testing is expected -->
-
-(To be filled by the team)
-
----
-
-## Code Review Checklist
-
-<!-- What reviewers should check -->
-
-(To be filled by the team)
+- Don't use Options API
+- Don't put APIs in store factories

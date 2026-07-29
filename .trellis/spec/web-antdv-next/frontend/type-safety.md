@@ -1,51 +1,41 @@
-# Type Safety
+# @vben/web-antdv-next Type Safety
 
-> Type safety patterns in this project.
+> Strict-mode TS via @vben/tsconfig/web-app.json.
 
----
+## Required Patterns
 
-## Overview
+### Route records
+```ts
+import type { RouteRecordRaw } from 'vue-router';
+const routes: RouteRecordRaw[] = [...];
+```
 
-<!--
-Document your project's type safety conventions here.
+### API responses
+```ts
+import { requestClient } from '#/api/request';
+export async function fetchFoo() {
+  return requestClient.get<FooResponse>('/foo');
+}
+```
 
-Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
--->
+### Props
+```vue
+<script setup lang="ts">
+interface Props { title: string; count?: number; }
+const props = withDefaults(defineProps<Props>(), { count: 0 });
+</script>
+```
 
-(To be filled by the team)
+## Type Imports
 
----
+Always `import type`:
+```ts
+import type { RouteRecordRaw } from 'vue-router';
+```
 
-## Type Organization
+## Forbidden
 
-<!-- Where types are defined, shared types vs local types -->
-
-(To be filled by the team)
-
----
-
-## Validation
-
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Patterns
-
-<!-- Type utilities, generics, type guards -->
-
-(To be filled by the team)
-
----
-
-## Forbidden Patterns
-
-<!-- any, type assertions, etc. -->
-
-(To be filled by the team)
+- Don't use any
+- Don't disable strict mode per-file
+- Don't `as` cast to silence errors
+- Don't @ts-ignore without comment

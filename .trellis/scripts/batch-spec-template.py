@@ -1,0 +1,48 @@
+"""Template snippets for batch spec generation. Avoids triple-quote issues by using single-quote f-strings."""
+from pathlib import Path
+
+PKG_KIND = {
+    'apps/backend-mock': 'mock',
+    'apps/web-antd': 'app-vue',
+    'apps/web-antdv-next': 'app-vue',
+    'apps/web-ele': 'app-vue',
+    'apps/web-naive': 'app-vue',
+    'internal/tsconfig': 'lib-config',
+    'internal/vite-config': 'lib-config',
+    'internal/commitlint-config': 'lib-config',
+    'internal/eslint-config': 'lib-config',
+    'internal/oxfmt-config': 'lib-config',
+    'internal/oxlint-config': 'lib-config',
+    'internal/stylelint-config': 'lib-config',
+    'packages/constants': 'lib-const',
+    'packages/icons': 'lib-icons',
+    'packages/locales': 'lib-i18n',
+    'packages/preferences': 'lib-const',
+    'packages/stores': 'lib-stores',
+    'packages/styles': 'lib-style',
+    'packages/types': 'lib-const',
+    'packages/utils': 'lib-helper',
+}
+
+SPEC_DIR_MAP = {
+    'apps/backend-mock': 'backend-mock',
+    'apps/web-antd': 'web-antd',
+    'apps/web-antdv-next': 'web-antdv-next',
+    'apps/web-ele': 'web-ele',
+    'apps/web-naive': 'web-naive',
+    'internal/tsconfig': 'tsconfig',
+    'internal/vite-config': 'vite-config',
+    'internal/commitlint-config': 'commitlint-config',
+    'internal/eslint-config': 'eslint-config',
+    'internal/oxfmt-config': 'oxfmt-config',
+    'internal/oxlint-config': 'oxlint-config',
+    'internal/stylelint-config': 'stylelint-config',
+    'packages/constants': 'constants',
+    'packages/icons': 'icons',
+    'packages/locales': 'locales',
+    'packages/preferences': 'preferences',
+    'packages/stores': 'stores',
+    'packages/styles': 'styles',
+    'packages/types': 'types',
+    'packages/utils': 'utils',
+}
