@@ -1,51 +1,37 @@
-# State Management
+# @vben/node-utils: State / Caching Patterns
 
-> How state is managed in this project.
+> This package is **stateless**. No caches, no module-level state.
 
----
+## Implications
 
-## Overview
+- Each function call is independent (no hidden cache).
+- Callers (scripts / pipelines) own any caching they need.
 
-<!--
-Document your project's state management conventions here.
+## Pattern: externalize cache at caller site
 
-Questions to answer:
-- What state management solution do you use?
-- How is local vs global state decided?
-- How do you handle server state?
-- What are the patterns for derived state?
--->
+```ts
+// .trellis/scripts/with-cache.ts
+import { hash } from '@vben/node-utils';
 
-(To be filled by the team)
+const cache = new Map<string, string>();
 
----
+export function cachedHash(content: Uint8Array): string {
+  const key = content.toString(); // big string → fine for short content
+  if (!cache.has(key)) cache.set(key, hash(content));
+  return cache.get(key)!;
+}
+```
 
-## State Categories
+This is **explicit**, **testable**, and stays out of `@vben/node-utils`.
 
-<!-- Local state, global state, server state, URL state -->
+## Why node-utils stays stateless
 
-(To be filled by the team)
+- **Embedding**: Trellis scripts run multiple times per session; state from a previous run must not leak.
+- **Concurrency**: when parallelizing across worktree, state corruption is avoided by being stateless.
+- **Testing**: each test runs deterministically — no hidden cache invalidation logic to fight.
 
----
+## Forbidden
 
-## When to Use Global State
-
-<!-- Criteria for promoting state to global -->
-
-(To be filled by the team)
-
----
-
-## Server State
-
-<!-- How server data is cached and synchronized -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- State management mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't add module-level mutable state to `@vben/node-utils`.
+- ❌ Don't make any helper "remember" inputs across calls.
+- ❌ Don't introduce singletons (e.g. a single `Spinners` instance) — let callers manage state.

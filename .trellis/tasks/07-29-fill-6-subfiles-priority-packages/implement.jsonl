@@ -1,0 +1,5 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python3 .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/spec/layout-ui/frontend/index.md", "reason": "layout-ui package entry, declares 6-sub-file pattern"}
+{"file": ".trellis/spec/preferences/frontend/index.md", "reason": "preferences package entry (now @vben-core/preferences)"}
+{"file": ".trellis/spec/web-tdesign/frontend/index.md", "reason": "web-tdesign package entry"}
+{"file": ".trellis/spec/web-holos/frontend/component-guidelines.md", "reason": "web-holos 已写真实 6 子文件样板(snake-pattern)"}

@@ -1,51 +1,91 @@
-# Type Safety
+# @vben/web-tdesign Type Safety
 
-> Type safety patterns in this project.
+> Strict-mode TS is **non-negotiable** in this project.
 
----
+## Config
 
-## Overview
+`tsconfig.json` extends `@vben/tsconfig/web-app.json`:
 
-<!--
-Document your project's type safety conventions here.
+```json
+{
+  "extends": "@vben/tsconfig/web-app.json"
+}
+```
 
-Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
--->
+The base config enables:
+- `"strict": true` (all strict flags)
+- `"noUnusedLocals": true`
+- `"noUnusedParameters": true`
+- `"noImplicitOverride": true`
+- `"noFallthroughCasesInSwitch": true`
 
-(To be filled by the team)
+## Required Patterns
 
----
+### Typing route records
 
-## Type Organization
+```ts
+import type { RouteRecordRaw } from 'vue-router';
 
-<!-- Where types are defined, shared types vs local types -->
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/analytics',
+    component: () => import('#/views/dashboard/analytics/index.vue'),
+    meta: { title: 'Analytics' },
+  },
+];
+```
 
-(To be filled by the team)
+### Typing API responses
 
----
+```ts
+// src/api/core/user.ts
+import { requestClient } from '#/api/request';
 
-## Validation
+export interface UserInfo {
+  id: string;
+  realName: string;
+  email: string;
+}
 
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
+export async function fetchUserInfo() {
+  return requestClient.get<UserInfo>('/user/info');
+}
+```
 
-(To be filled by the team)
+### Typing props
 
----
+```vue
+<script lang="ts" setup>
+interface Props {
+  title: string;
+  count?: number;
+}
+const props = withDefaults(defineProps<Props>(), {
+  count: 0,
+});
+</script>
+```
 
-## Common Patterns
+## Type Imports
 
-<!-- Type utilities, generics, type guards -->
+Always use **`import type`** for types:
 
-(To be filled by the team)
+```ts
+import type { RouteRecordRaw } from 'vue-router';
+import type { UserInfo } from '#/api/core/user';
+```
 
----
+## Typecheck Commands
 
-## Forbidden Patterns
+```bash
+pnpm typecheck                       # local
+pnpm typecheck --filter @vben/web-tdesign  # turbo-filtered
+```
 
-<!-- any, type assertions, etc. -->
+## Forbidden
 
-(To be filled by the team)
+- ❌ Don't use `any` (use `unknown` + narrowing instead).
+- ❌ Don't disable strict mode in subdirs with `// @ts-strict-off` — fix the type, don't fight the compiler.
+- ❌ Don't use `as` cast to silence errors — refactor to a typed function.
+- ❌ Don't `// @ts-ignore` without a `// why:` comment.
+- ❌ Don't enable `skipLibCheck: true` per-file (it's set globally for performance — don't override locally).

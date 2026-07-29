@@ -1,59 +1,40 @@
-# Component Guidelines
+# @vben/node-utils "Component" Style — Function Helpers
 
-> How components are built in this project.
+> This package doesn't ship Vue components. Its "components" are **pure functions**.
 
----
+## Pattern: Single-export function helpers
 
-## Overview
+Each file in `src/` exports **one or a few related functions**, named exported individually for tree-shaking:
 
-<!--
-Document your project's component conventions here.
+```ts
+// src/formatter.ts
+export function formatBytes(bytes: number, decimals = 2): string {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`;
+}
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+export function formatDuration(ms: number): string {
+  if (ms < 1000) return `${ms}ms`;
+  if (ms < 60_000) return `${(ms / 1000).toFixed(1)}s`;
+  return `${Math.floor(ms / 60_000)}m ${Math.floor((ms % 60_000) / 1000)}s`;
+}
+```
 
-(To be filled by the team)
+## Usage from a downstream app
 
----
+```ts
+import { formatBytes, formatDuration } from '@vben/node-utils';
 
-## Component Structure
+console.log(formatBytes(1024 * 1024));       // "1 MB"
+console.log(formatDuration(123456));        // "2m 3s"
+```
 
-<!-- Standard structure of a component file -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't bundle functions into a class or namespaced object (loses tree-shaking).
+- ❌ Don't import Node built-ins at top-level unless necessary — keep imports lean.
+- ❌ Don't add async variants of pure sync helpers (use the existing async path, e.g. `fs/promises`).
+- ❌ Don't add console output — keep helpers side-effect free.

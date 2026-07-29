@@ -1,51 +1,68 @@
-# Hook Guidelines
+# @vben/web-tdesign Custom Hooks
 
-> How hooks are used in this project.
+> Compose **existing** hooks before writing a new one.
 
----
+## Available Built-ins (no need to re-implement)
 
-## Overview
+| Concern | Hook | Source |
+|---|---|---|
+| App config | `usePreferences()` | `@vben/preferences` |
+| Pinia stores | `useAccessStore`, `useUserStore`, `useAuthStore` | `@vben/stores` |
+| i18n | `useI18n()` | `vue-i18n` |
+| Router | `useRouter()`, `useRoute()` | `vue-router` |
+| Dark mode | `useDark()` | `@vueuse/core` |
+| Throttle / debounce | `useThrottleFn`, `useDebounceFn` | `@vueuse/core` |
+| Form state | `useVbenForm()` | `@vben/common-ui` |
+| Grid/table | `useVbenVxeGrid()` | `@vben/plugins/vxe-table` |
 
-<!--
-Document your project's hook conventions here.
+## When to Write a Custom Hook
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+Write a hook if (and only if):
+- It is used by ≥ 3 views / components
+- It returns **reactive state** OR a stable async function
+- Its logic is **non-trivial** (> 10 lines) and lives in a view's `setup()` script block
 
-(To be filled by the team)
+## Convention
 
----
+- File naming: `use-<name>.ts` (kebab-case, starts with `use`)
+- Co-located with the view if only used by one feature (`src/views/dashboard/useFoo.ts`)
+- Or shared under `src/hooks/use-<name>.ts`
 
-## Custom Hook Patterns
+## Example (real pattern)
 
-<!-- How to create and structure custom hooks -->
+```ts
+// src/hooks/use-async-resource.ts
+import { ref, shallowRef } from 'vue';
 
-(To be filled by the team)
+export function useAsyncResource<T>(loader: () => Promise<T>) {
+  const data = shallowRef<T>();
+  const loading = ref(false);
+  const error = ref<unknown>();
 
----
+  async function refresh() {
+    loading.value = true;
+    try { data.value = await loader(); }
+    catch (e) { error.value = e; }
+    finally { loading.value = false; }
+  }
 
-## Data Fetching
+  return { data, loading, error, refresh };
+}
+```
 
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
+Then in a view:
 
-(To be filled by the team)
+```vue
+<script setup>
+import { useAsyncResource } from '#/hooks/use-async-resource';
+import { fetchUsers } from '#/api';
+const { data: users, loading, refresh } = useAsyncResource(fetchUsers);
+</script>
+```
 
----
+## Forbidden
 
-## Naming Conventions
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't wrap `usePreferences()` in another `useFoo()` — call `usePreferences()` directly.
+- ❌ Don't put pure business logic (no state, no async) in a hook — it's a regular helper, goes in `src/utils/`.
+- ❌ Don't use hooks outside of `<script setup>` or `<script lang="ts" setup>` — they need a Vue component context.
+- ❌ Don't make hooks for "Read X from localStorage" — that's a service, not a hook.

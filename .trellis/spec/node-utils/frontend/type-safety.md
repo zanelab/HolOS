@@ -1,51 +1,56 @@
-# Type Safety
+# @vben/node-utils Type Safety
 
-> Type safety patterns in this project.
+> Strict-mode TS, no `any`.
 
----
+## Config
 
-## Overview
+`tsconfig.json` extends `@vben/tsconfig/node.json`:
 
-<!--
-Document your project's type safety conventions here.
+```json
+{
+  "extends": "@vben/tsconfig/node.json"
+}
+```
 
-Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
--->
+Enables `strict`, `noUncheckedIndexedAccess`, `verbatimModuleSyntax`.
 
-(To be filled by the team)
+## Required Patterns
 
----
+### Explicit input/output types
 
-## Type Organization
+```ts
+// src/hash.ts
+export function sha256(input: string | Uint8Array): string {
+  // explicit union return — never `any`, never implicit `unknown`
+}
+```
 
-<!-- Where types are defined, shared types vs local types -->
+### Discriminated unions for result types
 
-(To be filled by the team)
+```ts
+// src/git.ts
+export type GitResult<T> =
+  | { ok: true; value: T }
+  | { ok: false; error: Error };
 
----
+export async function gitRevParse(cwd: string): Promise<GitResult<string>> { ... }
+```
 
-## Validation
+### Throw on bad input, return value on success
 
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
+```ts
+export function formatBytes(bytes: number, decimals = 2): string {
+  if (!Number.isFinite(bytes)) {
+    throw new TypeError(`formatBytes: bytes must be a finite number, got ${bytes}`);
+  }
+  // ...
+}
+```
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Common Patterns
-
-<!-- Type utilities, generics, type guards -->
-
-(To be filled by the team)
-
----
-
-## Forbidden Patterns
-
-<!-- any, type assertions, etc. -->
-
-(To be filled by the team)
+- ❌ Don't use `any` — use `unknown` and narrow with type guards.
+- ❌ Don't use `Function` type as parameter — write the function signature explicitly.
+- ❌ Don't use `as` cast to silence errors — refactor to a typed function.
+- ❌ Don't return `Promise<any>` — always specify the resolved type.
+- ❌ Don't use `require()` — it's a strict-mode ESM-only workspace.

@@ -1,51 +1,63 @@
-# Hook Guidelines
+# @vben/tailwind-config: Token-aware Patterns
 
-> How hooks are used in this project.
+> This package has no Vue hooks. Read this as "how apps should consume the tokens".
 
----
+## Pattern: prefer `theme.extend` over per-component tokens
 
-## Overview
+When a Vue app needs a custom **local** color (e.g., "specific feature accent"), extend at the app's `src/index.css`, not in this package:
 
-<!--
-Document your project's hook conventions here.
+```css
+/* apps/web-holos/src/index.css */
+@layer utilities {
+  .holos-accent {
+    color: oklch(0.69 0.21 142);
+  }
+}
+```
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+Don't push one-off tokens upstream — keep this package's tokens **global**.
 
-(To be filled by the team)
+## Pattern: dark mode via `.dark` class
 
----
+```vue
+<script setup>
+import { useDark } from '@vueuse/core';
+const isDark = useDark({
+  selector: 'html',
+  attribute: 'class',
+  valueDark: 'dark',
+  valueLight: '',
+});
+</script>
 
-## Custom Hook Patterns
+<template>
+  <div :class="isDark ? 'bg-bg-base-dark text-fg-primary-dark' : 'bg-bg-base text-fg-primary'">
+    HolOS
+  </div>
+</template>
+```
 
-<!-- How to create and structure custom hooks -->
+## Pattern: responsive utilities
 
-(To be filled by the team)
+```html
+<div class="flex flex-col md:flex-row gap-4 md:gap-8">
+  <div class="w-full md:w-1/2">Column 1</div>
+  <div class="w-full md:w-1/2">Column 2</div>
+</div>
+```
 
----
+The `@source` directive in `theme.css` scans all packages + apps, so utility classes from any of them are preserved.
 
-## Data Fetching
+## When to use this package's tokens in code
 
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
+- **`bg-bg-base`** — page background, light mode white, dark mode `#0a0a0a`
+- **`text-fg-primary`** — primary text
+- **`border-border`** — default borders (light/dark variants)
+- **`rounded-md` / `rounded-lg`** — corners referencing `--radius-*` tokens
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Naming Conventions
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't hard-code hex / rgb colors in components — use semantic tokens.
+- ❌ Don't add `data-theme="dark"` style multi-theme logic — this app uses `.dark` class only.
+- ❌ Don't add `tailwind.config.cjs` — Tailwind v4 doesn't use one.
+- ❌ Don't bypass dark mode tokens by always using `bg-...` without `dark:` variant — Tailwind v4 will auto-pair dark tokens because of `@custom-variant dark`.

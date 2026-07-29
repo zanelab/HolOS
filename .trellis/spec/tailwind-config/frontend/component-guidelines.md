@@ -1,59 +1,59 @@
-# Component Guidelines
+# @vben/tailwind-config "Component" Style — Design Tokens
 
-> How components are built in this project.
+> This package has **no Vue components**. Its "components" are **design tokens declared in CSS**.
 
----
+## Pattern: tokens as CSS custom properties
 
-## Overview
+In `src/theme.css`:
 
-<!--
-Document your project's component conventions here.
+```css
+@theme inline {
+  /* Border Radius (CSS variables reference) */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+  /* Color tokens (dark / light variants) */
+  --color-bg-base: #ffffff;
+  --color-bg-base-dark: #0a0a0a;
+  --color-fg-primary: #0f172a;
+  --color-fg-primary-dark: #f1f5f9;
+}
+```
 
-(To be filled by the team)
+In app code (an app's `src/index.css`):
 
----
+```css
+/* Tailwind's safelist — these classes must NOT be tree-shaken */
+.btn-primary {
+  @apply px-4 py-2 rounded-md bg-blue-500 text-white;
+}
+```
 
-## Component Structure
+The app consumes tokens **without redefining them** — Tailwind v4's `@theme inline` injects them into utility classes (`rounded-md` → `border-radius: var(--radius-md)`).
 
-<!-- Standard structure of a component file -->
+## Adding a New Token
 
-(To be filled by the team)
+1. Add `/* Color */` group in `src/theme.css` under `@theme inline { ... }`
+2. Add `bg-` / `text-` / `border-` classes in `theme.css`'s `@theme` if it's a new color slot
+3. Test in `@vben/web-holos/src/index.css` (the dev target app)
 
----
+## Adding a New Plugin
 
-## Props Conventions
+```css
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-<!-- How props should be defined and typed -->
+@plugin '@tailwindcss/typography';
+@plugin '@iconify/tailwind4';
+```
 
-(To be filled by the team)
+Plugins register themselves; no JS config required.
 
----
+## Forbidden
 
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't redefine tokens in app-level CSS — they belong in `theme.css` only.
+- ❌ Don't hard-code colors (`bg-[#abc123]`) outside `theme.css` — use semantic tokens like `bg-primary`.
+- ❌ Don't add new colors to a Tailwind preset (this is Tailwind v4 — no preset JS to modify).
+- ❌ Don't override Tailwind classes with `!important` inside Vue components — extend `theme.css` instead.

@@ -1,51 +1,52 @@
-# Type Safety
+# @vben/tailwind-config Type Safety
 
-> Type safety patterns in this project.
+> This package is **pure CSS**, no TS code beyond the 1-line `index.ts` re-export.
 
----
+## Config
 
-## Overview
+`tsconfig.json` extends `@vben/tsconfig/library.json`:
 
-<!--
-Document your project's type safety conventions here.
+```json
+{
+  "extends": "@vben/tsconfig/library.json"
+}
+```
 
-Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
--->
+But the only `.ts` file is `index.ts`:
 
-(To be filled by the team)
+```ts
+// src/index.ts
+import './theme.css';
+```
 
----
+That's it.
 
-## Type Organization
+## Why no TypeScript matters for CSS
 
-<!-- Where types are defined, shared types vs local types -->
+- Design tokens are **CSS custom properties** — types live at the value level, not the source level.
+- **IntelliSense** for tokens comes from editor CSS plugins (e.g., Tailwind IntelliSense VS Code plugin).
+- **Types** of token values are inferred from CSS, not declared.
 
-(To be filled by the team)
+## Tailwind v4 Type Safety Approach
 
----
+- Tailwind v4 generates TypeScript types for utilities if you have `@types/node` installed.
+- This project relies on **Tailwind IntelliSense** (VS Code plugin) for utility class validation.
+- Color tokens that don't resolve go **silent in production** — make sure to test in dev.
 
-## Validation
+## Forbidden
 
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
+- ❌ Don't add TS code to this package — keep it CSS-only.
+- ❌ Don't import `@vben/preferences` or any other runtime dependency in `index.ts`.
+- ❌ Don't add a `.ts` companion for design tokens — they're CSS variables.
+- ❌ Don't import `index.ts` from Vue / TS code — apps should consume the CSS through Vite.
 
-(To be filled by the team)
+## Linting CSS in this package
 
----
+Stylelint runs on `theme.css` via the shared `internal/stylelint-config`.
 
-## Common Patterns
+Common checks enabled:
+- `at-rule-no-unknown` — disables `@apply` etc. when not used
+- `declaration-property-value-allowed-list` — restricts known-ok values
+- `custom-property-pattern` — ensure `--token-name` consistent kebab-case
 
-<!-- Type utilities, generics, type guards -->
-
-(To be filled by the team)
-
----
-
-## Forbidden Patterns
-
-<!-- any, type assertions, etc. -->
-
-(To be filled by the team)
+If you add a new lint rule, **declare it in `internal/stylelint-config/index.ts`**, not here.

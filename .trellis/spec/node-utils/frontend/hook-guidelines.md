@@ -1,51 +1,44 @@
-# Hook Guidelines
+# @vben/node-utils: Module-level "Hooks"
 
-> How hooks are used in this project.
+> This package has **no Vue hooks**. Read this as: how to plug a helper **into** an application's hook.
 
----
+## Example: use node-utils inside a Vue composable
 
-## Overview
+When a Vue app wants to use `@vben/node-utils` helpers, wrap them in a `useXxx` composable in the **app**, not in this package:
 
-<!--
-Document your project's hook conventions here.
+```ts
+// apps/web-holos/src/composables/use-app-meta.ts
+import { ref } from 'vue';
+import { hash, formatBytes } from '@vben/node-utils';
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+export function useAppMeta() {
+  const versionHash = ref<string>('');
+  const sizeBytes = ref<number>(0);
 
-(To be filled by the team)
+  async function loadBuildMeta() {
+    const res = await fetch('/__build_meta');
+    const buf = new Uint8Array(await res.arrayBuffer());
+    versionHash.value = hash(buf);
+    sizeBytes.value = formatBytes(buf.byteLength);
+  }
 
----
+  return { versionHash, sizeBytes, loadBuildMeta };
+}
+```
 
-## Custom Hook Patterns
+## Where to use `@vben/node-utils` in this monorepo
 
-<!-- How to create and structure custom hooks -->
+- **Trellis scripts** (`.trellis/scripts/*.py`) — `git`, `monorepo`, `fs`, `path` are heavily used
+- **Vite plugins / build tools** — `hash`, `formatter`, `spinner` for build diagnostics
+- **Test runners** — `date` / `fs` for snapshot fixtures
 
-(To be filled by the team)
+## DON'T use it in
 
----
+- Frontend runtime code that ships to the browser — it's a Node-only package (no fallback for browser globals).
+- Vue composables that need reactivity — node-utils functions are not reactive; wrap them yourself if you need reactivity.
 
-## Data Fetching
+## Forbidden
 
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't import `@vben/node-utils` from `apps/web-*/src/` if it ends up in the client bundle — check `vite.config.ts` tree-shaking.
+- ❌ Don't call node-utils functions inside `setup()` without wrapping in a try/catch — they can throw on bad inputs.
+- ❌ Don't add reactive wrappers directly in `@vben/node-utils` — keep it React/Vue-agnostic.

@@ -1,51 +1,46 @@
-# State Management
+# @vben/web-tdesign State Management
 
-> How state is managed in this project.
+> Pick the **simplest** state container that fits. Don't reach for Pinia first.
 
----
+## Decision Tree
 
-## Overview
+| Where the state lives | Use |
+|---|---|
+| One component, one render | `ref()` / `reactive()` |
+| One component, deep children | `provide()` / `inject()` |
+| Cross-page but app-global, persisted | `preferences` store (`@vben/preferences`) |
+| Cross-page, transient | Pinia store |
+| Server cache | API + `useAsyncResource` (see hook-guidelines.md) |
+| Cross-tab sync | localStorage with `@vueuse/core` `useStorage` |
 
-<!--
-Document your project's state management conventions here.
+## Pinia Stores (used in this app)
 
-Questions to answer:
-- What state management solution do you use?
-- How is local vs global state decided?
-- How do you handle server state?
-- What are the patterns for derived state?
--->
+- **`useAccessStore`** — tokens, access routes, access flags
+  ```ts
+  // real usage (from src/router/access.ts)
+  import { useAccessStore } from '@vben/stores';
+  const accessStore = useAccessStore();
+  accessStore.setAccessMenus(menus);
+  accessStore.setIsAccessChecked(true);
+  ```
+- **`useAuthStore`** — login / register / logout; token expiry modal
+- **`useUserStore`** — current user info (`userInfo`, `avatar`, `homePath`)
 
-(To be filled by the team)
+## `preferences` Store — the only **persisted** state
 
----
+```ts
+// src/preferences.ts (real pattern from this app)
+export const overridesPreferences = defineOverridesPreferences({
+  app: { name: import.meta.env.VITE_APP_TITLE },
+});
+```
 
-## State Categories
+Persisted under localStorage key `vben-web-tdesign-5.7.0-dev-preferences`.
 
-<!-- Local state, global state, server state, URL state -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## When to Use Global State
-
-<!-- Criteria for promoting state to global -->
-
-(To be filled by the team)
-
----
-
-## Server State
-
-<!-- How server data is cached and synchronized -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- State management mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ Don't persist auth tokens in localStorage (XSS).
+- ❌ Don't use Vuex — this codebase uses Pinia.
+- ❌ Don't mutate preferences outside the store API (`updatePreferences(...)`).
+- ❌ Don't create a new Pinia store per feature — keep cross-feature shared state to ≤ 5 stores.
+- ❌ Don't add Vue 3 `provide`/`inject` keys for data the page itself owns — that's just props.
