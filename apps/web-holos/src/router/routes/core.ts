@@ -36,7 +36,19 @@ const coreRoutes: RouteRecordRaw[] = [
     name: 'Root',
     path: '/',
     redirect: preferences.app.defaultHomePath,
-    children: [],
+    children: [
+      {
+        meta: {
+          icon: 'lucide:home',
+          title: $t('page.home.title'),
+          // HolOS home is publicly accessible (no login required)
+          ignoreAccess: true,
+        },
+        name: 'HolOSHome',
+        path: 'home',
+        component: () => import('#/views/home/index.vue'),
+      },
+    ],
   },
   {
     component: AuthPageLayout,

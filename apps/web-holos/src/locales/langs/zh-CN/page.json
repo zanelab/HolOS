@@ -11,5 +11,10 @@
     "title": "概览",
     "analytics": "分析页",
     "workspace": "工作台"
+  },
+  "home": {
+    "title": "首页",
+    "tagline": "AI 原生操作系统 · 基于 vben-vue5.7.0",
+    "ready": "// HolOS 首页就绪 · 等待构建"
   }
 }

@@ -11,5 +11,10 @@
     "title": "Dashboard",
     "analytics": "Analytics",
     "workspace": "Workspace"
+  },
+  "home": {
+    "title": "Home",
+    "tagline": "AI-native operating system · vben-vue 5.7.0",
+    "ready": "// HolOS homepage ready · wait for build"
   }
 }
