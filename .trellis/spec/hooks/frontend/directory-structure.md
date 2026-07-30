@@ -1,54 +1,27 @@
-# Directory Structure
+# hooks Directory Structure
 
-> How frontend code is organized in this project.
+**Expected package:** @vben/hooks — custom hooks (planned)
 
----
+> **PLACEHOLDER DOCS** — This package does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. Replace these files with real content when the package is added.
 
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Expected Tree
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/hooks/
+├── package.json                # workspace name
+├── tsconfig.json
+└── src/
+    ├── index.ts                # public barrel
+    └── (one or more module files)
 ```
 
----
+## Notes
 
-## Module Organization
+- This spec directory was auto-created during `bootstrap-guidelines` task
+- The expected structure follows `vben v5.7.0` conventions seen in actual packages (`@vben/utils`, `@vben/constants`, etc.)
+- See real packages for reference examples
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Do not create the actual package directory in workspace unless the upstream vben team adds it
+- Do not import from `@vben/hooks` — it does not exist

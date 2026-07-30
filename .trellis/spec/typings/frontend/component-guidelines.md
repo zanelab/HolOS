@@ -1,59 +1,26 @@
-# Component Guidelines
+# typings Component Guidelines
 
-> How components are built in this project.
+**Expected package:** @vben-core/typings — generic TS types (planned)
 
----
+> **PLACEHOLDER DOCS** — This package does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. Replace these files with real content when the package is added.
 
-## Overview
+## Expected Conventions
 
-<!--
-Document your project's component conventions here.
+- Vue 3 + TypeScript strict mode (when applicable)
+- Single barrel at `src/index.ts` (re-export public API)
+- Tree-shake friendly (named exports only)
+- Tests in `__tests__/` alongside source
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+## Example (synthetic)
 
-(To be filled by the team)
+```ts
+// src/index.ts
+export * from './helpers';
+export { useXxx } from './use-xxx';
+```
 
----
+## Forbidden
 
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- Do not implement against this placeholder before the real package exists
+- Do not deep-import from `@vben/typings/internal/*` (package does not exist)
+- Do not add real source files under `internal/<phantom>/`
