@@ -11,5 +11,5 @@
 ## 禁止
 
 - Don't introduce dependencies
-- Don't add tests
+- 不要添加测试
 - Don't add async functions

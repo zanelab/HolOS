@@ -7,12 +7,12 @@
 - 4 spaces TS / Vue indent
 - Single quotes TS; double quotes HTML
 - No semicolons (OxFmt auto-format)
-- Max line length 120
-- Trailing newline required
+- 单行最大长度 120
+- 文件末尾必须有换行符
 
 ## 预期命名
 
-| Thing | Convention |
+| 事项 | 约定 |
 |---|---|
 | Vue page file | PascalCase.vue |
 | Component | kebab-case.vue |
@@ -26,11 +26,11 @@
 - OxFmt (formatter)
 - ESLint (rules OxLint misses)
 - Stylelint (CSS / Vue style)
-- Commitlint (feat(): / fix(): / chore():)
+- Commitlint（feat(): / fix(): / chore():）
 
 ## 禁止
 
 - 不要 use any
 - 不要 add @ts-ignore without comment
-- 不要 commit .env or secrets
+- 不要提交 .env 或密钥
 - 不要 implement against this phantom package

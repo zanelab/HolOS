@@ -8,10 +8,10 @@
 
 - Vue 3 +  TypeScript 严格模式 (when applicable)
 - Single barrel at `src/index.ts` (re-export public API)
-- Tree-shake friendly (named exports only)
+- 兼容 tree-shake（仅命名导出）
 - Tests in `__tests__/` alongside source
 
-## 示例 (synthetic)
+## 示例（合成）
 
 ```ts
 // src/index.ts
@@ -21,6 +21,6 @@ export { useXxx } from './use-xxx';
 
 ## 禁止
 
-- 不要 implement against this placeholder before the real package exists
+- 在真实 package 存在之前，不要针对该占位符进行实现
 - 不要 deep-import from `@vben//internal/*` (package does not exist)
 - 不要 add real source files under `internal/<phantom>/`

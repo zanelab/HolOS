@@ -2,7 +2,7 @@
 
 > Mock backend built on **Nitro**.
 
-## 目录树 (verified)
+## 目录树（已核对）
 
 ```
 @vben/backend-mock/

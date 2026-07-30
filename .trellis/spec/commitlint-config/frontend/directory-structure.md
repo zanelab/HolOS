@@ -2,7 +2,7 @@
 
 > Config-only package consumed via workspace alias.
 
-## 目录树 (verified)
+## 目录树（已核对）
 
 ```
 @vben/commitlint-config/
@@ -24,4 +24,4 @@
 
 - Don't add runtime code (HTTP, file IO, async)
 - Don't add CLI
-- Don't add tests
+- 不要添加测试

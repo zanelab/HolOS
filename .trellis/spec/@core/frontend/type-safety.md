@@ -24,7 +24,7 @@ export interface XResponse { id: string; }
 
 ## 禁止
 
-- 不要 use any
-- 不要 disable strict mode per-file
-- 不要 use as cast to silence errors
-- 不要 implement against this phantom package
+- 不要使用 any
+- 不要在单个文件中关闭严格模式
+- 不要使用 as 断言来压制类型错误
+- 不要针对这个幻影包进行实现

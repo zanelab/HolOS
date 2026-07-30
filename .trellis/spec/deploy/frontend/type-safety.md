@@ -1,4 +1,4 @@
-# Type Safety
+# 类型安全
 
 > Type safety patterns 在本项目中。
 
@@ -20,25 +20,25 @@ Questions to answer:
 
 ---
 
-## Type Organization
+## 类型组织
 
-<!-- Where types are defined, shared types vs local types -->
-
-(To be filled by the team)
-
----
-
-## Validation
-
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
+<!-- 类型定义位置；共享类型 vs 本地类型 -->
 
 (To be filled by the team)
 
 ---
 
-## Common Patterns
+## 校验
 
-<!-- Type utilities, generics, type guards -->
+<!-- 运行时校验模式（Zod、Yup、io-ts 等） -->
+
+(To be filled by the team)
+
+---
+
+## 常用模式
+
+<!-- 类型工具、泛型、类型守卫 -->
 
 (To be filled by the team)
 
@@ -46,6 +46,6 @@ Questions to answer:
 
 ## 禁止 Patterns
 
-<!-- any, type assertions, etc. -->
+<!-- any、类型断言等 -->
 
 (To be filled by the team)

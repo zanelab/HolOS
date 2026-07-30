@@ -11,5 +11,5 @@ import { LAYOUTS } from '@vben/constants';
 
 ## 禁止
 
-- Don't add Vue hooks here
+- 不要在此处添加 Vue hooks
 - Don't add reactive state

@@ -1,4 +1,4 @@
-# State Management
+# 状态管理
 
 > How state is managed 在本项目中。
 
@@ -10,17 +10,17 @@
 写出 project's state management conventions here.
 
 Questions to answer:
-- What state management solution do you use?
-- How is local vs global state decided?
-- How do you handle server state?
-- What are the patterns for derived state?
+- 使用哪种状态管理方案？
+- 如何决定局部 vs 全局状态？
+- 如何处理服务端状态？
+- 派生状态有哪些模式？
 -->
 
 (To be filled by the team)
 
 ---
 
-## 状态 Categories
+## 状态分类
 
 <!-- Local state, global state, server state, URL state -->
 
@@ -28,17 +28,17 @@ Questions to answer:
 
 ---
 
-## 何时使用 Global State
+## 何时使用全局状态
 
-<!-- Criteria for promoting state to global -->
+<!-- 提升为全局状态的标准 -->
 
 (To be filled by the team)
 
 ---
 
-## Server State
+## 服务端状态
 
-<!-- How server data is cached and synchronized -->
+<!-- 服务端数据如何缓存与同步 -->
 
 (To be filled by the team)
 
@@ -46,6 +46,6 @@ Questions to answer:
 
 ## Common Mistakes
 
-<!-- State management mistakes your team has made -->
+<!-- 团队在状态管理上曾犯过的错误 -->
 
 (To be filled by the team)

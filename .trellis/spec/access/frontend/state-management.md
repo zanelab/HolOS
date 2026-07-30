@@ -4,9 +4,9 @@
 
 ## 预期决策树
 
-| Where state lives | Use |
+| 状态存放位置 | 用法 |
 |---|---|
-| One component | ref() / reactive() |
+| 单个组件内 | ref() / reactive() |
 | Cross-page, persisted | preferences store (@vben/preferences) |
 | Cross-page, transient | Pinia store (@vben/stores) |
 | Server cache | API + useXResource pattern |
@@ -28,5 +28,5 @@ export function transformX(input: XInput): XOutput { /* pure */ }
 ## 禁止
 
 - 不要 persist auth tokens in localStorage (XSS risk)
-- 不要 use Vuex (this monorepo uses Pinia)
+- 不要使用 Vuex（本 monorepo 使用 Pinia）
 - 不要 mutate preferences outside the store API

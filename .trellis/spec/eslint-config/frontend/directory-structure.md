@@ -24,4 +24,4 @@
 
 - Don't add runtime code (HTTP, file IO, async)
 - Don't add CLI
-- Don't add tests
+- 不要添加测试

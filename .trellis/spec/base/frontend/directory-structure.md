@@ -19,9 +19,9 @@
 
 - This spec directory was auto-created during `bootstrap-guidelines` task
 - The expected structure follows `vben v5.7.0` conventions seen in actual packages (`@vben/utils`, `@vben/constants`, etc.)
-- See real packages for reference examples
+- 参考真实 package 的示例
 
 ## 禁止
 
-- 不要 create the actual package directory in workspace unless the upstream vben team adds it
+- 除非上游 vben 团队添加，否则不要在工作区中创建实际的 package 目录
 - 不要 import from `@vben/ase` — it does not exist

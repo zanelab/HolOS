@@ -6,8 +6,8 @@
 
 Package **@vben/backend-mock** (v5.7.0) — vben monorepo shared library.
 
-- **Version**: 5.7.0
-- **Type**: module
+- **版本**：5.7.0
+- **类型**：module
 - **Scripts**: build, start
 - **Deps** (top): @faker-js/faker, jsonwebtoken, nitropack
 

@@ -2,7 +2,7 @@
 
 > Pure constants/types/preferences utilities package.
 
-## 目录树 (verified)
+## 目录树（已核对）
 
 ```
 @vben/constants/

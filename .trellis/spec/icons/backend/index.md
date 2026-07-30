@@ -8,7 +8,7 @@ Package **@vben/icons** (v5.7.0) — vben monorepo shared library.
 
 - **Version**: 5.7.0
 - **Type**: module
-- **Scripts**: (no scripts)
+- **Scripts**：（无脚本）
 - **Deps** (top): @vben-core/icons
 
 > HolOS (`@vben/web-holos`) consumes 本包 via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.

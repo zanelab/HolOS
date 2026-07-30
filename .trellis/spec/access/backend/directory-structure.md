@@ -1,26 +1,26 @@
-# Directory Structure
+# 目录结构
 
-> How backend code is organized 在本项目中。
+> 本项目中后端代码的组织方式。
 
 ---
 
 ## 概述
 
 <!--
-写出 project's backend directory structure here.
+在此填写项目的后端目录结构。
 
 Questions to answer:
-- How are modules/packages organized?
-- Where does business logic live?
+- 模块/包是如何组织的？
+- 业务逻辑放置在哪里？
 - Where are API endpoints defined?
-- How are utilities and helpers organized?
+- 工具与辅助函数如何组织？
 -->
 
 (To be filled by the team)
 
 ---
 
-## Directory Layout
+## 目录布局
 
 ```
 <!-- Replace with your actual structure -->
@@ -31,9 +31,9 @@ src/
 
 ---
 
-## Module Organization
+## 模块组织
 
-<!-- How should new features/modules be organized? -->
+<!-- 应如何组织新功能/模块？ -->
 
 (To be filled by the team)
 
@@ -41,7 +41,7 @@ src/
 
 ## 命名约定 约定
 
-<!-- File and folder naming rules -->
+<!-- 文件与目录的命名规则 -->
 
 (To be filled by the team)
 
@@ -49,6 +49,6 @@ src/
 
 ## 示例s
 
-<!-- Link to well-organized modules as examples -->
+<!-- 链接到组织良好的模块作为示例 -->
 
 (To be filled by the team)

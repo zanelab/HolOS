@@ -7,7 +7,7 @@
 - For Vue apps: composables go in src/composables/
 - Co-located hooks in src/views/<feature>/ for one-feature usage
 - Shared hooks in src/hooks/
-- For libs: package itself has no Vue hooks (consumed via Vue apps)
+- 对于库：包本身不包含 Vue hooks（由 Vue 应用消费）
 
 ## 示例 (synthetic)
 
@@ -29,7 +29,7 @@ export function useXResource(loader: () => Promise<XData>) {
 
 ## 内置函数（始终优先检查）
 
-| Concern | Hook | Source |
+| 关注点 | Hook | 数据来源 |
 |---|---|---|
 | App config | usePreferences() | @vben/preferences |
 | Pinia | useAccessStore / useUserStore / useAuthStore | @vben/stores |
@@ -37,6 +37,6 @@ export function useXResource(loader: () => Promise<XData>) {
 
 ## 禁止
 
-- 不要 implement against this phantom package before it exists
+- 在真实 package 存在之前，不要针对该幻影包进行实现
 - 不要 wrap usePreferences() in another composable
 - 不要 put pure business logic in a hook (use src/utils/ instead)

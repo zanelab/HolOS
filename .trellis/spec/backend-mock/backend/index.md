@@ -6,8 +6,8 @@
 
 Package **@vben/backend-mock** (v5.7.0) — vben monorepo shared library.
 
-- **Version**: 5.7.0
-- **Type**: module
+- **版本**：5.7.0
+- **类型**：module
 - **Scripts**: build, start
 - **Deps** (top): @faker-js/faker, jsonwebtoken, nitropack
 
@@ -42,7 +42,7 @@ tsconfig.json
 3. Use TypeScript 严格模式; no `any` (use `unknown` + narrowing)
 4. Consume via `@vben` workspace alias (not relative paths)
 
-## 禁止 Patterns
+## 禁止模式
 
 - ❌ Don't deep-import from package subdirs (`@vben/foo/internals/util`) — use public `index.ts` only
 - ❌ Don't bypass `src/index.ts` with direct file imports — that defeats tree-shaking
