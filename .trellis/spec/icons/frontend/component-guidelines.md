@@ -1,59 +1,24 @@
-# Component Guidelines
+# @vben/icons Component Guidelines
 
-> How components are built in this project.
+## Pattern: IconifyIcon wrapper
 
----
+```vue
+<script setup lang="ts">
+import { Icon } from '@iconify/vue';
+defineProps<{ icon: string; size?: number }>();
+</script>
+<template>
+  <Icon :icon="icon" :width="size ?? 16" :height="size ?? 16" />
+</template>
+```
 
-## Overview
+Usage:
 
-<!--
-Document your project's component conventions here.
+```vue
+<IconifyIcon icon="lucide:home" :size="20" />
+```
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- Don't import raw icons from Iconify / @iconify/vue directly
+- Don't add <svg> inline to views

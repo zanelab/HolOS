@@ -1,54 +1,38 @@
-# Directory Structure
+# @vben/backend-mock Directory Structure
 
-> How frontend code is organized in this project.
+> Mock backend built on **Nitro**.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/backend-mock/
+├── package.json                # name "@vben/backend-mock" v5.7.0
+├── nitro.config.ts
+├── tsconfig.json + tsconfig.build.json
+├── error.ts                    # h3 createError helper
+├── README.md
+└── src/
+    ├── api/                    # <resource>.<method>.ts handlers
+    │   ├── auth/    (login.post.ts, logout.post.ts)
+    │   ├── demo/
+    │   ├── menu/
+    │   ├── system/
+    │   ├── table/
+    │   ├── timezone/
+    │   └── user/
+    ├── middleware/
+    ├── routes/
+    └── utils/
 ```
 
----
+## Conventions
 
-## Module Organization
+- **Mock endpoints** use same path as production (`/api/...`)
+- **Filename convention**: `<resource>.<method>.ts` (e.g. `login.post.ts`)
+- **Run via** `pnpm dev:backend-mock` (port 5320)
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't use Express - use h3
+- Don't put real auth here - mock only
+- Don't add a real database

@@ -1,54 +1,24 @@
-# Directory Structure
+# @vben/utils Directory Structure
 
-> How frontend code is organized in this project.
+> Pure utility package - no UI, no Vue, no runtime.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified from packages/utils/)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/utils/
+├── package.json                # workspace name "@vben/utils"
+├── tsconfig.json
+├── index.ts                    # public barrel
+└── helpers/                    # various helper modules
 ```
 
----
+## Conventions
 
-## Module Organization
+- **Single barrel** at index.ts
+- **Pure functions** only - no IO
+- **Tests in __tests__/ alongside source**
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't add Vue code
+- Don't add side effects

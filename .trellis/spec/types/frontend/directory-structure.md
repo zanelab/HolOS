@@ -1,54 +1,26 @@
-# Directory Structure
+# @vben/types Directory Structure
 
-> How frontend code is organized in this project.
+> Pure constants/types/preferences utilities package.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/types/
+├── package.json                # workspace name "@vben/types"
+├── tsconfig.json
+└── src/
+    ├── index.ts                # public barrel
+    └── (constants.ts | types.ts | config.ts)
 ```
 
----
+## Conventions
 
-## Module Organization
+- **Single barrel** at index.ts
+- **Pure values/types only** - no IO
+- **Tree-shake friendly** - each export individually named
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't add Vue code
+- Don't import runtime dependencies
+- Don't bundle into classes / namespaces

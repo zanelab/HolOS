@@ -1,59 +1,19 @@
-# Component Guidelines
+# @vben/backend-mock Component Guidelines
 
-> How components are built in this project.
+> Nitro Mock Server "Components" = HTTP endpoints.
 
----
+## Pattern: defineEventHandler
 
-## Overview
+```ts
+import { defineEventHandler, readBody, createError } from "h3";
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  if (!body.username) throw createError({ statusCode: 400 });
+  return { access_token: "mock-token" };
+});
+```
 
-<!--
-Document your project's component conventions here.
+## Forbidden
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
-
-(To be filled by the team)
-
----
-
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- Don't use Express
+- Don't use Generators

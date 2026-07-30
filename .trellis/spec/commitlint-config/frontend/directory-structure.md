@@ -1,54 +1,27 @@
-# Directory Structure
+# @vben/commitlint-config Directory Structure
 
-> How frontend code is organized in this project.
+> Config-only package consumed via workspace alias.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/commitlint-config/
+├── package.json                # workspace name "@vben/commitlint-config"
+├── tsconfig.json
+└── src/
+    ├── index.ts                # re-exports everything
+    └── (one or more config files)
 ```
 
----
+## Conventions
 
-## Module Organization
+- **Config objects** exported as named const
+- **Single barrel** at src/index.ts
+- **No real build step** - consumed via tsx
+- **scripts/stub.mjs** provides fake dist/index.mjs
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't add runtime code (HTTP, file IO, async)
+- Don't add CLI
+- Don't add tests

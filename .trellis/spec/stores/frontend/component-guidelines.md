@@ -1,59 +1,31 @@
-# Component Guidelines
+# @vben/stores "Component" Style - Pinia Stores
 
-> How components are built in this project.
+> No Vue components. Stores = Pinia state + actions.
 
----
+## Pattern: setup-style store
 
-## Overview
+```ts
+import { defineStore } from "pinia";
+export const useAccessStore = defineStore("access", () => {
+  const accessToken = ref<AccessToken>(null);
+  function setAccessMenus(menus: RouteRecordStringComponent[]) {
+    accessMenus.value = menus;
+  }
+  return { accessToken, setAccessMenus };
+});
+```
 
-<!--
-Document your project's component conventions here.
+## Usage
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+```vue
+<script setup>
+import { useAccessStore } from "@vben/stores";
+const accessStore = useAccessStore();
+accessStore.setAccessMenus(menus);
+</script>
+```
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- Don't use Options API for stores
+- Don't define globals outside defineStore

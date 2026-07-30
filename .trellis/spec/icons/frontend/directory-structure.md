@@ -1,54 +1,28 @@
-# Directory Structure
+# @vben/icons Directory Structure
 
-> How frontend code is organized in this project.
+> Iconify + SVG icons. Used across all web-* apps.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/icons/
+├── package.json                # name "@vben/icons" v5.7.0
+├── index.ts                    # re-exports Svg*Icon + IconifyIcon
+└── svg/
+    ├── SvgAntdvLogoIcon.vue
+    ├── SvgAntdvNextLogoIcon.vue
+    └── (... per-component SVG icons)
 ```
 
----
+## Conventions
 
-## Module Organization
+- **<IconifyIcon :icon="name">** - runtime-loaded from Iconify API
+- **<SvgFooIcon>** - local SVG components
+- **Tree-shaking**: import specific icons
+- **Auto-import**: via unplugin-vue-components
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't bundle the full Iconify icon set
+- Don't add inline <svg> in templates
+- Don't import icons from react-icons

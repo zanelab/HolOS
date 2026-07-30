@@ -1,59 +1,35 @@
-# Component Guidelines
+# @vben/locales Component Guidelines
 
-> How components are built in this project.
+> No Vue components. Source of truth = JSON locale files.
 
----
+## Pattern
 
-## Overview
+```json
+{
+  "auth": {
+    "login": "Login"
+  },
+  "page": {
+    "home": {
+      "title": "Home"
+    }
+  }
+}
+```
 
-<!--
-Document your project's component conventions here.
+## Usage
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+```vue
+<script setup>
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
+</script>
+<template>
+  <h1>{{ t('page.home.title') }}</h1>
+</template>
+```
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- Don't put strings in Vue components
+- Don't use Chinese / English strings directly

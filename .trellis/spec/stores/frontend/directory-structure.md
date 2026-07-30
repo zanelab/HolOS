@@ -1,54 +1,29 @@
-# Directory Structure
+# @vben/stores Directory Structure
 
-> How frontend code is organized in this project.
+> Pinia stores shared across all web-* apps.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified from packages/stores/)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/stores/
+├── package.json                # name "@vben/stores" v5.7.0
+├── tsconfig.json
+├── setup.ts                    # createPinia + plugins
+├── index.ts                    # re-exports stores
+└── modules/
+    ├── access.ts               # useAccessStore
+    ├── auth.ts                 # useAuthStore
+    └── user.ts                 # useUserStore
 ```
 
----
+## Conventions
 
-## Module Organization
+- **One store per module file**
+- **Setup-style stores** (defineStore("id", () => ...))
+- **All stores registered in index.ts**
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't put business logic in setup()
+- Don't put API calls inside setup()
+- Don't create circular deps between stores

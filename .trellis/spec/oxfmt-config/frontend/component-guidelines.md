@@ -1,59 +1,28 @@
-# Component Guidelines
+# @vben/oxfmt-config "Component" Style - Config Object
 
-> How components are built in this project.
+> No Vue components. "Components" are typed config objects.
 
----
+## Pattern
 
-## Overview
+```ts
+import type { Linter } from "eslint";
+export const config: Linter.Config[] = [
+  /* config entries */
+];
+```
 
-<!--
-Document your project's component conventions here.
+## Usage
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+```ts
+import { config as eslintConfig } from "@vben/oxfmt-config";
+export default [
+  ...eslintConfig,
+  // app-specific overrides
+];
+```
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- Don't add side-effect functions
+- Don't add CLI/runtime code
+- Don't import runtime deps - zero-dep

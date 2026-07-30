@@ -1,54 +1,30 @@
-# Directory Structure
+# @vben/styles Directory Structure
 
-> How frontend code is organized in this project.
+> Per-framework CSS bundle + global styles.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified from packages/styles/)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/styles/
+├── package.json                # name "@vben/styles" v5.7.0
+├── index.ts                    # re-exports all flavors
+├── style-exports.d.ts          # CSS module declarations
+└── <flavor>/                   # per-UI-framework styles
+    ├── antd/
+    ├── ele/
+    ├── naive/
+    ├── antdv-next/
+    └── global/
 ```
 
----
+## Conventions
 
-## Module Organization
+- **Per-flavor subdirs** isolated by UI framework
+- **global/** for cross-flavor utilities
+- **style-exports.d.ts** - CSS module .d.ts
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't import other framework's components
+- Don't redefine Tailwind tokens
+- Don't add JS to .css / .scss

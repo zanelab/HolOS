@@ -1,59 +1,35 @@
-# Component Guidelines
+# @vben/web-naive Component Guidelines
 
-> How components are built in this project.
+> Vue 3 + UI-framework conventions.
 
----
+## Conventions
 
-## Overview
+- **<script setup lang="ts">** only
+- **UI-framework** imported through adapters
+- **i18n** via $t("namespace.key")
+- **<VbenForm>** + **<VbenVxeGrid>** from @vben/common-ui + @vben/plugins/vxe-table
 
-<!--
-Document your project's component conventions here.
+## Example: analytics view
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+```vue
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+import { fetchAnalytics } from "#/api";
+const data = ref<AnalyticsData[]>([]);
+onMounted(async () => { data.value = await fetchAnalytics(); });
+</script>
+<template>
+  <Page>
+    <Card :title="$t('page.dashboard.analytics')">
+      <VChart :option="chartOption" />
+    </Card>
+  </Page>
+</template>
+```
 
-(To be filled by the team)
+## Forbidden
 
----
-
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+- Don't import UI lib directly from views
+- Don't mutate props in <script setup>
+- Don't use v-html (XSS)
+- Don't use defineComponent({...})

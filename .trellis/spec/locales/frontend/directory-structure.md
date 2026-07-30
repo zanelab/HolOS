@@ -1,54 +1,33 @@
-# Directory Structure
+# @vben/locales Directory Structure
 
-> How frontend code is organized in this project.
+> i18n locales package - vue-i18n source of truth.
 
----
-
-## Overview
-
-<!--
-Document your project's frontend directory structure here.
-
-Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
--->
-
-(To be filled by the team)
-
----
-
-## Directory Layout
+## Tree (verified)
 
 ```
-<!-- Replace with your actual structure -->
-src/
-├── ...
-└── ...
+@vben/locales/
+├── package.json                # name "@vben/locales" v5.7.0
+├── tsconfig.json
+├── i18n.ts                     # $t wrapper
+├── typing.ts                   # locale types
+├── index.ts                    # setupI18n + loadMessages
+└── langs/
+    ├── zh-CN/
+    │   ├── auth.json
+    │   ├── common.json
+    │   ├── demos.json
+    │   └── page.json
+    └── en-US/...
 ```
 
----
+## Conventions
 
-## Module Organization
+- **Top-level keys**: auth, common, demos, page - each maps to its own JSON
+- **Nested keys** allowed: page.home.title, demos.vben.title
+- **Both languages land in same commit**
+- **fallbackLocale** is en-US
 
-<!-- How should new features be organized? -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- File and folder naming rules -->
-
-(To be filled by the team)
-
----
-
-## Examples
-
-<!-- Link to well-organized modules as examples -->
-
-(To be filled by the team)
+- Don't put i18n strings in Vue components
+- Don't put translation logic here
