@@ -1,26 +1,115 @@
-# shadcn-ui 组件规范
+# shadcn-ui — PLACEHOLDER SPEC
 
-**Expected package:** @vben-core/shadcn-ui — shadcn-vue primitives (planned)
+**Expected package:** `@vben-core/shadcn-ui` — shadcn-vue primitives wrapped with `Vben` prefix — `VbenButton`, `VbenInput`, `VbenSelect`, `VbenCheckbox`, `VbenDialog`. Re-skinned, re-exported, themeable.
 
-> **PLACEHOLDER DOCS** — 本包 does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. 替换这些文件 real content when package 添加后.
+> ⚠️ **PLACEHOLDER DOCS** — This package does **not** exist in the current
+> workspace. The structure, conventions, and code examples below are
+> best-guess projections based on the upstream `vben v5.7.0` monorepo
+> (`vbenjs/vben-admin-monorepo`) and the role this package plays
+> in a real vben app. **Replace this file with real content when (and
+> only when) the corresponding `packages/shadcn-ui/`
+> directory lands upstream.**
 
-## 预期约定
+Do **not** implement against this placeholder — code that imports from
+`@vben-core/shadcn-ui` will fail to typecheck.
+## When this package has Vue components
 
-- Vue 3 +  TypeScript 严格模式 (when applicable)
-- Single barrel at `src/index.ts` (re-export public API)
-- Tree-shake friendly (named exports only)
-- Tests in `__tests__/` alongside source
+Most `@vben-core/shadcn-ui` modules are **SFCs** (`.vue` with `<script setup lang="ts">`).
+Follow the conventions below.
 
-## 示例 (synthetic)
+## Component file shape
 
-```ts
-// src/index.ts
-export * from './helpers';
-export { useXxx } from './use-xxx';
+```vue
+<script setup lang="ts">
+import { computed } from 'vue';
+import { cn } from '@vben/utils';
+
+interface Props {
+  title: string;
+  size?: 'small' | 'default' | 'large';
+  disabled?: boolean;
+}
+const props = withDefaults(defineProps<Props>(), {
+  size: 'default',
+  disabled: false,
+});
+const cls = computed(() => cn('vben-x', `vben-x--${props.size}`));
+</script>
+
+<template>
+  <div :class="cls" :aria-disabled="disabled || undefined">
+    <slot>{ title }</slot>
+  </div>
+</template>
 ```
 
-## 禁止
+## Conventions
 
-- 不要 implement against this placeholder before the real package exists
-- 不要 deep-import from `@vben/shadcn-ui/internal/*` (package does not exist)
-- 不要 add real source files under `internal/<phantom>/`
+- **`<script setup lang="ts">`** is mandatory; no Options API.
+- **Single root** allowed only when wrapper styles are pure; otherwise
+  use `Fragment` or wrap with a meaningful element.
+- **`defineOptions({ name: 'XxxYyy' })`** for `keep-alive` friendly names.
+- **`v-model`** via `defineModel<T>('value')` (Vue 3.4+) or explicit
+  `defineProps` + `defineEmits`.
+- **Props with defaults** — always use `withDefaults(defineProps<…>(), {})`,
+  not runtime object form.
+- **Style** — `<style scoped>` only for component-local tweaks; layout
+  primitives must remain styleless and consume `useAppTheme` tokens.
+
+## Naming rules
+
+| Thing | Rule | Example |
+|---|---|---|
+| File | `PascalCase.vue` | `VbenModal.vue` |
+| Component name | `PascalCase` (no `Vben-` kebab unless global) | `VbenModal` |
+| Directory | `kebab-case/` | `vben-modal/` |
+| Slot | camelCase | `header`, `footer`, `trigger` |
+| Event | `update:*` for v-model, otherwise `kebab-case` | `update:open`, `close` |
+
+## Code example (real-style, 12+ lines)
+
+```vue
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+import { VbenButton } from '@vben-core/shadcn-ui/components';
+import { useAppTheme } from '@vben/hooks';
+
+interface Props {
+  open: boolean;
+  title?: string;
+  onConfirm?: () => Promise<void> | void;
+}
+const props = defineProps<Props>();
+const emit = defineEmits<{ (e: 'update:open', v: boolean): void }>();
+const loading = ref(false);
+const theme = useAppTheme();
+async function handleConfirm() {
+  if (!props.onConfirm) return emit('update:open', false);
+  loading.value = true;
+  try { await props.onConfirm(); }
+  finally { loading.value = false; emit('update:open', false); }
+}
+watch(() => props.open, (v) => {
+  if (!v) loading.value = false;
+});
+</script>
+
+<template>
+  <Teleport to="body">
+    <div v-if="open" class="vben-x" :data-theme="theme.mode">
+      <h3>{ title }</h3>
+      <VbenButton :loading="loading" @click="handleConfirm">OK</VbenButton>
+    </div>
+  </Teleport>
+</template>
+```
+
+## Forbidden
+
+- ❌ No Options API (`export default { ... }`) — only `<script setup>`.
+- ❌ No `any` in prop types — declare interfaces.
+- ❌ No `defineProps` without `withDefaults` when defaults exist.
+- ❌ No inline `<style>` colors — use `useAppTheme()` tokens.
+- ❌ No mixing kebab-case and PascalCase in one component's name space.
+- ❌ No importing UI from another component library directly — go through
+  `@vben-core/shadcn-ui`.

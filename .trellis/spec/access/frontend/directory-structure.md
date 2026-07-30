@@ -1,27 +1,82 @@
-# access 目录结构
+# access — PLACEHOLDER SPEC
 
-**Expected package:** @vben/access — generateAccessible + ACL primitives (planned)
+**Expected package:** `@vben/access` — ACL primitives — `hasAccess`, `generateAccessible`, route/menu/button permission gating helpers used by apps and `@vben/stores`.
 
-> **PLACEHOLDER DOCS** — 本包 does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. 替换这些文件 real content when package 添加后.
+> ⚠️ **PLACEHOLDER DOCS** — This package does **not** exist in the current
+> workspace. The structure, conventions, and code examples below are
+> best-guess projections based on the upstream `vben v5.7.0` monorepo
+> (`vbenjs/vben-admin-monorepo`) and the role this package plays
+> in a real vben app. **Replace this file with real content when (and
+> only when) the corresponding `packages/access/`
+> directory lands upstream.**
 
-## 预期目录树
+Do **not** implement against this placeholder — code that imports from
+`@vben/access` will fail to typecheck.
+## Expected directory tree (vben v5.7.0 conventions)
 
 ```
 @vben/access/
-├── package.json                # workspace name
-├── tsconfig.json
+├── package.json                        # name "@vben/access" v5.7.0
+├── tsconfig.json                       # extends @vben/tsconfig/library.json
+├── README.md                           # (optional) usage example
 └── src/
-    ├── index.ts                # public barrel
+    ├── index.ts                        # 公开 barrel — re-exports public API
     └── (one or more module files)
 ```
 
-## 说明
+### Typical src/ layout (varies by role — `acl`)
 
-- This spec directory was auto-created during `bootstrap-guidelines` task
-- The expected structure follows `vben v5.7.0` conventions seen in actual packages (`@vben/utils`, `@vben/constants`, etc.)
-- 参考真实 package 的示例
+```
+src/
+├── index.ts
+├── core.ts                            # main entry helpers
+├── types.ts                           # public TS types
+├── constants.ts                       # (when role needs runtime constants)
+├── helpers/                           # per-feature helper groups
+│   ├── index.ts
+│   ├── has-access.ts                  # example per role
+│   └── generate-accessible.ts
+├── components/                        # (UI role only — see component-guidelines.md)
+│   └── <PascalCase>.vue
+└── __tests__/                         # co-located unit tests
+    └── helpers.spec.ts
+```
 
-## 禁止
+## Per-role layout hints
 
-- 除非上游 vben 团队添加，否则不要在工作区中创建实际的 package 目录
-- 不要 import from `@vben/access` — it does not exist
+| Role (acl) | Extra dirs expected |
+|---|---|
+| composite | `src/<group>/...` mirroring sub-packages |
+| acl | `src/has-access.ts`, `src/generate-accessible.ts`, `src/types.ts` |
+| ui-primitives | `src/components/<PascalCase>.vue` |
+| fallback-pages | `src/about/`, `src/profile/`, `src/authentication/` |
+| composables | `src/use-<feature>.ts` per hook |
+| tokens | `src/tokens.css`, `src/preset.ts` |
+| form | `src/components/form/`, `src/components/form-item/`, `src/form-api.ts` |
+| app-hooks | `src/use-app-<feature>.ts` |
+| layout-primitives | `src/components/layout-<region>/` |
+| layouts | `src/basic-layout/`, `src/auth-layout/`, `src/i-frame-view/`, `src/blank-layout/` |
+| menu | `src/components/menu/`, `src/components/breadcrumb/` |
+| vite-plugins | `src/vite/<name>.ts` per plugin |
+| popups | `src/components/modal/`, `src/components/drawer/`, `src/components/dropdown/` |
+| http | `src/request-client.ts`, `src/interceptors/`, `src/helpers/` |
+| runtime-constants | `src/error-codes.ts`, `src/timeouts.ts` |
+| shadcn | `src/components/<kebab>/<PascalCase>.vue` |
+| tabs | `src/components/tabs-view/`, `src/components/tab-button/`, `src/context-menu.ts` |
+| typings | `src/<group>.ts` (e.g. `record.ts`, `partial.ts`) |
+
+## Patterns
+
+- **Public barrel** — `src/index.ts` is the **only** import entry point.
+  Deep imports like `@vben/access/internal/x` are forbidden.
+- **Co-located tests** — vitest specs live in `__tests__/` next to source.
+- **Each subdirectory** owns its own `index.ts` to keep tree-shaking tight.
+
+## Forbidden
+
+- ❌ Don't `import` from `@vben/access/internal/*` — only the public barrel.
+- ❌ Don't create the actual `packages/access/`
+  directory in this workspace — it's upstream-owned.
+- ❌ Don't ship a `dist/` or `lib/` folder in the placeholder spec.
+- ❌ Don't add `package.json` here — spec dir is docs, not buildable.
+- ❌ Don't reference node_modules paths; everything is workspace alias.

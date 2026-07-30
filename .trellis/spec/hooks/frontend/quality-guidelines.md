@@ -1,36 +1,89 @@
-# hooks 质量规范
+# hooks — PLACEHOLDER SPEC
 
-> **PLACEHOLDER DOCS** - 本包 does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. 替换这些文件 real content when package 添加后.
+**Expected package:** `@vben/hooks` — App-level custom hooks — `useAppTheme`, `useAppLocale`, `useAppTabbar`, `useAppMenu`, `useWebsocket` — orchestrates preferences + stores + composables.
 
-## 预期代码风格
+> ⚠️ **PLACEHOLDER DOCS** — This package does **not** exist in the current
+> workspace. The structure, conventions, and code examples below are
+> best-guess projections based on the upstream `vben v5.7.0` monorepo
+> (`vbenjs/vben-admin-monorepo`) and the role this package plays
+> in a real vben app. **Replace this file with real content when (and
+> only when) the corresponding `packages/hooks/`
+> directory lands upstream.**
 
-- 4 spaces TS / Vue indent
-- Single quotes TS; double quotes HTML
-- No semicolons (OxFmt auto-format)
-- Max line length 120
-- Trailing newline required
+Do **not** implement against this placeholder — code that imports from
+`@vben/hooks` will fail to typecheck.
+## Code style
 
-## 预期命名
+- **4-space** TS / Vue indent (2-space for SVG / CSS).
+- **Single quotes** for TS strings, **double quotes** for HTML.
+- **No semicolons** (OxFmt auto-inserts them on commit).
+- **120-char** line cap.
+- **Trailing newline** required at EOF.
+- **No `any`** — define a proper interface or generic.
+- **No `// @ts-ignore`** without a `// why:` comment.
 
-| Thing | Convention |
-|---|---|
-| Vue page file | PascalCase.vue |
-| Component | kebab-case.vue |
-| Composable | useCamelCase |
-| Pinia store | useXxxStore |
-| Constant | UPPER_SNAKE_CASE |
+## Naming
 
-## 提交前钩子
+| Thing | Convention | Example |
+|---|---|---|
+| Constant | `UPPER_SNAKE_CASE` | `LOGIN_PATH`, `MAX_RETRY` |
+| Type | `PascalCase` | `LayoutType`, `UserInfo` |
+| Interface | `PascalCase` (no `I` prefix in v5.7.0) | `UserInfo`, `MenuItem` |
+| Component file | `PascalCase.vue` | `VbenModal.vue` |
+| Page file | `kebab-case.vue` | `user-profile.vue` |
+| Composable | `useCamelCase` exported from `use-<kebab>.ts` | `useScroll` |
+| Pinia store | `useXxxStore` | `useUserStore` |
+| Helper | camelCase verb-first | `mergeRouteModules` |
+| Test spec | `<module>.spec.ts` next to source | `use-scroll.spec.ts` |
 
-- OxLint (fast)
-- OxFmt (formatter)
-- ESLint (rules OxLint misses)
-- Stylelint (CSS / Vue style)
-- Commitlint (feat(): / fix(): / chore():)
+## Patterns
 
-## 禁止
+### Strict const + literal type
 
-- 不要 use any
-- 不要 add @ts-ignore without comment
-- 不要 commit .env or secrets
-- 不要 implement against this phantom package
+```ts
+export const LOGIN_PATH = '/auth/login' as const;
+export type LayoutType = 'sidebar-nav' | 'mixed-nav' | 'header-nav';
+```
+
+### Composable return type explicit
+
+```ts
+export function useScroll(target?: MaybeRefOrGetter<HTMLElement | null>) {
+  // ...
+  return { y: Ref<number> } as const;
+}
+```
+
+### Component prop interface colocated
+
+```vue
+<script setup lang="ts">
+interface Props { title: string; size?: 'small' | 'default' | 'large'; }
+const props = withDefaults(defineProps<Props>(), { size: 'default' });
+</script>
+```
+
+## Pre-commit pipeline
+
+- **OxLint** — fast lint pass
+- **OxFmt** — formatter (auto-fixes style)
+- **ESLint flat config** — rules OxLint misses
+- **Stylelint** — CSS / scoped styles
+- **commitlint** — `feat():` / `fix():` / `chore():` etc.
+- **vue-tsc** — typecheck (run in CI, not pre-commit)
+
+## Tests
+
+- `vitest` for unit tests, co-located in `__tests__/`.
+- `playwright` for E2E (apps only, never in this `@vben/hooks`).
+- Test files named `<module>.spec.ts`.
+
+## Forbidden
+
+- ❌ Don't add `lodash` — use `@vben/utils`.
+- ❌ Don't inline colors in TS / Vue — read from `useAppTheme()`.
+- ❌ Don't disable ESLint rules per-file without a `// why:` comment.
+- ❌ Don't commit `.env`, `*.local`, or secrets.
+- ❌ Don't import from another component library directly (e.g.
+  `naive-ui` outside `shadcn-ui` / `popup-ui` packages).
+- ❌ Don't ship `console.log` debug noise — use a logger or remove.
