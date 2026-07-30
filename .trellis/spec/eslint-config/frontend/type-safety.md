@@ -1,13 +1,13 @@
 # @vben/eslint-config Type Safety
 
-> Strict-mode TS.
+> 严格模式 TS.
 
 ```ts
 import type { Linter } from 'eslint';
 export const config: Linter.Config[] = [...];
 ```
 
-## Forbidden
+## 禁止
 
 - Don't disable strict mode
 - Don't use any

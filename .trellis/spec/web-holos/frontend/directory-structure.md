@@ -2,7 +2,7 @@
 
 > Source layout for `apps/web-holos/`
 
-## Tree
+## 目录树
 
 ```
 apps/web-holos/
@@ -51,13 +51,13 @@ apps/web-holos/
         └── home/index.vue             # 当前起始页(自定)
 ```
 
-## Conventions
+## 约定
 
 - **Layouts**: 覆盖父 layout 时,在 `src/layouts/` 拷一份,basic.vue / auth.vue 改 import 路径
 - **Routes**: `core.ts` 加核心路由;业务路由放 `modules/`(vite 自动 glob)
 - **i18n**: 在 `preferences.ts` 设 `locale`,在 `locales/langs/<lang>/` 加 json 文件
 
-## Forbidden
+## 禁止
 
 - ❌ 不要在 `src/views/dashboard/` 等「被删目录」下重建
 - ❌ 不要在 `tsconfig.json` 加过松的 strict

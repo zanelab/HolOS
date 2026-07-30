@@ -2,16 +2,16 @@
 
 **Expected package:** @vben-core/composables — useScroll, useScrollbar etc (planned)
 
-> **PLACEHOLDER DOCS** — This package does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. Replace these files with real content when the package is added.
+> **PLACEHOLDER DOCS** — 本包 does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. 替换这些文件 real content when package 添加后.
 
-## Expected Conventions
+## 预期约定
 
-- Vue 3 + TypeScript strict mode (when applicable)
+- Vue 3 +  TypeScript 严格模式 (when applicable)
 - Single barrel at `src/index.ts` (re-export public API)
 - Tree-shake friendly (named exports only)
 - Tests in `__tests__/` alongside source
 
-## Example (synthetic)
+## 示例 (synthetic)
 
 ```ts
 // src/index.ts
@@ -19,8 +19,8 @@ export * from './helpers';
 export { useXxx } from './use-xxx';
 ```
 
-## Forbidden
+## 禁止
 
-- Do not implement against this placeholder before the real package exists
-- Do not deep-import from `@vben/mposables/internal/*` (package does not exist)
-- Do not add real source files under `internal/<phantom>/`
+- 不要 implement against this placeholder before the real package exists
+- 不要 deep-import from `@vben/mposables/internal/*` (package does not exist)
+- 不要 add real source files under `internal/<phantom>/`

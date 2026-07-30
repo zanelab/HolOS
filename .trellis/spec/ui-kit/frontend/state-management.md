@@ -1,13 +1,13 @@
 # State Management
 
-> How state is managed in this project.
+> How state is managed 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's state management conventions here.
+写出 project's state management conventions here.
 
 Questions to answer:
 - What state management solution do you use?
@@ -20,7 +20,7 @@ Questions to answer:
 
 ---
 
-## State Categories
+## 状态 Categories
 
 <!-- Local state, global state, server state, URL state -->
 
@@ -28,7 +28,7 @@ Questions to answer:
 
 ---
 
-## When to Use Global State
+## 何时使用 Global State
 
 <!-- Criteria for promoting state to global -->
 

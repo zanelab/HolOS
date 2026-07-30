@@ -2,7 +2,7 @@
 
 > Pure constants/types/preferences utilities package.
 
-## Tree (verified)
+## 目录树 (verified)
 
 ```
 @vben/types/
@@ -13,13 +13,13 @@
     └── (constants.ts | types.ts | config.ts)
 ```
 
-## Conventions
+## 约定
 
 - **Single barrel** at index.ts
 - **Pure values/types only** - no IO
 - **Tree-shake friendly** - each export individually named
 
-## Forbidden
+## 禁止
 
 - Don't add Vue code
 - Don't import runtime dependencies

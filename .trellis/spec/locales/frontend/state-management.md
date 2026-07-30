@@ -2,7 +2,7 @@
 
 > Build-time static. No runtime state.
 
-## Forbidden
+## 禁止
 
 - Don't add mutable state
 - Don't load async at runtime

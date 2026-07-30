@@ -4,10 +4,10 @@
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's quality standards here.
+写出 project's quality standards here.
 
 Questions to answer:
 - What patterns are forbidden?
@@ -20,7 +20,7 @@ Questions to answer:
 
 ---
 
-## Forbidden Patterns
+## 禁止 Patterns
 
 <!-- Patterns that should never be used and why -->
 
@@ -28,7 +28,7 @@ Questions to answer:
 
 ---
 
-## Required Patterns
+## 必需模式
 
 <!-- Patterns that must always be used -->
 
@@ -36,7 +36,7 @@ Questions to answer:
 
 ---
 
-## Testing Requirements
+## 测试ing Requirements
 
 <!-- What level of testing is expected -->
 

@@ -4,7 +4,7 @@
 
 ---
 
-## Why Thinking Guides?
+## 原因 Thinking Guides?
 
 **Most bugs and tech debt come from "didn't think of that"**, not from lack of skill:
 
@@ -28,7 +28,7 @@ These guides help you **ask the right questions before coding**.
 
 ## Quick Reference: Thinking Triggers
 
-### When to Think About Cross-Layer Issues
+### 何时 Think About Cross-Layer Issues
 
 - [ ] Feature touches 3+ layers (API, Service, Component, Database)
 - [ ] Data format changes between layers
@@ -39,7 +39,7 @@ These guides help you **ask the right questions before coding**.
 
 → Read [Cross-Layer Thinking Guide](./cross-layer-thinking-guide.md)
 
-### When to Think About Code Reuse
+### 何时 Think About Code Reuse
 
 - [ ] You're writing similar code to something that exists
 - [ ] You see the same pattern repeated 3+ times

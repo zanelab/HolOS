@@ -1,14 +1,14 @@
 # layouts Type Safety
 
-> **PLACEHOLDER DOCS** - This package does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. Replace these files with real content when the package is added.
+> **PLACEHOLDER DOCS** - 本包 does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. 替换这些文件 real content when package 添加后.
 
-## Expected Config
+## 预期配置
 
 - Apps: tsconfig.json extends @vben/tsconfig/web-app.json
 - Libs: tsconfig.json extends @vben/tsconfig/library.json
-- Strict mode ON (no implicit any, strict null checks)
+- 严格模式 ON (no implicit any, strict null checks)
 
-## Expected Patterns
+## 预期模式
 
 ```ts
 import type { RouteRecordRaw } from "vue-router";
@@ -22,9 +22,9 @@ const props = withDefaults(defineProps<Props>(), { count: 0 });
 export interface XResponse { id: string; }
 ```
 
-## Forbidden
+## 禁止
 
-- Do not use any
-- Do not disable strict mode per-file
-- Do not use as cast to silence errors
-- Do not implement against this phantom package
+- 不要 use any
+- 不要 disable strict mode per-file
+- 不要 use as cast to silence errors
+- 不要 implement against this phantom package

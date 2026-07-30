@@ -1,8 +1,8 @@
 # @vben/tailwind-config "Component" Style — Design Tokens
 
-> This package has **no Vue components**. Its "components" are **design tokens declared in CSS**.
+> 本包 has **no Vue components**. Its "components" are **design tokens declared in CSS**.
 
-## Pattern: tokens as CSS custom properties
+## 模式: tokens as CSS custom properties
 
 In `src/theme.css`:
 
@@ -51,7 +51,7 @@ The app consumes tokens **without redefining them** — Tailwind v4's `@theme in
 
 Plugins register themselves; no JS config required.
 
-## Forbidden
+## 禁止
 
 - ❌ Don't redefine tokens in app-level CSS — they belong in `theme.css` only.
 - ❌ Don't hard-code colors (`bg-[#abc123]`) outside `theme.css` — use semantic tokens like `bg-primary`.

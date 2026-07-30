@@ -19,12 +19,12 @@
 - `useAuthStore` — login / register / logout
 - `useUserStore` — current user info (`userInfo`, `avatar`, `homePath`)
 
-## Persistence
+## 持久化
 
 - **Only `preferences` is persisted** in localStorage under `vben-web-tdesign-5.7.0-dev-preferences`
 - **No persistence** for auth tokens (controlled by backend-mock or future real backend)
 
-## Forbidden
+## 禁止
 
 - ❌ Don't persist auth tokens in localStorage (XSS)
 - ❌ Don't add new pinia stores without a clear cross-component consumer

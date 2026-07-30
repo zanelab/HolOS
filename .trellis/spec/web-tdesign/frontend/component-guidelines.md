@@ -1,8 +1,8 @@
 # @vben/web-tdesign Component Guidelines
 
-> Conventions for Vue components in TDesign-Vue flavor apps (real layout verified from `apps/web-tdesign/src/`).
+> 约定 for Vue components in TDesign-Vue flavor apps (real layout verified from `apps/web-tdesign/src/`).
 
-## Conventions
+## 约定
 
 - **`<script setup lang="ts">` only**. No Options API.
 - **TDesign components** are imported through adapters under `src/adapter/component/`. Example (from `src/adapter/tdesign.ts`):
@@ -19,9 +19,9 @@
 - **i18n keys** go through `$t('namespace.key')`. Never hard-code Chinese / English strings.
 - **Async components**: `<script setup>` + `defineAsyncComponent(() => import('./foo.vue'))` when needed; route-level async via `() => import('#/views/foo.vue')`.
 
-## Example: a real page from this app (`src/views/dashboard/analytics/index.vue`)
+## 示例: a real page from this app (`src/views/dashboard/analytics/index.vue`)
 
-Real code (paraphrased — full file is ~80 lines):
+真实 code (paraphrased — full file is ~80 lines):
 
 ```vue
 <script lang="ts" setup>
@@ -55,7 +55,7 @@ onMounted(async () => {
 </template>
 ```
 
-## Forbidden
+## 禁止
 
 - ❌ Don't import TDesign directly in views — go through the adapter.
 - ❌ Don't mutate props inside `<script setup>` (Vue 3 reactivity is one-way).

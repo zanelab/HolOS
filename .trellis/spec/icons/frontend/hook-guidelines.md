@@ -2,7 +2,7 @@
 
 > Icon components render-only.
 
-If dynamic switching needed, wrap outside this package:
+If dynamic switching needed, wrap outside 本包:
 
 ```ts
 import { usePreferences } from '@vben/preferences';
@@ -13,6 +13,6 @@ export function useThemeIcon() {
 }
 ```
 
-## Forbidden
+## 禁止
 
 - Don't add Vue hooks here

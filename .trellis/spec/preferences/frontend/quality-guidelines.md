@@ -1,14 +1,14 @@
 # @vben/preferences Quality Guidelines
 
-> Strict-mode TS, zero runtime deps.
+> 严格模式 TS, zero runtime deps.
 
-## Style
+## 代码风格
 
 - 4 spaces TS
 - Single quotes
 - Trailing newline
 
-## Forbidden
+## 禁止
 
 - Don't introduce dependencies
 - Don't add tests

@@ -1,8 +1,8 @@
 # hooks Quality Guidelines
 
-> **PLACEHOLDER DOCS** - This package does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. Replace these files with real content when the package is added.
+> **PLACEHOLDER DOCS** - 本包 does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. 替换这些文件 real content when package 添加后.
 
-## Expected Style
+## 预期代码风格
 
 - 4 spaces TS / Vue indent
 - Single quotes TS; double quotes HTML
@@ -10,7 +10,7 @@
 - Max line length 120
 - Trailing newline required
 
-## Expected Naming
+## 预期命名
 
 | Thing | Convention |
 |---|---|
@@ -20,7 +20,7 @@
 | Pinia store | useXxxStore |
 | Constant | UPPER_SNAKE_CASE |
 
-## Pre-commit Hooks
+## 提交前钩子
 
 - OxLint (fast)
 - OxFmt (formatter)
@@ -28,9 +28,9 @@
 - Stylelint (CSS / Vue style)
 - Commitlint (feat(): / fix(): / chore():)
 
-## Forbidden
+## 禁止
 
-- Do not use any
-- Do not add @ts-ignore without comment
-- Do not commit .env or secrets
-- Do not implement against this phantom package
+- 不要 use any
+- 不要 add @ts-ignore without comment
+- 不要 commit .env or secrets
+- 不要 implement against this phantom package

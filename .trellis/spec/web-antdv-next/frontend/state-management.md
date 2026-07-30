@@ -12,7 +12,7 @@
 | Cross-page, transient | Pinia store (@vben/stores) |
 | Server cache | API + useAsyncResource |
 
-## Pinia Stores (canonical 3)
+## Pinia 状态存储 (canonical 3)
 
 - useAccessStore - tokens / access routes / flags
 - useAuthStore - login / logout / token expiry

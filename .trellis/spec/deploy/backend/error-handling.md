@@ -1,13 +1,13 @@
 # Error Handling
 
-> How errors are handled in this project.
+> How errors are handled 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's error handling conventions here.
+写出 project's error handling conventions here.
 
 Questions to answer:
 - What error types do you define?

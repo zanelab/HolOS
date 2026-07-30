@@ -1,13 +1,13 @@
 # @vben/node-utils: State / Caching Patterns
 
-> This package is **stateless**. No caches, no module-level state.
+> 本包 **stateless**. No caches, no module-level state.
 
 ## Implications
 
 - Each function call is independent (no hidden cache).
 - Callers (scripts / pipelines) own any caching they need.
 
-## Pattern: externalize cache at caller site
+## 模式: externalize cache at caller site
 
 ```ts
 // .trellis/scripts/with-cache.ts
@@ -24,13 +24,13 @@ export function cachedHash(content: Uint8Array): string {
 
 This is **explicit**, **testable**, and stays out of `@vben/node-utils`.
 
-## Why node-utils stays stateless
+## 原因 node-utils stays stateless
 
 - **Embedding**: Trellis scripts run multiple times per session; state from a previous run must not leak.
 - **Concurrency**: when parallelizing across worktree, state corruption is avoided by being stateless.
 - **Testing**: each test runs deterministically — no hidden cache invalidation logic to fight.
 
-## Forbidden
+## 禁止
 
 - ❌ Don't add module-level mutable state to `@vben/node-utils`.
 - ❌ Don't make any helper "remember" inputs across calls.

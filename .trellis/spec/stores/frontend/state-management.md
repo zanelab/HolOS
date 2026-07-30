@@ -2,6 +2,6 @@
 
 > Pinia is canonical shared transient state.
 
-## Persistence
+## 持久化
 
-This package is transient. Persisted -> @vben/preferences.
+本包 transient. Persisted -> @vben/preferences.

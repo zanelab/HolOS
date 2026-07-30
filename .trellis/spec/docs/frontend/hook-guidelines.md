@@ -1,13 +1,13 @@
 # Hook Guidelines
 
-> How hooks are used in this project.
+> How hooks are used 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's hook conventions here.
+写出 project's hook conventions here.
 
 Questions to answer:
 - What custom hooks do you have?
@@ -36,7 +36,7 @@ Questions to answer:
 
 ---
 
-## Naming Conventions
+## 命名约定 约定
 
 <!-- Hook naming rules (use*, etc.) -->
 

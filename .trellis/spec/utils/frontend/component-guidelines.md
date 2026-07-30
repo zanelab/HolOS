@@ -1,8 +1,8 @@
 # @vben/utils Component Guidelines
 
-> No Vue components. Functions only.
+> 无 Vue 组件。 Functions only.
 
-## Pattern: explicit named exports
+## 模式: explicit named exports
 
 ```ts
 export function mergeRouteModules(modules: RouteModule[]): RouteRecordRaw[] {
@@ -10,14 +10,14 @@ export function mergeRouteModules(modules: RouteModule[]): RouteRecordRaw[] {
 }
 ```
 
-## Usage
+## 用法
 
 ```ts
 import { mergeRouteModules } from '@vben/utils';
 const routes = mergeRouteModules([dashboardModule, demosModule]);
 ```
 
-## Forbidden
+## 禁止
 
 - Don't bundle into classes / namespaces
 - Don't add side effects

@@ -1,8 +1,8 @@
 # @vben/node-utils Type Safety
 
-> Strict-mode TS, no `any`.
+> 严格模式 TS, no `any`.
 
-## Config
+## 配置
 
 `tsconfig.json` extends `@vben/tsconfig/node.json`:
 
@@ -14,7 +14,7 @@
 
 Enables `strict`, `noUncheckedIndexedAccess`, `verbatimModuleSyntax`.
 
-## Required Patterns
+## 必需模式
 
 ### Explicit input/output types
 
@@ -47,7 +47,7 @@ export function formatBytes(bytes: number, decimals = 2): string {
 }
 ```
 
-## Forbidden
+## 禁止
 
 - ❌ Don't use `any` — use `unknown` and narrow with type guards.
 - ❌ Don't use `Function` type as parameter — write the function signature explicitly.

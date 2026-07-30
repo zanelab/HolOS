@@ -2,7 +2,7 @@
 
 > Pinia stores shared across all web-* apps.
 
-## Tree (verified from packages/stores/)
+## 目录树 (verified from packages/stores/)
 
 ```
 @vben/stores/
@@ -16,13 +16,13 @@
     └── user.ts                 # useUserStore
 ```
 
-## Conventions
+## 约定
 
 - **One store per module file**
 - **Setup-style stores** (defineStore("id", () => ...))
 - **All stores registered in index.ts**
 
-## Forbidden
+## 禁止
 
 - Don't put business logic in setup()
 - Don't put API calls inside setup()

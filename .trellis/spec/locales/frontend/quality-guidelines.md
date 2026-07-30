@@ -2,13 +2,13 @@
 
 > Static JSON.
 
-## Style
+## 代码风格
 
 - 2 spaces JSON
 - Camel-case keys
 - Double-quoted strings
 
-## Forbidden
+## 禁止
 
 - Don't put non-translation data here
 - Don't use flat keys

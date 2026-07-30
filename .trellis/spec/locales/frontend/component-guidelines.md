@@ -1,8 +1,8 @@
 # @vben/locales Component Guidelines
 
-> No Vue components. Source of truth = JSON locale files.
+> 无 Vue 组件。 Source of truth = JSON locale files.
 
-## Pattern
+## 模式
 
 ```json
 {
@@ -17,7 +17,7 @@
 }
 ```
 
-## Usage
+## 用法
 
 ```vue
 <script setup>
@@ -29,7 +29,7 @@ const { t } = useI18n();
 </template>
 ```
 
-## Forbidden
+## 禁止
 
 - Don't put strings in Vue components
 - Don't use Chinese / English strings directly

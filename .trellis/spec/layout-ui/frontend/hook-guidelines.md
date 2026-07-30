@@ -1,15 +1,15 @@
 # layout-ui Custom Hooks
 
-> **PLACEHOLDER DOCS** - This package does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. Replace these files with real content when the package is added.
+> **PLACEHOLDER DOCS** - 本包 does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. 替换这些文件 real content when package 添加后.
 
-## Expected Conventions
+## 预期约定
 
 - For Vue apps: composables go in src/composables/
 - Co-located hooks in src/views/<feature>/ for one-feature usage
 - Shared hooks in src/hooks/
 - For libs: package itself has no Vue hooks (consumed via Vue apps)
 
-## Example (synthetic)
+## 示例 (synthetic)
 
 ```ts
 // src/composables/use-x-resource.ts
@@ -27,7 +27,7 @@ export function useXResource(loader: () => Promise<XData>) {
 }
 ```
 
-## Built-ins (always check first)
+## 内置函数（始终优先检查）
 
 | Concern | Hook | Source |
 |---|---|---|
@@ -35,8 +35,8 @@ export function useXResource(loader: () => Promise<XData>) {
 | Pinia | useAccessStore / useUserStore / useAuthStore | @vben/stores |
 | i18n | useI18n() | vue-i18n |
 
-## Forbidden
+## 禁止
 
-- Do not implement against this phantom package before it exists
-- Do not wrap usePreferences() in another composable
-- Do not put pure business logic in a hook (use src/utils/ instead)
+- 不要 implement against this phantom package before it exists
+- 不要 wrap usePreferences() in another composable
+- 不要 put pure business logic in a hook (use src/utils/ instead)

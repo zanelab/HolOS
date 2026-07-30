@@ -1,12 +1,12 @@
 # @vben/stores Quality Guidelines
 
-> Strict-mode TS, setup-style stores.
+> 严格模式 TS, setup-style stores.
 
-## Style
+## 代码风格
 
 - 4 spaces TS, single quotes, no any
 
-## Naming
+## 命名约定
 
 | Thing | Convention |
 |---|---|
@@ -14,7 +14,7 @@
 | State | camelCase |
 | Action | verb + noun |
 
-## Forbidden
+## 禁止
 
 - Don't use Options API
 - Don't put APIs in store factories

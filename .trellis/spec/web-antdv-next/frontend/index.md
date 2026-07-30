@@ -1,8 +1,8 @@
 # @vben/web-antdv-next
 
-> vben monorepo package `@vben/web-antdv-next` (v5.7.0) — HolOS built with this package and customized config.
+> vben monorepo package `@vben/web-antdv-next` (v5.7.0) — HolOS built with 本包 and customized config.
 
-## Overview
+## 概述
 
 Application package **@vben/web-antdv-next** — a vite-based frontend app for the vben monorepo.
 
@@ -11,9 +11,9 @@ Application package **@vben/web-antdv-next** — a vite-based frontend app for t
 - **Scripts**: build, build:analyze, dev, preview, typecheck
 - **Deps** (top): @vben/access, @vben/common-ui, @vben/constants, @vben/hooks, @vben/icons, @vben/layouts, @vben/locales, @vben/plugins
 
-> HolOS (`@vben/web-holos`) consumes this package via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
+> HolOS (`@vben/web-holos`) consumes 本包 via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
 
-## Directory Structure
+## 目录结构
 
 ```
 adapter/
@@ -43,15 +43,15 @@ views/
 app.vue
 ```
 
-## Conventions for @vben/web-antdv-next
+## 约定 for @vben/web-antdv-next
 
-1. Vite + Vue 3 + TS, port 5666-ish (configured in `vite.config.ts`)
+1. Vite + Vue 3 +  TS, port 5666-ish (configured in `vite.config.ts`)
 2. Use `defineOverridesPreferences` from `src/preferences.ts` to override defaults
-3. i18n keys live in `src/locales/langs/<locale>/*.json` — nested under `page.*`, `demos.*`, `auth.*`, etc.
-4. Routes: `core.ts` (BasicLayout/Auth/404) + `modules/<name>.ts` (per-feature, auto-globbed)
-5. Custom layouts override `apps/<app-name>/src/layouts/`
+3. i18n keys 放在 `src/locales/langs/<locale>/*.json` — nested under `page.*`, `demos.*`, `auth.*`, etc.
+4. 路由： `core.ts`（BasicLayout / Auth / 404） + `modules/<name>.ts` (per-feature, auto-globbed)
+5. 自定义布局覆盖 `apps/<app-name>/src/layouts/`
 
-## Forbidden Patterns
+## 禁止 Patterns
 
 - ❌ Don't deep-import from package subdirs (`@vben/foo/internals/util`) — use public `index.ts` only
 - ❌ Don't bypass `src/index.ts` with direct file imports — that defeats tree-shaking

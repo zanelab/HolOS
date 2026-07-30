@@ -1,12 +1,12 @@
 # Frontend Development Guidelines
 
-> Best practices for frontend development in this project.
+> 最佳实践： frontend development 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
-This directory contains guidelines for frontend development. Fill in each file with your project's specific conventions.
+本目录包含 guidelines for frontend development. Fill in each file with your project's specific conventions.
 
 ---
 
@@ -23,11 +23,11 @@ This directory contains guidelines for frontend development. Fill in each file w
 
 ---
 
-## How to Fill These Guidelines
+## 如何填写这些指南
 
 For each guideline file:
 
-1. Document your project's **actual conventions** (not ideals)
+1. 写出 project's **actual conventions** (not ideals)
 2. Include **code examples** from your codebase
 3. List **forbidden patterns** and why
 4. Add **common mistakes** your team has made

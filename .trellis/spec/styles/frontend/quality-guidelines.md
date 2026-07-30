@@ -1,13 +1,13 @@
 # @vben/styles Quality Guidelines
 
-> Per-framework CSS bundle.
+> 针对每个框架 CSS bundle.
 
-## Style
+## 代码风格
 
 - 2 spaces CSS, 4 spaces SCSS
 - Mobile-first responsive
 
-## Forbidden
+## 禁止
 
 - Don't import other framework's components
 - Don't redefine Tailwind tokens

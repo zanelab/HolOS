@@ -2,7 +2,7 @@
 
 > Nitro Mock Server "Components" = HTTP endpoints.
 
-## Pattern: defineEventHandler
+## 模式: defineEventHandler
 
 ```ts
 import { defineEventHandler, readBody, createError } from "h3";
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-## Forbidden
+## 禁止
 
 - Don't use Express
 - Don't use Generators

@@ -2,7 +2,7 @@
 
 > Pure utility package - no UI, no Vue, no runtime.
 
-## Tree (verified from packages/utils/)
+## 目录树 (verified from packages/utils/)
 
 ```
 @vben/utils/
@@ -12,13 +12,13 @@
 └── helpers/                    # various helper modules
 ```
 
-## Conventions
+## 约定
 
 - **Single barrel** at index.ts
 - **Pure functions** only - no IO
 - **Tests in __tests__/ alongside source**
 
-## Forbidden
+## 禁止
 
 - Don't add Vue code
 - Don't add side effects

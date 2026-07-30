@@ -1,8 +1,8 @@
 # @vben/web-antdv-next Custom Hooks
 
-> Don't write new hooks unless absolutely necessary.
+> 除非绝对必要，否则不要写新 hooks.
 
-## Built-ins (always check first)
+## 内置函数（始终优先检查）
 
 | Concern | Hook | Source |
 |---|---|---|
@@ -13,7 +13,7 @@
 | Form | useVbenForm() | @vben/common-ui |
 | Table | useVbenVxeGrid() | @vben/plugins/vxe-table |
 
-## When to Write a New Hook
+## 何时 Write a New Hook
 
 - Used by >= 3 views / components
 - Returns reactive state OR stable async function
@@ -24,7 +24,7 @@
 - use-<name>.ts (kebab-case, `use` prefix)
 - Co-located for one-feature hooks; shared under src/hooks/
 
-## Forbidden
+## 禁止
 
 - Don't wrap usePreferences() in another useFoo()
 - Don't put pure business logic in a hook

@@ -1,6 +1,6 @@
 # @vben/preferences "Component" Style - Constants / Types
 
-## Pattern: explicit named exports
+## 模式: explicit named exports
 
 ```ts
 export const LOGIN_PATH = '/auth/login';
@@ -11,13 +11,13 @@ export interface UserInfo {
 }
 ```
 
-## Usage
+## 用法
 
 ```ts
 import { LOGIN_PATH, type UserInfo, type LayoutType } from '@vben/preferences';
 ```
 
-## Forbidden
+## 禁止
 
 - Don't add IO functions
 - Don't add Vue refs

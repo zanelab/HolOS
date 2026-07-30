@@ -1,8 +1,8 @@
 # @vben/web-ele Type Safety
 
-> Strict-mode TS via @vben/tsconfig/web-app.json.
+> 严格模式 TS 通过 @vben/tsconfig/web-app.json.
 
-## Required Patterns
+## 必需模式
 
 ### Route records
 ```ts
@@ -26,14 +26,14 @@ const props = withDefaults(defineProps<Props>(), { count: 0 });
 </script>
 ```
 
-## Type Imports
+## 类型导入
 
 Always `import type`:
 ```ts
 import type { RouteRecordRaw } from 'vue-router';
 ```
 
-## Forbidden
+## 禁止
 
 - Don't use any
 - Don't disable strict mode per-file

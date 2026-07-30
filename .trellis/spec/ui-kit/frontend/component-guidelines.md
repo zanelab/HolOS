@@ -1,13 +1,13 @@
 # Component Guidelines
 
-> How components are built in this project.
+> How components are built 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's component conventions here.
+写出 project's component conventions here.
 
 Questions to answer:
 - What component patterns do you use?
@@ -20,7 +20,7 @@ Questions to answer:
 
 ---
 
-## Component Structure
+## 组件 Structure
 
 <!-- Standard structure of a component file -->
 
@@ -28,7 +28,7 @@ Questions to answer:
 
 ---
 
-## Props Conventions
+## Props 约定
 
 <!-- How props should be defined and typed -->
 

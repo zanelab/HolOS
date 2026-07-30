@@ -1,10 +1,10 @@
 # @vben/node-utils: Module-level "Hooks"
 
-> This package has **no Vue hooks**. Read this as: how to plug a helper **into** an application's hook.
+> 本包 has **no Vue hooks**. Read this as: how to plug a helper **into** an application's hook.
 
-## Example: use node-utils inside a Vue composable
+## 示例: use node-utils inside a Vue composable
 
-When a Vue app wants to use `@vben/node-utils` helpers, wrap them in a `useXxx` composable in the **app**, not in this package:
+When a Vue app wants to use `@vben/node-utils` helpers, wrap them in a `useXxx` composable in the **app**, not in 本包:
 
 ```ts
 // apps/web-holos/src/composables/use-app-meta.ts
@@ -37,7 +37,7 @@ export function useAppMeta() {
 - Frontend runtime code that ships to the browser — it's a Node-only package (no fallback for browser globals).
 - Vue composables that need reactivity — node-utils functions are not reactive; wrap them yourself if you need reactivity.
 
-## Forbidden
+## 禁止
 
 - ❌ Don't import `@vben/node-utils` from `apps/web-*/src/` if it ends up in the client bundle — check `vite.config.ts` tree-shaking.
 - ❌ Don't call node-utils functions inside `setup()` without wrapping in a try/catch — they can throw on bad inputs.

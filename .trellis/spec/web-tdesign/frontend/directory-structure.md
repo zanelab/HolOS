@@ -1,8 +1,8 @@
 # @vben/web-tdesign Directory Structure
 
-> Real layout for `apps/web-tdesign/` (TDesign Vue Next flavor).
+> 真实布局 for `apps/web-tdesign/` (TDesign Vue Next flavor).
 
-## Tree (verified 2026-07-29)
+## 目录树 (verified 2026-07-29)
 
 ```
 apps/web-tdesign/
@@ -69,7 +69,7 @@ apps/web-tdesign/
     └── enums/                  # app-specific enums (or shared with @vben/constants)
 ```
 
-## Conventions
+## 约定
 
 - **Adapter layer**: every UI framework-specific code (tdesign / antd / element / naive) lives in `src/adapter/`. The rest of the codebase should not import `tdesign-vue-next` directly.
 - **API surface**: every HTTP call goes through `api/request.ts`'s `requestClient`. Don't `fetch` directly in views.
@@ -77,7 +77,7 @@ apps/web-tdesign/
 - **Locales**: `zh-CN` first, `en-US` second. New keys MUST go into BOTH files in the same commit.
 - **Enums**: shared enums → `packages/constants`; local enums → `src/enums/`.
 
-## Forbidden
+## 禁止
 
 - ❌ Don't `import { xxx } from 'tdesign-vue-next'` directly outside `src/adapter/`.
 - ❌ Don't add a new route to `core.ts` — put it in `routes/modules/<your-feature>.ts`.

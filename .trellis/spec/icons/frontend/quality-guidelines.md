@@ -2,7 +2,7 @@
 
 > SVG + Iconify. Tree-shake critical.
 
-## Forbidden
+## 禁止
 
 - Don't bundle full icon set
 - Don't inline <svg> in views

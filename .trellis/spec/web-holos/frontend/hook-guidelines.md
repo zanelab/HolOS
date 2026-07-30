@@ -1,6 +1,6 @@
 # Web-Holos Custom Hooks Guidelines
 
-> Don't write new hooks unless absolutely necessary.
+> 除非绝对必要，否则不要写新 hooks.
 
 ## Most actions map to existing helpers
 
@@ -12,7 +12,7 @@
 | Login / logout | `useAuthStore()` methods |
 | Permission check | `useAccessStore()` |
 
-## Conventions
+## 约定
 
 - **One-line composable** rules: if `useFoo()` does not return reactive state or a stable function, **don't make it a hook** — make it a normal helper in `src/utils/`
 - **Naming**: `useFoo` (camel case, starts with `use`)
@@ -20,7 +20,7 @@
   - cross-module hooks → `src/hooks/`
   - page-scoped composables → co-located `useXxx.ts` next to the view
 
-## Available built-ins (no need to re-implement)
+## 可用的内置函数 (no need to re-implement)
 
 - `usePreferences` from `@vben/preferences` — read/write app config
 - `useAccessStore` / `useUserStore` / `useAuthStore` from `@vben/stores`
@@ -28,7 +28,7 @@
 - `useI18n` from `vue-i18n`
 - `useDark`, `useScroll`, `useThrottleFn` from `@vueuse/core`
 
-## Forbidden
+## 禁止
 
 - ❌ Don't create wrapper hooks that just `return usePreferences()` — call `usePreferences()` directly
 - ❌ Don't put business logic in hooks unless **stateful across renders**

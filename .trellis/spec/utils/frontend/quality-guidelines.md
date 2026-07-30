@@ -1,8 +1,8 @@
 # @vben/utils Quality Guidelines
 
-> Strict-mode TS, 4-space, single quotes.
+> 严格模式 TS, 4-space, single quotes.
 
-## Tests
+## 测试s
 
 Co-located tests: __tests__/<name>.test.ts
 
@@ -10,7 +10,7 @@ Co-located tests: __tests__/<name>.test.ts
 pnpm --filter @vben/utils test
 ```
 
-## Forbidden
+## 禁止
 
 - Don't introduce dependencies
 - Don't add side-effect imports

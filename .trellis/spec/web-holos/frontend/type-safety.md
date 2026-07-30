@@ -1,9 +1,9 @@
 # Web-Holos Type Safety
 
-## Conventions
+## 约定
 
 - `tsconfig.json` extends `@vben/tsconfig/web-app.json`
-- Strict mode **ON** by default
+- 严格模式 **ON** by default
 - All entry points (`main.ts`, `bootstrap.ts`, `App.tsx`, route components, store factories) **must** be strongly typed
 - `vue-tsc --noEmit --skipLibCheck` is the typecheck command
 
@@ -20,7 +20,7 @@ import type { ComponentRecordType, GenerateMenuAndRoutesOptions } from '@vben/ty
 - Use `as const` for literal objects
 - Avoid `as` cast; prefer refactor
 
-## Forbidden
+## 禁止
 
 - ❌ Don't use `any`. If framework types force a cast, use `Recordable<unknown>` and cast in one place
 - ❌ Don't disable strict mode per-file with `// @ts-nocheck`

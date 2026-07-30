@@ -1,4 +1,4 @@
-# @vben/styles: No Vue Hooks
+# @vben/styles: 无 Vue Hooks
 
 > Pure CSS package.
 

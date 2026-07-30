@@ -1,13 +1,13 @@
 # Type Safety
 
-> Type safety patterns in this project.
+> Type safety patterns 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's type safety conventions here.
+写出 project's type safety conventions here.
 
 Questions to answer:
 - What type system do you use?
@@ -44,7 +44,7 @@ Questions to answer:
 
 ---
 
-## Forbidden Patterns
+## 禁止 Patterns
 
 <!-- any, type assertions, etc. -->
 

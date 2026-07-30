@@ -4,6 +4,6 @@
 
 If runtime behavior needed, put it in @vben/node-utils or app composables.
 
-## Forbidden
+## 禁止
 
 - Don't add Vue hooks here

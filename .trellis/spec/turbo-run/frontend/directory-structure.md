@@ -1,13 +1,13 @@
 # Directory Structure
 
-> How frontend code is organized in this project.
+> 前端代码如何组织 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's frontend directory structure here.
+写出 project's frontend directory structure here.
 
 Questions to answer:
 - Where do components live?
@@ -39,7 +39,7 @@ src/
 
 ---
 
-## Naming Conventions
+## 命名约定 约定
 
 <!-- File and folder naming rules -->
 
@@ -47,7 +47,7 @@ src/
 
 ---
 
-## Examples
+## 示例s
 
 <!-- Link to well-organized modules as examples -->
 

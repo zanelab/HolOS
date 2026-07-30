@@ -9,7 +9,7 @@
 - **Sort `@source` globs alphabetically** by line — keeps diffs easy to read
 - **Comment group headers** as `/* Group Name */` above each token block in `theme.css`
 
-## Naming Tokens
+## 命名约定 Tokens
 
 Use **semantic** names, not appearance:
 
@@ -40,7 +40,7 @@ For **complex values** that need to compose:
 --radius-sm: calc(var(--radius) - 4px);
 ```
 
-## Forbidden
+## 禁止
 
 - ❌ Don't add `tailwind.config.ts` / `tailwind.config.js` — Tailwind v4 doesn't use one. The config IS the CSS.
 - ❌ Don't hard-code hex / `rgb()` directly in components — extend `theme.css`.

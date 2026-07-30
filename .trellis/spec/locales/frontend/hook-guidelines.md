@@ -1,3 +1,3 @@
 # @vben/locales: No Hooks
 
-> Pure data. useI18n() is from vue-i18n in apps.
+> 纯数据。 useI18n() is from vue-i18n in apps.

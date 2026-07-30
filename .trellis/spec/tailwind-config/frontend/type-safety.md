@@ -1,8 +1,8 @@
 # @vben/tailwind-config Type Safety
 
-> This package is **pure CSS**, no TS code beyond the 1-line `index.ts` re-export.
+> 本包 **pure CSS**, no TS code beyond the 1-line `index.ts` re-export.
 
-## Config
+## 配置
 
 `tsconfig.json` extends `@vben/tsconfig/library.json`:
 
@@ -21,7 +21,7 @@ import './theme.css';
 
 That's it.
 
-## Why no TypeScript matters for CSS
+## 原因 no TypeScript matters for CSS
 
 - Design tokens are **CSS custom properties** — types live at the value level, not the source level.
 - **IntelliSense** for tokens comes from editor CSS plugins (e.g., Tailwind IntelliSense VS Code plugin).
@@ -33,14 +33,14 @@ That's it.
 - This project relies on **Tailwind IntelliSense** (VS Code plugin) for utility class validation.
 - Color tokens that don't resolve go **silent in production** — make sure to test in dev.
 
-## Forbidden
+## 禁止
 
-- ❌ Don't add TS code to this package — keep it CSS-only.
+- ❌ Don't add TS code to 本包 — keep it CSS-only.
 - ❌ Don't import `@vben/preferences` or any other runtime dependency in `index.ts`.
 - ❌ Don't add a `.ts` companion for design tokens — they're CSS variables.
 - ❌ Don't import `index.ts` from Vue / TS code — apps should consume the CSS through Vite.
 
-## Linting CSS in this package
+## Linting CSS in 本包
 
 Stylelint runs on `theme.css` via the shared `internal/stylelint-config`.
 

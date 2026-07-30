@@ -2,7 +2,7 @@
 
 > Compose **existing** hooks before writing a new one.
 
-## Available Built-ins (no need to re-implement)
+## 可用的内置函数 (no need to re-implement)
 
 | Concern | Hook | Source |
 |---|---|---|
@@ -15,7 +15,7 @@
 | Form state | `useVbenForm()` | `@vben/common-ui` |
 | Grid/table | `useVbenVxeGrid()` | `@vben/plugins/vxe-table` |
 
-## When to Write a Custom Hook
+## 何时 Write a Custom Hook
 
 Write a hook if (and only if):
 - It is used by ≥ 3 views / components
@@ -28,7 +28,7 @@ Write a hook if (and only if):
 - Co-located with the view if only used by one feature (`src/views/dashboard/useFoo.ts`)
 - Or shared under `src/hooks/use-<name>.ts`
 
-## Example (real pattern)
+## 示例 (real pattern)
 
 ```ts
 // src/hooks/use-async-resource.ts
@@ -60,7 +60,7 @@ const { data: users, loading, refresh } = useAsyncResource(fetchUsers);
 </script>
 ```
 
-## Forbidden
+## 禁止
 
 - ❌ Don't wrap `usePreferences()` in another `useFoo()` — call `usePreferences()` directly.
 - ❌ Don't put pure business logic (no state, no async) in a hook — it's a regular helper, goes in `src/utils/`.

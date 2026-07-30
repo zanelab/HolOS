@@ -1,8 +1,8 @@
 # @vben/node-utils "Component" Style — Function Helpers
 
-> This package doesn't ship Vue components. Its "components" are **pure functions**.
+> 本包 doesn't ship Vue components. Its "components" are **pure functions**.
 
-## Pattern: Single-export function helpers
+## 模式: Single-export function helpers
 
 Each file in `src/` exports **one or a few related functions**, named exported individually for tree-shaking:
 
@@ -23,7 +23,7 @@ export function formatDuration(ms: number): string {
 }
 ```
 
-## Usage from a downstream app
+## 用法 from a downstream app
 
 ```ts
 import { formatBytes, formatDuration } from '@vben/node-utils';
@@ -32,7 +32,7 @@ console.log(formatBytes(1024 * 1024));       // "1 MB"
 console.log(formatDuration(123456));        // "2m 3s"
 ```
 
-## Forbidden
+## 禁止
 
 - ❌ Don't bundle functions into a class or namespaced object (loses tree-shaking).
 - ❌ Don't import Node built-ins at top-level unless necessary — keep imports lean.

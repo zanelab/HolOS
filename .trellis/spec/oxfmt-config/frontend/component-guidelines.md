@@ -1,8 +1,8 @@
 # @vben/oxfmt-config "Component" Style - Config Object
 
-> No Vue components. "Components" are typed config objects.
+> 无 Vue 组件。 "Components" are typed config objects.
 
-## Pattern
+## 模式
 
 ```ts
 import type { Linter } from "eslint";
@@ -11,7 +11,7 @@ export const config: Linter.Config[] = [
 ];
 ```
 
-## Usage
+## 用法
 
 ```ts
 import { config as eslintConfig } from "@vben/oxfmt-config";
@@ -21,7 +21,7 @@ export default [
 ];
 ```
 
-## Forbidden
+## 禁止
 
 - Don't add side-effect functions
 - Don't add CLI/runtime code

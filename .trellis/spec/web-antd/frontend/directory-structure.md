@@ -1,8 +1,8 @@
 # @vben/web-antd Directory Structure
 
-> Real layout for `apps/web-antd/` (Ant Design Vue flavor).
+> 真实布局 for `apps/web-antd/` (Ant Design Vue flavor).
 
-## Tree (verified 2026-07-29)
+## 目录树 (verified 2026-07-29)
 
 ```
 apps/web-antd/
@@ -65,11 +65,11 @@ interface WebAntdPreferencesExtension {
 
 This adds app-level settings tab in the preferences drawer.
 
-## Conventions
+## 约定
 
 - See `/opt/data/workspace/holos/.trellis/spec/web-tdesign/frontend/directory-structure.md` for full conventions (identical structure)
 
-## Forbidden
+## 禁止
 
 - Don't add a new route to `routes/core.ts` — use `routes/modules/`
 - Don't add i18n strings outside the `zh-CN` / `en-US` JSON files

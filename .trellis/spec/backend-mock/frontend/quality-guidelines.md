@@ -2,13 +2,13 @@
 
 > Mock-only strict-mode server code.
 
-## Style
+## 代码风格
 
 - 4 spaces TS
 - Single quotes
 - Async/await for endpoint handlers
 
-## Forbidden
+## 禁止
 
 - Don't use Express
 - Don't use Generators

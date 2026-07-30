@@ -1,15 +1,15 @@
 # @vben/web-naive Component Guidelines
 
-> Vue 3 + UI-framework conventions.
+> Vue 3 +  UI-framework conventions.
 
-## Conventions
+## 约定
 
 - **<script setup lang="ts">** only
 - **UI-framework** imported through adapters
 - **i18n** via $t("namespace.key")
 - **<VbenForm>** + **<VbenVxeGrid>** from @vben/common-ui + @vben/plugins/vxe-table
 
-## Example: analytics view
+## 示例: analytics view
 
 ```vue
 <script setup lang="ts">
@@ -27,7 +27,7 @@ onMounted(async () => { data.value = await fetchAnalytics(); });
 </template>
 ```
 
-## Forbidden
+## 禁止
 
 - Don't import UI lib directly from views
 - Don't mutate props in <script setup>

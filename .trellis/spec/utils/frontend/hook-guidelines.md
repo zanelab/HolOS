@@ -1,10 +1,10 @@
-# @vben/utils: No Vue Hooks
+# @vben/utils: 无 Vue Hooks
 
 > Helper lib has no Vue hooks.
 
 Apps wrap helpers in composables if reactivity needed.
 
-## Forbidden
+## 禁止
 
 - Don't add Vue-specific code
-- Don't add reactive state to this package
+- Don't add reactive state to 本包

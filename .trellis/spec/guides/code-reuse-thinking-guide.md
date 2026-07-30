@@ -40,25 +40,25 @@ grep -r "keyword" .
 
 ## Common Duplication Patterns
 
-### Pattern 1: Copy-Paste Functions
+### 模式 1: Copy-Paste Functions
 
 **Bad**: Copying a validation function to another file
 
 **Good**: Extract to shared utilities, import where needed
 
-### Pattern 2: Similar Components
+### 模式 2: Similar Components
 
 **Bad**: Creating a new component that's 80% similar to existing
 
 **Good**: Extend existing component with props/variants
 
-### Pattern 3: Repeated Constants
+### 模式 3: Repeated Constants
 
 **Bad**: Defining the same constant in multiple files
 
 **Good**: Single source of truth, import everywhere
 
-### Pattern 4: Repeated Payload Field Extraction
+### 模式 4: Repeated Payload Field Extraction
 
 **Bad**: Multiple consumers cast the same JSON/event fields locally:
 
@@ -83,7 +83,7 @@ shared type guard / normalizer / projection before adding a third reader.
 
 ---
 
-## When to Abstract
+## 何时 Abstract
 
 **Abstract when**:
 - Same code appears 3+ times
@@ -186,7 +186,7 @@ def cli_name(self) -> str:
 - **If asymmetry is unavoidable**: Add a regression test that compares outputs from both mechanisms
 - When migrating directory structures, search for ALL code paths that reference the old structure
 
-**Real example**: `trellis update` had a manual `files.set()` list for 11 scripts that `getAllScripts()` already tracked. Fix: replaced the manual list with a `for..of getAllScripts()` loop. See `update.ts` refactor in v0.4.0-beta.3.
+**真实 example**: `trellis update` had a manual `files.set()` list for 11 scripts that `getAllScripts()` already tracked. Fix: replaced the manual list with a `for..of getAllScripts()` loop. See `update.ts` refactor in v0.4.0-beta.3.
 
 ---
 

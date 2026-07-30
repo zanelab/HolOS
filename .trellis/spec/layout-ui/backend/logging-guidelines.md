@@ -1,13 +1,13 @@
 # Logging Guidelines
 
-> How logging is done in this project.
+> How logging is done 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's logging conventions here.
+写出 project's logging conventions here.
 
 Questions to answer:
 - What logging library do you use?
@@ -22,7 +22,7 @@ Questions to answer:
 
 ## Log Levels
 
-<!-- When to use each level: debug, info, warn, error -->
+<!-- 何时使用 each level: debug, info, warn, error -->
 
 (To be filled by the team)
 

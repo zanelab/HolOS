@@ -4,10 +4,10 @@
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's database conventions here.
+写出 project's database conventions here.
 
 Questions to answer:
 - What ORM/query library do you use?
@@ -36,7 +36,7 @@ Questions to answer:
 
 ---
 
-## Naming Conventions
+## 命名约定 约定
 
 <!-- Table names, column names, index names -->
 

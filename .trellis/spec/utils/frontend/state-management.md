@@ -2,7 +2,7 @@
 
 > Helper package is stateless. No caches, no globals.
 
-## Forbidden
+## 禁止
 
 - Don't add module-level mutable state
 - Don't add singletons

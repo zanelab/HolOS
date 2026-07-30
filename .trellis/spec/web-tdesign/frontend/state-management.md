@@ -13,7 +13,7 @@
 | Server cache | API + `useAsyncResource` (see hook-guidelines.md) |
 | Cross-tab sync | localStorage with `@vueuse/core` `useStorage` |
 
-## Pinia Stores (used in this app)
+## Pinia 状态存储 (used in this app)
 
 - **`useAccessStore`** — tokens, access routes, access flags
   ```ts
@@ -37,7 +37,7 @@ export const overridesPreferences = defineOverridesPreferences({
 
 Persisted under localStorage key `vben-web-tdesign-5.7.0-dev-preferences`.
 
-## Forbidden
+## 禁止
 
 - ❌ Don't persist auth tokens in localStorage (XSS).
 - ❌ Don't use Vuex — this codebase uses Pinia.

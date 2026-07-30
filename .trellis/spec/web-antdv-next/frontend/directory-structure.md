@@ -1,8 +1,8 @@
 # @vben/web-antdv-next Directory Structure
 
-> Vue 3 + UI-framework conventions.
+> Vue 3 +  UI-framework conventions.
 
-## Tree (verified 2026-07-30)
+## 目录树 (verified 2026-07-30)
 
 ```
 @vben/web-antdv-next/
@@ -33,14 +33,14 @@
         └── demos/<flavor>/
 ```
 
-## Conventions
+## 约定
 
 - **Adapter layer** isolates UI-framework code
 - **API surface** through src/api/request.ts
 - **Routes** core.ts framework-only, modules/<feature> business
 - **Locales** zh-CN and en-US both land in same commit
 
-## Forbidden
+## 禁止
 
 - Don't import UI lib directly outside src/adapter
 - Don't add routes to routes/core.ts

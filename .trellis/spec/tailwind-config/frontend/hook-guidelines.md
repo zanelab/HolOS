@@ -1,10 +1,10 @@
 # @vben/tailwind-config: Token-aware Patterns
 
-> This package has no Vue hooks. Read this as "how apps should consume the tokens".
+> 本包 has no Vue hooks. Read this as "how apps should consume the tokens".
 
-## Pattern: prefer `theme.extend` over per-component tokens
+## 模式: prefer `theme.extend` over per-component tokens
 
-When a Vue app needs a custom **local** color (e.g., "specific feature accent"), extend at the app's `src/index.css`, not in this package:
+When a Vue app needs a custom **local** color (e.g., "specific feature accent"), extend at the app's `src/index.css`, not in 本包:
 
 ```css
 /* apps/web-holos/src/index.css */
@@ -15,9 +15,9 @@ When a Vue app needs a custom **local** color (e.g., "specific feature accent"),
 }
 ```
 
-Don't push one-off tokens upstream — keep this package's tokens **global**.
+Don't push one-off tokens upstream — keep 本包's tokens **global**.
 
-## Pattern: dark mode via `.dark` class
+## 模式: dark mode via `.dark` class
 
 ```vue
 <script setup>
@@ -37,7 +37,7 @@ const isDark = useDark({
 </template>
 ```
 
-## Pattern: responsive utilities
+## 模式: responsive utilities
 
 ```html
 <div class="flex flex-col md:flex-row gap-4 md:gap-8">
@@ -48,14 +48,14 @@ const isDark = useDark({
 
 The `@source` directive in `theme.css` scans all packages + apps, so utility classes from any of them are preserved.
 
-## When to use this package's tokens in code
+## 何时 use 本包's tokens in code
 
 - **`bg-bg-base`** — page background, light mode white, dark mode `#0a0a0a`
 - **`text-fg-primary`** — primary text
 - **`border-border`** — default borders (light/dark variants)
 - **`rounded-md` / `rounded-lg`** — corners referencing `--radius-*` tokens
 
-## Forbidden
+## 禁止
 
 - ❌ Don't hard-code hex / rgb colors in components — use semantic tokens.
 - ❌ Don't add `data-theme="dark"` style multi-theme logic — this app uses `.dark` class only.

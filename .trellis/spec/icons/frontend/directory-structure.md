@@ -2,7 +2,7 @@
 
 > Iconify + SVG icons. Used across all web-* apps.
 
-## Tree (verified)
+## 目录树 (verified)
 
 ```
 @vben/icons/
@@ -14,14 +14,14 @@
     └── (... per-component SVG icons)
 ```
 
-## Conventions
+## 约定
 
 - **<IconifyIcon :icon="name">** - runtime-loaded from Iconify API
 - **<SvgFooIcon>** - local SVG components
 - **Tree-shaking**: import specific icons
 - **Auto-import**: via unplugin-vue-components
 
-## Forbidden
+## 禁止
 
 - Don't bundle the full Iconify icon set
 - Don't add inline <svg> in templates

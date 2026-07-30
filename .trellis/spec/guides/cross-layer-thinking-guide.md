@@ -134,7 +134,7 @@ In Trellis, command templates (e.g., `record-session.md`) exist in **multiple pl
 - [ ] For Gemini TOML: adapt line continuations (`\\` vs `\`) and triple-quoted strings
 - [ ] Run `/trellis:check-cross-layer` to verify nothing was missed
 
-**Real-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer check.
+**真实-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer check.
 
 ---
 
@@ -159,7 +159,7 @@ against both fresh init and upgrade paths.
 
 ---
 
-## Versioned Documentation Boundary
+## 版本ed Documentation Boundary
 
 Versioned documentation is a cross-layer boundary: source paths, `docs.json`
 version routing, and the rendered version selector must all describe the same
@@ -177,14 +177,14 @@ release line.
 - [ ] Treat beta content appearing under root release paths as a source-path bug,
       not a rendering bug
 
-**Real-world example**: A beta-only task workflow change documented
+**真实-world example**: A beta-only task workflow change documented
 `prd.md` + `design.md` + `implement.md`, task-creation consent, and Codex
 mode banners under root `start/` and `advanced/` paths. The docs site then
 served 0.6 beta behavior under the Release selector. The fix was to restore root
 release docs, move the 0.6 content to `beta/` and `zh/beta/`, and add a grep
 audit for beta markers against the root release tree.
 
-**Real-world example**: Codex inline mode changed workflow platform markers from
+**真实-world example**: Codex inline mode changed workflow platform markers from
 `[Codex]` / `[Kilo, Antigravity, Windsurf]` to `[codex-sub-agent]` /
 `[codex-inline, Kilo, Antigravity, Windsurf]`. Fresh init was correct, but
 `trellis update` only merged `[workflow-state:*]` blocks and preserved stale
@@ -214,9 +214,9 @@ When a CLI auto-detects a mode by probing a remote resource (e.g., checking if `
 - [ ] When reconstructing a composite identifier from parsed parts, verify **all** fields are included and in the **correct position** (e.g., `provider:repo/path#ref` not `provider:repo#ref/path`)
 - [ ] Verify that **action functions** called after a shortcut don't internally use the old catch-all fetch — they must use the probe-quality variant when error distinction matters
 
-**Real-world example**: Custom registry flow had 8 bugs across 3 review rounds: (1) probe only ran in interactive mode, (2) transient errors fell through to wrong mode, (3) giget URI had `#ref` in wrong position, (4) prefetched templates leaked across source switches, (5) `--template` shortcut bypassed probe but `downloadTemplateById` internally used catch-all `fetchTemplateIndex`, turning timeouts into "Template not found".
+**真实-world example**: Custom registry flow had 8 bugs across 3 review rounds: (1) probe only ran in interactive mode, (2) transient errors fell through to wrong mode, (3) giget URI had `#ref` in wrong position, (4) prefetched templates leaked across source switches, (5) `--template` shortcut bypassed probe but `downloadTemplateById` internally used catch-all `fetchTemplateIndex`, turning timeouts into "Template not found".
 
-**Real-world example**: Agent-session update hints fetched npm `latest` metadata with `response.read(4096)` and then parsed it as complete JSON. The `@mindfoldhq/trellis` package metadata exceeded 4 KB, so the JSON was truncated, parse failed silently, and the first session injection showed no update hint. Fix: read the complete response before parsing, and add a regression where `version` is followed by an 8 KB metadata tail.
+**真实-world example**: Agent-session update hints fetched npm `latest` metadata with `response.read(4096)` and then parsed it as complete JSON. The `@mindfoldhq/trellis` package metadata exceeded 4 KB, so the JSON was truncated, parse failed silently, and the first session injection showed no update hint. Fix: read the complete response before parsing, and add a regression where `version` is followed by an 8 KB metadata tail.
 
 ---
 
@@ -231,7 +231,7 @@ In Trellis, command templates (e.g., `record-session.md`) exist in **multiple pl
 - [ ] For Gemini TOML: adapt line continuations (`\\` vs `\`) and triple-quoted strings
 - [ ] Run `/trellis:check-cross-layer` to verify nothing was missed
 
-**Real-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer check.
+**真实-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer check.
 
 ---
 
@@ -254,7 +254,7 @@ against both fresh init and upgrade paths.
   assert the installed file reaches the current packaged shape
 - [ ] Update the backend spec that owns the runtime contract
 
-**Real-world example**: Codex inline mode changed workflow platform markers from
+**真实-world example**: Codex inline mode changed workflow platform markers from
 `[Codex]` / `[Kilo, Antigravity, Windsurf]` to `[codex-sub-agent]` /
 `[codex-inline, Kilo, Antigravity, Windsurf]`. Fresh init was correct, but
 `trellis update` only merged `[workflow-state:*]` blocks and preserved stale
@@ -282,13 +282,13 @@ When a CLI auto-detects a mode by probing a remote resource (e.g., checking if `
 - [ ] When reconstructing a composite identifier from parsed parts, verify **all** fields are included and in the **correct position** (e.g., `provider:repo/path#ref` not `provider:repo#ref/path`)
 - [ ] Verify that **action functions** called after a shortcut don't internally use the old catch-all fetch — they must use the probe-quality variant when error distinction matters
 
-**Real-world example**: Custom registry flow had 8 bugs across 3 review rounds: (1) probe only ran in interactive mode, (2) transient errors fell through to wrong mode, (3) giget URI had `#ref` in wrong position, (4) prefetched templates leaked across source switches, (5) `--template` shortcut bypassed probe but `downloadTemplateById` internally used catch-all `fetchTemplateIndex`, turning timeouts into "Template not found".
+**真实-world example**: Custom registry flow had 8 bugs across 3 review rounds: (1) probe only ran in interactive mode, (2) transient errors fell through to wrong mode, (3) giget URI had `#ref` in wrong position, (4) prefetched templates leaked across source switches, (5) `--template` shortcut bypassed probe but `downloadTemplateById` internally used catch-all `fetchTemplateIndex`, turning timeouts into "Template not found".
 
-**Real-world example**: Agent-session update hints fetched npm `latest` metadata with `response.read(4096)` and then parsed it as complete JSON. The `@mindfoldhq/trellis` package metadata exceeded 4 KB, so the JSON was truncated, parse failed silently, and the first session injection showed no update hint. Fix: read the complete response before parsing, and add a regression where `version` is followed by an 8 KB metadata tail.
+**真实-world example**: Agent-session update hints fetched npm `latest` metadata with `response.read(4096)` and then parsed it as complete JSON. The `@mindfoldhq/trellis` package metadata exceeded 4 KB, so the JSON was truncated, parse failed silently, and the first session injection showed no update hint. Fix: read the complete response before parsing, and add a regression where `version` is followed by an 8 KB metadata tail.
 
 ---
 
-## When to Create Flow Documentation
+## 何时 Create Flow Documentation
 
 Create detailed flow docs when:
 
@@ -319,7 +319,7 @@ CLI input → event writer → events.jsonl → reader → filter → reducer �
 - [ ] Add at least one regression that proves history replay and live filtering
       use the same filter model
 
-**Real-world example**: Thread channels added `kind: "thread"`, `description`,
+**真实-world example**: Thread channels added `kind: "thread"`, `description`,
 `context`, labels, and `lastSeq`. The first implementation replayed thread
 state correctly, but several commands still re-parsed event payload fields with
 local casts. The fix was to make the core event layer own `ThreadChannelEvent`

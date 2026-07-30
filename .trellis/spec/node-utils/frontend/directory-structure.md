@@ -1,8 +1,8 @@
 # @vben/node-utils Directory Structure
 
-> Real layout for `internal/node-utils/` (the workspace package `@vben/node-utils`).
+> 真实布局 for `internal/node-utils/` (the workspace package `@vben/node-utils`).
 
-## Tree (verified 2026-07-29)
+## 目录树 (verified 2026-07-29)
 
 ```
 internal/node-utils/
@@ -27,17 +27,17 @@ internal/node-utils/
         └── ...
 ```
 
-## Conventions
+## 约定
 
-- **Pure-function helpers** only. No I/O class, no global state.
+- **纯函数 helpers** only. No I/O class, no global state.
 - **Single barrel** at `src/index.ts`. Don't deep-import (`@vben/node-utils/internals/...`) from caller code.
 - **Tree-shake-friendly**: export each function individually; don't expose a single object with everything.
 - **Tests live alongside source** in `__tests__/` (Vitest convention).
 - **`stub.mjs`** in `scripts/` provides a fake `dist/index.mjs` so downstream consumers (run via `tsx`) don't need a real build step.
 
-## Forbidden
+## 禁止
 
 - ❌ Don't add CLI code here — that's `@vben/vsh`.
 - ❌ Don't add platform-specific code (Node-only) outside `node:` imports — keep imports portable.
 - ❌ Don't bundle external HTTP/network libraries — prefer Node built-ins.
-- ❌ Don't ship `.env` reads from this package — that's an app concern.
+- ❌ Don't ship `.env` reads from 本包 — that's an app concern.

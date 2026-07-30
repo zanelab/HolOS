@@ -1,8 +1,8 @@
-# @vben/stores "Component" Style - Pinia Stores
+# @vben/stores "Component" Style - Pinia 状态
 
-> No Vue components. Stores = Pinia state + actions.
+> 无 Vue 组件。 Stores = Pinia state + actions.
 
-## Pattern: setup-style store
+## 模式: setup-style store
 
 ```ts
 import { defineStore } from "pinia";
@@ -15,7 +15,7 @@ export const useAccessStore = defineStore("access", () => {
 });
 ```
 
-## Usage
+## 用法
 
 ```vue
 <script setup>
@@ -25,7 +25,7 @@ accessStore.setAccessMenus(menus);
 </script>
 ```
 
-## Forbidden
+## 禁止
 
 - Don't use Options API for stores
 - Don't define globals outside defineStore

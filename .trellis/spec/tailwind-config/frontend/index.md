@@ -1,8 +1,8 @@
 # @vben/tailwind-config
 
-> vben monorepo package `@vben/tailwind-config` (v5.7.0) — HolOS built with this package and customized config.
+> vben monorepo package `@vben/tailwind-config` (v5.7.0) — HolOS built with 本包 and customized config.
 
-## Overview
+## 概述
 
 Configuration package for **@vben/tailwind-config** — provides shared TS / lint / style config used across the monorepo.
 
@@ -11,23 +11,23 @@ Configuration package for **@vben/tailwind-config** — provides shared TS / lin
 - **Scripts**: (no scripts)
 - **Deps** (top): @iconify/tailwind4, @tailwindcss/typography, tailwindcss, tw-animate-css
 
-> HolOS (`@vben/web-holos`) consumes this package via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
+> HolOS (`@vben/web-holos`) consumes 本包 via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
 
-## Directory Structure
+## 目录结构
 
 ```
 index.ts
 theme.css
 ```
 
-## Conventions for @vben/tailwind-config
+## 约定 for @vben/tailwind-config
 
-1. Re-export via `src/index.ts` — single entry, no internal deep imports
-2. Use `'.'` relative imports for sibling files; use workspace name for cross-package imports
-3. Version bump is mandatory when adding new rules to **@vben/tailwind-config**
-4. Test on at least 1 app (`@vben/web-antd` or web-holos) before merging
+1. 通过 `src/index.ts` re-export —— 单一入口，不做内部深导入
+2. 同级文件使用 `'.'` 相对路径导入 for sibling files; use workspace name for cross-package imports
+3. 在...中添加新规则时必须升级版本 **@vben/tailwind-config**
+4. 至少在 1 个应用中测试 (`@vben/web-antd` or web-holos) before merging
 
-## Forbidden Patterns
+## 禁止 Patterns
 
 - ❌ Don't deep-import from package subdirs (`@vben/foo/internals/util`) — use public `index.ts` only
 - ❌ Don't bypass `src/index.ts` with direct file imports — that defeats tree-shaking

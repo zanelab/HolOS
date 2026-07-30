@@ -2,7 +2,7 @@
 
 > Pure CSS package. Apps consume styles via Tailwind utility classes.
 
-## Pattern: app-level CSS with framework imports
+## 模式: app-level CSS with framework imports
 
 ```css
 /* apps/web-antd/src/index.css */
@@ -10,7 +10,7 @@
 /* plus app-specific overrides */
 ```
 
-## Forbidden
+## 禁止
 
 - Don't mix framework CSS in same file
 - Don't redefine Tailwind tokens

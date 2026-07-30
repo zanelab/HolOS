@@ -2,7 +2,7 @@
 
 > Mock backend built on **Nitro**.
 
-## Tree (verified)
+## 目录树 (verified)
 
 ```
 @vben/backend-mock/
@@ -25,13 +25,13 @@
     └── utils/
 ```
 
-## Conventions
+## 约定
 
 - **Mock endpoints** use same path as production (`/api/...`)
 - **Filename convention**: `<resource>.<method>.ts` (e.g. `login.post.ts`)
 - **Run via** `pnpm dev:backend-mock` (port 5320)
 
-## Forbidden
+## 禁止
 
 - Don't use Express - use h3
 - Don't put real auth here - mock only

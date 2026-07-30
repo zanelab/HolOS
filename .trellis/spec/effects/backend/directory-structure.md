@@ -1,13 +1,13 @@
 # Directory Structure
 
-> How backend code is organized in this project.
+> How backend code is organized 在本项目中。
 
 ---
 
-## Overview
+## 概述
 
 <!--
-Document your project's backend directory structure here.
+写出 project's backend directory structure here.
 
 Questions to answer:
 - How are modules/packages organized?
@@ -39,7 +39,7 @@ src/
 
 ---
 
-## Naming Conventions
+## 命名约定 约定
 
 <!-- File and folder naming rules -->
 
@@ -47,7 +47,7 @@ src/
 
 ---
 
-## Examples
+## 示例s
 
 <!-- Link to well-organized modules as examples -->
 

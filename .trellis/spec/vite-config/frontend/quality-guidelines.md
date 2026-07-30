@@ -2,12 +2,12 @@
 
 > Config-only package.
 
-## Style
+## 代码风格
 
 - 2 spaces JSON/YAML
 - 4 spaces TS
 
-## Forbidden
+## 禁止
 
 - Don't add runtime functions
 - Don't add tests (TS compiler checks)

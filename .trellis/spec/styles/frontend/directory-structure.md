@@ -1,8 +1,8 @@
 # @vben/styles Directory Structure
 
-> Per-framework CSS bundle + global styles.
+> 针对每个框架 CSS bundle + global styles.
 
-## Tree (verified from packages/styles/)
+## 目录树 (verified from packages/styles/)
 
 ```
 @vben/styles/
@@ -17,13 +17,13 @@
     └── global/
 ```
 
-## Conventions
+## 约定
 
 - **Per-flavor subdirs** isolated by UI framework
 - **global/** for cross-flavor utilities
 - **style-exports.d.ts** - CSS module .d.ts
 
-## Forbidden
+## 禁止
 
 - Don't import other framework's components
 - Don't redefine Tailwind tokens

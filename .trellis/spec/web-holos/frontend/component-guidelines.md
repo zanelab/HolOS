@@ -1,8 +1,8 @@
 # Web-Holos Component Guidelines
 
-> Vue 3 + TDesign Vue Next conventions for `apps/web-holos/` components
+> Vue 3 +  TDesign Vue Next conventions for `apps/web-holos/` components
 
-## Conventions
+## 约定
 
 - **Functional `.vue` files** default. Use `<script setup lang="ts">`
 - **Composition API**: `ref` / `reactive` / `computed` / `watchEffect`
@@ -11,7 +11,7 @@
 - **Async imports**: router-level code uses dynamic `() => import('./views/foo.vue')`
 - **Slots**: prefer named slots over vague default slots
 
-## Example home component (`src/views/home/index.vue`)
+## 示例 home component (`src/views/home/index.vue`)
 
 ```vue
 <script lang="ts" setup>
@@ -36,7 +36,7 @@ const { t } = useI18n();
 </style>
 ```
 
-## Forbidden
+## 禁止
 
 - ❌ Don't use Vue 2 options API
 - ❌ Don't import tdesign globally — use per-component imports

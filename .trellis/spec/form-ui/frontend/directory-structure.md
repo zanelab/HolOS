@@ -2,9 +2,9 @@
 
 **Expected package:** @vben-core/form-ui — form input wrappers + validators (planned)
 
-> **PLACEHOLDER DOCS** — This package does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. Replace these files with real content when the package is added.
+> **PLACEHOLDER DOCS** — 本包 does not exist in the workspace at this time. The expected structure and patterns below are based on `vben v5.7.0` conventions. 替换这些文件 real content when package 添加后.
 
-## Expected Tree
+## 预期目录树
 
 ```
 @vben/form-ui/
@@ -15,13 +15,13 @@
     └── (one or more module files)
 ```
 
-## Notes
+## 说明
 
 - This spec directory was auto-created during `bootstrap-guidelines` task
 - The expected structure follows `vben v5.7.0` conventions seen in actual packages (`@vben/utils`, `@vben/constants`, etc.)
 - See real packages for reference examples
 
-## Forbidden
+## 禁止
 
-- Do not create the actual package directory in workspace unless the upstream vben team adds it
-- Do not import from `@vben/form-ui` — it does not exist
+- 不要 create the actual package directory in workspace unless the upstream vben team adds it
+- 不要 import from `@vben/form-ui` — it does not exist

@@ -8,7 +8,7 @@ declare module 'vue-i18n' {
 }
 ```
 
-## Forbidden
+## 禁止
 
 - Don't use any
 - Don't import raw JSON in app code

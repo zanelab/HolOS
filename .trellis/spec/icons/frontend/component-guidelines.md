@@ -1,6 +1,6 @@
 # @vben/icons Component Guidelines
 
-## Pattern: IconifyIcon wrapper
+## 模式: IconifyIcon wrapper
 
 ```vue
 <script setup lang="ts">
@@ -18,7 +18,7 @@ Usage:
 <IconifyIcon icon="lucide:home" :size="20" />
 ```
 
-## Forbidden
+## 禁止
 
 - Don't import raw icons from Iconify / @iconify/vue directly
 - Don't add <svg> inline to views

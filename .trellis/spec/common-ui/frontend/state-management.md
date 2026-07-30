@@ -1,8 +1,8 @@
 # common-ui State Management
 
-> **PLACEHOLDER DOCS** - This package does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. Replace these files with real content when the package is added.
+> **PLACEHOLDER DOCS** - 本包 does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. 替换这些文件 real content when package 添加后.
 
-## Expected Decision Tree
+## 预期决策树
 
 | Where state lives | Use |
 |---|---|
@@ -11,7 +11,7 @@
 | Cross-page, transient | Pinia store (@vben/stores) |
 | Server cache | API + useXResource pattern |
 
-## Example (synthetic)
+## 示例 (synthetic)
 
 ```ts
 // Apps: use Pinia store
@@ -25,8 +25,8 @@ export const useXStore = defineStore("x", () => {
 export function transformX(input: XInput): XOutput { /* pure */ }
 ```
 
-## Forbidden
+## 禁止
 
-- Do not persist auth tokens in localStorage (XSS risk)
-- Do not use Vuex (this monorepo uses Pinia)
-- Do not mutate preferences outside the store API
+- 不要 persist auth tokens in localStorage (XSS risk)
+- 不要 use Vuex (this monorepo uses Pinia)
+- 不要 mutate preferences outside the store API

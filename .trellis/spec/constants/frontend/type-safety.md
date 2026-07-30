@@ -1,13 +1,13 @@
 # @vben/constants Type Safety
 
-> Strict-mode TS. Zero runtime concerns.
+> 严格模式 TS. Zero runtime concerns.
 
 ```ts
 export type AccessToken = null | string;
 export const LAYOUTS = ['sidebar-nav', 'mixed-nav'] as const;
 ```
 
-## Forbidden
+## 禁止
 
 - Don't use any
 - Don't use Object as a type

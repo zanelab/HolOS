@@ -2,7 +2,7 @@
 
 > Configs are static.
 
-## Forbidden
+## 禁止
 
 - Don't add mutable state
 - Don't export singletons

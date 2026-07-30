@@ -1,6 +1,6 @@
 # @vben/backend-mock Type Safety
 
-> Strict-mode TS for Nitro handlers.
+> 严格模式 TS for Nitro handlers.
 
 ```ts
 import { defineEventHandler, readBody, createError } from 'h3';

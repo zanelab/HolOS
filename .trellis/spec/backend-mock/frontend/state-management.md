@@ -2,7 +2,7 @@
 
 > Mock backend uses in-memory data only.
 
-## Forbidden
+## 禁止
 
 - Don't add a database
 - Don't persist auth tokens

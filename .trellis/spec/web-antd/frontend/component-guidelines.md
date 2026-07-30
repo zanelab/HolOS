@@ -1,8 +1,8 @@
 # @vben/web-antd Component Guidelines
 
-> Vue 3 + Ant Design Vue (vben flavor) — see also `web-tdesign/component-guidelines.md` for shared conventions.
+> Vue 3 +  Ant Design Vue (vben flavor) — see also `web-tdesign/component-guidelines.md` for shared conventions.
 
-## Conventions
+## 约定
 
 - **`<script setup lang="ts">`** only
 - **Ant Design Vue** imported through `src/adapter/antdv.ts`:
@@ -44,7 +44,7 @@ export const preferencesExtension = definePreferencesExtension<WebAntdPreference
 });
 ```
 
-## Forbidden
+## 禁止
 
 - Don't import `ant-design-vue` directly from views
 - Don't bypass `<VbenForm>` with raw `<a-form>`

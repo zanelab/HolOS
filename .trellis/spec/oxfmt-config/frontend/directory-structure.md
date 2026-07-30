@@ -2,7 +2,7 @@
 
 > Config-only package consumed via workspace alias.
 
-## Tree (verified)
+## 目录树 (verified)
 
 ```
 @vben/oxfmt-config/
@@ -13,14 +13,14 @@
     └── (one or more config files)
 ```
 
-## Conventions
+## 约定
 
 - **Config objects** exported as named const
 - **Single barrel** at src/index.ts
 - **No real build step** - consumed via tsx
 - **scripts/stub.mjs** provides fake dist/index.mjs
 
-## Forbidden
+## 禁止
 
 - Don't add runtime code (HTTP, file IO, async)
 - Don't add CLI

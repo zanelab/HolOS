@@ -1,8 +1,8 @@
 # @vben/web-tdesign Type Safety
 
-> Strict-mode TS is **non-negotiable** in this project.
+> 严格模式 TS is **non-negotiable** 在本项目中。
 
-## Config
+## 配置
 
 `tsconfig.json` extends `@vben/tsconfig/web-app.json`:
 
@@ -19,7 +19,7 @@ The base config enables:
 - `"noImplicitOverride": true`
 - `"noFallthroughCasesInSwitch": true`
 
-## Required Patterns
+## 必需模式
 
 ### Typing route records
 
@@ -66,7 +66,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 ```
 
-## Type Imports
+## 类型导入
 
 Always use **`import type`** for types:
 
@@ -82,7 +82,7 @@ pnpm typecheck                       # local
 pnpm typecheck --filter @vben/web-tdesign  # turbo-filtered
 ```
 
-## Forbidden
+## 禁止
 
 - ❌ Don't use `any` (use `unknown` + narrowing instead).
 - ❌ Don't disable strict mode in subdirs with `// @ts-strict-off` — fix the type, don't fight the compiler.

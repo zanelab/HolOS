@@ -2,7 +2,7 @@
 
 > Pinia stores ARE the hook pattern.
 
-## Forbidden
+## 禁止
 
 - Don't add Vue hooks inside defineStore
 - Don't duplicate store state in composables

@@ -1,8 +1,8 @@
 # @vben/node-utils
 
-> vben monorepo package `@vben/node-utils` (v5.7.0) — HolOS built with this package and customized config.
+> vben monorepo package `@vben/node-utils` (v5.7.0) — HolOS built with 本包 and customized config.
 
-## Overview
+## 概述
 
 Package **@vben/node-utils** (v5.7.0) — vben monorepo shared library.
 
@@ -11,9 +11,9 @@ Package **@vben/node-utils** (v5.7.0) — vben monorepo shared library.
 - **Scripts**: stub
 - **Deps** (top): @changesets/git, @manypkg/get-packages, chalk, consola, dayjs, execa, find-up, ora
 
-> HolOS (`@vben/web-holos`) consumes this package via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
+> HolOS (`@vben/web-holos`) consumes 本包 via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.
 
-## Directory Structure
+## 目录结构
 
 ```
 constants.ts
@@ -28,14 +28,14 @@ path.ts
 spinner.ts
 ```
 
-## Conventions for @vben/node-utils
+## 约定 for @vben/node-utils
 
-1. Single `src/index.ts` entry — re-export public API only
-2. Internal helpers stay in `helpers/` or `utils/` subdirs
-3. Use TypeScript strict mode; no `any` (use `unknown` + narrowing)
+1. 单一 `src/index.ts` 入口 —— 只 re-export 公开 API
+2. 内部 helpers 放在 `helpers/` 或 `utils/` 子目录
+3. Use TypeScript 严格模式; no `any` (use `unknown` + narrowing)
 4. Consume via `@vben` workspace alias (not relative paths)
 
-## Forbidden Patterns
+## 禁止 Patterns
 
 - ❌ Don't deep-import from package subdirs (`@vben/foo/internals/util`) — use public `index.ts` only
 - ❌ Don't bypass `src/index.ts` with direct file imports — that defeats tree-shaking

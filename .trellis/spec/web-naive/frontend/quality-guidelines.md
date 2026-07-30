@@ -1,8 +1,8 @@
 # @vben/web-naive Quality Guidelines
 
-> Strict-mode TS + 4-space + OxLint + ESLint + Stylelint + Commitlint.
+> 严格模式 TS + 4-space + OxLint + ESLint + Stylelint + Commitlint.
 
-## Style
+## 代码风格
 
 - 4 spaces indent
 - Single quotes TS; double quotes HTML
@@ -10,7 +10,7 @@
 - Max line 120
 - Trailing newline
 
-## Naming
+## 命名约定
 
 | Thing | Convention |
 |---|---|
@@ -21,7 +21,7 @@
 | Pinia store | useXxxStore |
 | Constant | UPPER_SNAKE_CASE |
 
-## Forbidden
+## 禁止
 
 - Don't use any
 - Don't add @ts-ignore without comment
