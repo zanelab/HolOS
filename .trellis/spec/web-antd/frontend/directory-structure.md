@@ -2,7 +2,7 @@
 
 > 真实布局 for `apps/web-antd/` (Ant Design Vue flavor).
 
-## 目录树 (verified 2026-07-29)
+## 目录树（2026-07-29 核对）
 
 ```
 apps/web-antd/
@@ -50,7 +50,7 @@ apps/web-antd/
         └── demos/antd/
 ```
 
-## App-Specific Pattern
+## 应用特定模式
 
 `preferences.ts` defines a **typed preferences extension**:
 

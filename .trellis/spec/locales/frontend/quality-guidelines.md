@@ -5,10 +5,10 @@
 ## 代码风格
 
 - 2 spaces JSON
-- Camel-case keys
-- Double-quoted strings
+- 键名使用驼峰命名
+- 字符串使用双引号
 
 ## 禁止
 
-- Don't put non-translation data here
-- Don't use flat keys
+- 此处不放非翻译内容的数据
+- 不要使用平铺的键

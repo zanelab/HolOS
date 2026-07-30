@@ -1,19 +1,19 @@
 # 类型安全
 
-> Type safety patterns 在本项目中。
+> 本项目中的类型安全模式。
 
 ---
 
 ## 概述
 
 <!--
-写出 project's type safety conventions here.
+在此填写项目的类型安全约定。
 
 Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
+- 你们使用哪种类型系统？
+- 类型如何组织？
+- 你们使用哪个校验库？
+- 你们如何处理类型推断？
 -->
 
 (To be filled by the team)

@@ -1,4 +1,4 @@
-# menu-ui Component Guidelines
+# menu-ui 组件规范
 
 **Expected package:** @vben-core/menu-ui — sidebar menu + breadcrumb (planned)
 

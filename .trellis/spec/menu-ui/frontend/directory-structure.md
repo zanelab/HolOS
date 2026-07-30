@@ -1,4 +1,4 @@
-# menu-ui Directory Structure
+# menu-ui 目录结构
 
 **Expected package:** @vben-core/menu-ui — sidebar menu + breadcrumb (planned)
 

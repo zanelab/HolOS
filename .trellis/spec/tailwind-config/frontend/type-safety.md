@@ -27,11 +27,11 @@ That's it.
 - **IntelliSense** for tokens comes from editor CSS plugins (e.g., Tailwind IntelliSense VS Code plugin).
 - **Types** of token values are inferred from CSS, not declared.
 
-## Tailwind v4 Type Safety Approach
+## Tailwind v4 类型安全方案
 
 - Tailwind v4 generates TypeScript types for utilities if you have `@types/node` installed.
 - This project relies on **Tailwind IntelliSense** (VS Code plugin) for utility class validation.
-- Color tokens that don't resolve go **silent in production** — make sure to test in dev.
+- 无法解析的颜色变量在 **生产环境静默失效** — 记得在 dev 中测试。
 
 ## 禁止
 

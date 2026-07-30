@@ -37,7 +37,7 @@ const isDark = useDark({
 </template>
 ```
 
-## 模式: responsive utilities
+## 模式：响应式工具类
 
 ```html
 <div class="flex flex-col md:flex-row gap-4 md:gap-8">
@@ -48,7 +48,7 @@ const isDark = useDark({
 
 The `@source` directive in `theme.css` scans all packages + apps, so utility classes from any of them are preserved.
 
-## 何时 use 本包's tokens in code
+## 何时在代码中使用 本包 的 tokens
 
 - **`bg-bg-base`** — page background, light mode white, dark mode `#0a0a0a`
 - **`text-fg-primary`** — primary text
@@ -57,7 +57,7 @@ The `@source` directive in `theme.css` scans all packages + apps, so utility cla
 
 ## 禁止
 
-- ❌ Don't hard-code hex / rgb colors in components — use semantic tokens.
+- ❌ 不要在组件中硬编码 hex / rgb 颜色 — 使用语义化变量。
 - ❌ Don't add `data-theme="dark"` style multi-theme logic — this app uses `.dark` class only.
 - ❌ Don't add `tailwind.config.cjs` — Tailwind v4 doesn't use one.
 - ❌ Don't bypass dark mode tokens by always using `bg-...` without `dark:` variant — Tailwind v4 will auto-pair dark tokens because of `@custom-variant dark`.

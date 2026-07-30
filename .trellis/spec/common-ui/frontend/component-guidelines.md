@@ -1,4 +1,4 @@
-# common-ui Component Guidelines
+# common-ui 组件规范
 
 **Expected package:** @vben/common-ui — fallback pages, profile/about/auth login (planned)
 

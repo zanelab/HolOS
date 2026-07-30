@@ -1,4 +1,4 @@
-# base Directory Structure
+# base 目录结构
 
 **Expected package:** @vben-core/base — global types and shared interfaces (planned)
 

@@ -1,8 +1,8 @@
 # @vben/oxfmt-config: Stateless by Design
 
-> Configs are static.
+> 配置是静态的。
 
 ## 禁止
 
 - Don't add mutable state
-- Don't export singletons
+- 不要导出单例

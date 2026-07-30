@@ -13,7 +13,7 @@
 
 ## 约定 (inherited from monorepo)
 
-> commitlint shared config — base rules + scope enum mapping.
+> commitlint 共享配置—— 基础规则 + scope 枚举映射。
 
 - **Language**: All documentation in **English** (some user-facing docs may be Chinese)
 - **TypeScript 严格模式** is required

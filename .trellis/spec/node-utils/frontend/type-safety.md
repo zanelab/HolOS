@@ -16,7 +16,7 @@ Enables `strict`, `noUncheckedIndexedAccess`, `verbatimModuleSyntax`.
 
 ## 必需模式
 
-### Explicit input/output types
+### 显示的输入/输出类型
 
 ```ts
 // src/hash.ts
@@ -25,7 +25,7 @@ export function sha256(input: string | Uint8Array): string {
 }
 ```
 
-### Discriminated unions for result types
+### 用可辨识的枚举表示结果类型
 
 ```ts
 // src/git.ts
@@ -36,7 +36,7 @@ export type GitResult<T> =
 export async function gitRevParse(cwd: string): Promise<GitResult<string>> { ... }
 ```
 
-### Throw on bad input, return value on success
+### 输入非法时抛出，成功时返回值
 
 ```ts
 export function formatBytes(bytes: number, decimals = 2): string {

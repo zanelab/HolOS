@@ -1,4 +1,4 @@
-# shadcn-ui Directory Structure
+# shadcn-ui 目录结构
 
 **Expected package:** @vben-core/shadcn-ui — shadcn-vue primitives (planned)
 

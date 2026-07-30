@@ -4,5 +4,5 @@
 
 ## 禁止
 
-- Don't bundle full icon set
-- Don't inline <svg> in views
+- 不要打包完整图标集
+- 不要在视图中嵌入 <svg>

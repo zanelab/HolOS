@@ -1,13 +1,13 @@
 # Hook 规范
 
-> How hooks are used 在本项目中。
+> 本项目中 hooks 的使用方式。
 
 ---
 
 ## 概述
 
 <!--
-写出 project's hook conventions here.
+在此填写项目的 hook 约定。
 
 Questions to answer:
 - 你们使用了哪些自定义 hooks？

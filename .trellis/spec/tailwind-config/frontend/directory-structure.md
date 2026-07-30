@@ -2,7 +2,7 @@
 
 > 真实布局 for `internal/tailwind-config/` (workspace name `@vben/tailwind-config`).
 
-## 目录树 (verified 2026-07-29)
+## 目录树（2026-07-29 核对）
 
 ```
 internal/tailwind-config/
@@ -16,7 +16,7 @@ internal/tailwind-config/
 ## 约定
 
 - **Tailwind v4** style: design tokens live in `@theme { --font: ...; --color: ...; }` blocks inside `theme.css`. No `tailwind.config.ts` / `tailwind.config.js`.
-- **Scan glob** discovers utility classes by scanning all packages:
+- **Scan glob** 通过扫描所有包来发现工具类：
   ```css
   @source '../../../packages/';
   @source '../../../apps/';

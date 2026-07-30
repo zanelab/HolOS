@@ -13,4 +13,4 @@
 ## 禁止
 
 - Don't mix framework CSS in same file
-- Don't redefine Tailwind tokens
+- 不要重新定义 Tailwind tokens

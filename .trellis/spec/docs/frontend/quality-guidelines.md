@@ -1,6 +1,6 @@
 # Quality Guidelines
 
-> Code quality standards for frontend development.
+> 前端开发的代码质量标准。
 
 ---
 

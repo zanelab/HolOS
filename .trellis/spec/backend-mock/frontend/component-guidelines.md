@@ -15,5 +15,5 @@ export default defineEventHandler(async (event) => {
 
 ## 禁止
 
-- Don't use Express
-- Don't use Generators
+- 不要使用 Express
+- 不要使用 Generators

@@ -8,7 +8,7 @@ Package **@vben/backend-mock** (v5.7.0) — vben monorepo shared library.
 
 - **版本**：5.7.0
 - **类型**：module
-- **Scripts**: build, start
+- **Scripts**：build、start
 - **Deps** (top): @faker-js/faker, jsonwebtoken, nitropack
 
 > HolOS (`@vben/web-holos`) consumes 本包 via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.

@@ -1,4 +1,4 @@
-# request Directory Structure
+# request 目录结构
 
 **Expected package:** @vben/request — requestClient axios wrapper (planned)
 

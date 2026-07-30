@@ -1,18 +1,18 @@
 # @vben/web-naive State Management
 
-> Pick the simplest container that fits. Don't reach for Pinia first.
+> 选择最合适的简单容器。不要一开始就上 Pinia。
 
 ## Decision Tree
 
 | Where the state lives | Use |
 |---|---|
-| One component, one render | ref() / reactive() |
-| One component, deep children | provide() / inject() |
-| Cross-page, persisted | preferences store |
+| 单组件、一次渲染 | ref() / reactive() |
+| 单组件、深度子组件 | provide() / inject() |
+| 跨页面、需持久化 | preferences store |
 | Cross-page, transient | Pinia store (@vben/stores) |
 | Server cache | API + useAsyncResource |
 
-## Pinia 状态存储 (canonical 3)
+## Pinia 状态存储（标准 3 个）
 
 - useAccessStore - tokens / access routes / flags
 - useAuthStore - login / logout / token expiry

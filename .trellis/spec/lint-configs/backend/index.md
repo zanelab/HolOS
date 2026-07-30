@@ -13,7 +13,7 @@
 
 ## 约定 (inherited from monorepo)
 
-> Lint shared configs — parent dir of oxlint/eslint/stylelint/oxfmt config packages.
+> Lint 共享配置—— oxlint/eslint/stylelint/oxfmt 配置包的父目录。
 
 - **Language**: All documentation in **English** (some user-facing docs may be Chinese)
 - **TypeScript 严格模式** is required

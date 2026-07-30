@@ -1,6 +1,6 @@
 # @vben/constants "Component" Style - Constants / Types
 
-## 模式: explicit named exports
+## 模式：显式命名导出
 
 ```ts
 export const LOGIN_PATH = '/auth/login';
@@ -20,5 +20,5 @@ import { LOGIN_PATH, type UserInfo, type LayoutType } from '@vben/constants';
 ## 禁止
 
 - Don't add IO functions
-- Don't add Vue refs
-- Don't bundle into namespaced objects
+- 不要添加 Vue refs
+- 不要打包到命名空间对象中

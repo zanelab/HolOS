@@ -1,4 +1,4 @@
-# plugins Directory Structure
+# plugins 目录结构
 
 **Expected package:** @vben/plugins — vite plugin adapters (planned)
 

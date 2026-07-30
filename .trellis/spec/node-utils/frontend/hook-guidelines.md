@@ -2,7 +2,7 @@
 
 > 本包 has **no Vue hooks**. Read this as: how to plug a helper **into** an application's hook.
 
-## 示例: use node-utils inside a Vue composable
+## 示例：在 Vue composable 中使用 node-utils
 
 When a Vue app wants to use `@vben/node-utils` helpers, wrap them in a `useXxx` composable in the **app**, not in 本包:
 
@@ -34,8 +34,8 @@ export function useAppMeta() {
 
 ## DON'T use it in
 
-- Frontend runtime code that ships to the browser — it's a Node-only package (no fallback for browser globals).
-- Vue composables that need reactivity — node-utils functions are not reactive; wrap them yourself if you need reactivity.
+- 发布到浏览器的前端运行代码 — 本包仅 Node（无浏览器全局变量回退）。
+- 需要响应性的 Vue composables — node-utils 的函数不是响应性的；如需要响应性请自行包装。
 
 ## 禁止
 

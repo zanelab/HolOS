@@ -2,7 +2,7 @@
 
 > Vue 3 +  UI-framework conventions.
 
-## 目录树 (verified 2026-07-30)
+## 目录树（2026-07-30 核对）
 
 ```
 @vben/web-ele/
@@ -44,4 +44,4 @@
 
 - Don't import UI lib directly outside src/adapter
 - Don't add routes to routes/core.ts
-- Don't fetch() in views
+- 不要在视图层调用 fetch()

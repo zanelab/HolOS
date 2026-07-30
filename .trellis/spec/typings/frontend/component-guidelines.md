@@ -1,4 +1,4 @@
-# typings Component Guidelines
+# typings 组件规范
 
 **Expected package:** @vben-core/typings — generic TS types (planned)
 

@@ -4,6 +4,6 @@
 
 ## 禁止
 
-- Don't add a database
-- Don't persist auth tokens
-- Don't use cookies for state
+- 不要添加数据库
+- 不要持久化认证令牌
+- 不要用 cookies 保存状态

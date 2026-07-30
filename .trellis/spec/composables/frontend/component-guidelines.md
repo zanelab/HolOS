@@ -1,4 +1,4 @@
-# composables Component Guidelines
+# composables 组件规范
 
 **Expected package:** @vben-core/composables — useScroll, useScrollbar etc (planned)
 

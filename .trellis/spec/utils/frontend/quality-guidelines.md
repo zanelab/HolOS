@@ -13,4 +13,4 @@ pnpm --filter @vben/utils test
 ## 禁止
 
 - Don't introduce dependencies
-- Don't add side-effect imports
+- 不要添加带副作用的 import

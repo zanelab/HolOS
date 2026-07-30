@@ -12,7 +12,7 @@
 
 ## 命名约定
 
-| Thing | Convention | Example |
+| 项目 | 约定 | 示例 |
 |---|---|---|
 | Vue page file | `PascalCase.vue` | `Analytics.vue` |
 | Vue part/component | `kebab-case.vue` | `menu-item.vue` |
@@ -22,7 +22,7 @@
 | Constant | `UPPER_SNAKE_CASE` | `MAX_RETRY_COUNT` |
 | File tree | `<package>/<role>` | `core.ts`, `modules/dashboard.ts` |
 
-## 提交前钩子 (auto-fired)
+## 提交前钩子（自动触发）
 
 - **OxLint** — fast lint, replaces ESLint for most rules
 - **OxFmt** — auto-formatter (runs on staged files)
@@ -39,7 +39,7 @@
 - ❌ Don't use `console.log` for production diagnostics — 使用 `logger` package or structured logging.
 - ❌ Don't commit `node_modules`, `dist`, `.vite` — already in `.gitignore` but worth noting.
 
-## Lint / 类型检查 Commands
+## Lint / 类型检查命令
 
 ```bash
 pnpm typecheck                       # vue-tsc --noEmit --skipLibCheck

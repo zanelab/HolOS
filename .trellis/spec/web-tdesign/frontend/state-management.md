@@ -13,7 +13,7 @@
 | Server cache | API + `useAsyncResource` (see hook-guidelines.md) |
 | Cross-tab sync | localStorage with `@vueuse/core` `useStorage` |
 
-## Pinia 状态存储 (used in this app)
+## Pinia 状态存储（本应用中使用）
 
 - **`useAccessStore`** — tokens, access routes, access flags
   ```ts
@@ -40,7 +40,7 @@ Persisted under localStorage key `vben-web-tdesign-5.7.0-dev-preferences`.
 ## 禁止
 
 - ❌ Don't persist auth tokens in localStorage (XSS).
-- ❌ Don't use Vuex — this codebase uses Pinia.
+- ❌ 不要使用 Vuex — 本代码库使用 Pinia。
 - ❌ Don't mutate preferences outside the store API (`updatePreferences(...)`).
-- ❌ Don't create a new Pinia store per feature — keep cross-feature shared state to ≤ 5 stores.
+- ❌ 不要每个功能都创建一个 Pinia store — 跨功能共享状态限到 5 个 store 以内。
 - ❌ Don't add Vue 3 `provide`/`inject` keys for data the page itself owns — that's just props.

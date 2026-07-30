@@ -1,4 +1,4 @@
-# tabs-ui Directory Structure
+# tabs-ui 目录结构
 
 **Expected package:** @vben-core/tabs-ui — tab UI primitives (planned)
 

@@ -6,5 +6,5 @@ Apps wrap helpers in composables if reactivity needed.
 
 ## 禁止
 
-- Don't add Vue-specific code
-- Don't add reactive state to 本包
+- 不要加 Vue 专有代码
+- 不要在 本包 中添加响应性状态

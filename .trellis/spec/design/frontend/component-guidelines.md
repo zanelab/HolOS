@@ -1,4 +1,4 @@
-# design Component Guidelines
+# design 组件规范
 
 **Expected package:** @vben-core/design — design tokens (planned)
 

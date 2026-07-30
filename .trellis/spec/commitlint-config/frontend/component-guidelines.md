@@ -1,6 +1,6 @@
 # @vben/commitlint-config "Component" Style - Config Object
 
-> 无 Vue 组件。 "Components" are typed config objects.
+> 无 Vue 组件。这里的 "组件" 是带类型的配置对象。
 
 ## 模式
 
@@ -23,6 +23,6 @@ export default [
 
 ## 禁止
 
-- Don't add side-effect functions
+- 不要添加带副作用的函数
 - Don't add CLI/runtime code
-- Don't import runtime deps - zero-dep
+- 不要引入运行时依赖——保持零依赖

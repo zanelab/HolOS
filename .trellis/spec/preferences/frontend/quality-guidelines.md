@@ -5,11 +5,11 @@
 ## 代码风格
 
 - 4 spaces TS
-- Single quotes
-- Trailing newline
+- 使用单引号
+- 文件末尾必须有换行符
 
 ## 禁止
 
-- Don't introduce dependencies
+- 不要引入依赖
 - Don't add tests
-- Don't add async functions
+- 不要添加 async 函数

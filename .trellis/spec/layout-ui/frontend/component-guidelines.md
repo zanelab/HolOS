@@ -1,4 +1,4 @@
-# layout-ui Component Guidelines
+# layout-ui 组件规范
 
 **Expected package:** @vben-core/layout-ui — VbenLayout primitives (planned)
 

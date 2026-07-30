@@ -1,4 +1,4 @@
-# Web-Holos Type Safety
+# Web-Holos 类型安全
 
 ## 约定
 
@@ -7,14 +7,14 @@
 - All entry points (`main.ts`, `bootstrap.ts`, `App.tsx`, route components, store factories) **must** be strongly typed
 - `vue-tsc --noEmit --skipLibCheck` is the typecheck command
 
-## Type imports
+## 类型引入
 
 ```ts
 import type { RouteRecordRaw } from 'vue-router';
 import type { ComponentRecordType, GenerateMenuAndRoutesOptions } from '@vben/types';
 ```
 
-## Type safety rules
+## 类型安全规则
 
 - Use `unknown` for genuinely unknown values (then narrow with `instanceof` / type guards)
 - Use `as const` for literal objects

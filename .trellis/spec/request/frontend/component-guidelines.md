@@ -1,4 +1,4 @@
-# request Component Guidelines
+# request 组件规范
 
 **Expected package:** @vben/request — requestClient axios wrapper (planned)
 

@@ -2,7 +2,7 @@
 
 > 无 Vue 组件。 Stores = Pinia state + actions.
 
-## 模式: setup-style store
+## 模式：setup 风格的 store
 
 ```ts
 import { defineStore } from "pinia";

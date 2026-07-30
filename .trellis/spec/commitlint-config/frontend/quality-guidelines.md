@@ -1,6 +1,6 @@
 # @vben/commitlint-config Quality Guidelines
 
-> Config-only package.
+> 仅含配置的包。
 
 ## 代码风格
 
@@ -9,6 +9,6 @@
 
 ## 禁止
 
-- Don't add runtime functions
+- 不要添加运行时函数
 - Don't add tests (TS compiler checks)
-- Don't make configs mutable
+- 不要让配置可变

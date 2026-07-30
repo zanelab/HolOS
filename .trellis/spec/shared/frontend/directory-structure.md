@@ -1,4 +1,4 @@
-# shared Directory Structure
+# shared 目录结构
 
 **Expected package:** @vben-core/shared — runtime constants (planned)
 

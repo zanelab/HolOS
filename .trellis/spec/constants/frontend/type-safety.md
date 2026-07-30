@@ -10,4 +10,4 @@ export const LAYOUTS = ['sidebar-nav', 'mixed-nav'] as const;
 ## 禁止
 
 - 不要使用 any
-- Don't use Object as a type
+- 不要使用 Object 作为类型

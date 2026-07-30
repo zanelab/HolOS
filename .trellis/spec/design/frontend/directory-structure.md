@@ -1,4 +1,4 @@
-# design Directory Structure
+# design 目录结构
 
 **Expected package:** @vben-core/design — design tokens (planned)
 

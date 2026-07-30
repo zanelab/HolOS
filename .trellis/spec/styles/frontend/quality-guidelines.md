@@ -5,10 +5,10 @@
 ## 代码风格
 
 - 2 spaces CSS, 4 spaces SCSS
-- Mobile-first responsive
+- 先移动端后桌面的响应式
 
 ## 禁止
 
-- Don't import other framework's components
-- Don't redefine Tailwind tokens
+- 不要引入其他框架的组件
+- 不要重新定义 Tailwind tokens
 - Don't add JS to .css files

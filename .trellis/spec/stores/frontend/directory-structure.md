@@ -18,12 +18,12 @@
 
 ## 约定
 
-- **One store per module file**
+- **一个模块文件一个 store**
 - **Setup-style stores** (defineStore("id", () => ...))
 - **All stores registered in index.ts**
 
 ## 禁止
 
-- Don't put business logic in setup()
+- 不要在 setup() 中放业务逻辑
 - Don't put API calls inside setup()
-- Don't create circular deps between stores
+- store 与 store 之间不要产生环状依赖

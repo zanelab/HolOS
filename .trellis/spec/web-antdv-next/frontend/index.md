@@ -8,7 +8,7 @@ Application package **@vben/web-antdv-next** — a vite-based frontend app for t
 
 - **Version**: 5.7.0
 - **Type**: module
-- **Scripts**: build, build:analyze, dev, preview, typecheck
+- **Scripts**：build、build:analyze、dev、preview、typecheck
 - **Deps** (top): @vben/access, @vben/common-ui, @vben/constants, @vben/hooks, @vben/icons, @vben/layouts, @vben/locales, @vben/plugins
 
 > HolOS (`@vben/web-holos`) consumes 本包 via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.

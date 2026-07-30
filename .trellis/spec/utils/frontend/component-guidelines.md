@@ -20,5 +20,5 @@ const routes = mergeRouteModules([dashboardModule, demosModule]);
 ## 禁止
 
 - Don't bundle into classes / namespaces
-- Don't add side effects
-- Don't return generic any
+- 不要添加副作用
+- 不要返回一般的 any

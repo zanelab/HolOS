@@ -2,7 +2,7 @@
 
 > Compose **existing** hooks before writing a new one.
 
-## 可用的内置函数 (no need to re-implement)
+## 可用的内置函数（无需重新实现）
 
 | Concern | Hook | Source |
 |---|---|---|
@@ -15,10 +15,10 @@
 | Form state | `useVbenForm()` | `@vben/common-ui` |
 | Grid/table | `useVbenVxeGrid()` | `@vben/plugins/vxe-table` |
 
-## 何时 Write a Custom Hook
+## 何时编写自定义 Hook
 
 Write a hook if (and only if):
-- It is used by ≥ 3 views / components
+- 被≥3 个视图 / 组件使用
 - It returns **reactive state** OR a stable async function
 - Its logic is **non-trivial** (> 10 lines) and lives in a view's `setup()` script block
 
@@ -28,7 +28,7 @@ Write a hook if (and only if):
 - Co-located with the view if only used by one feature (`src/views/dashboard/useFoo.ts`)
 - Or shared under `src/hooks/use-<name>.ts`
 
-## 示例 (real pattern)
+## 示例（真实模式）
 
 ```ts
 // src/hooks/use-async-resource.ts

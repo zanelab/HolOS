@@ -1,4 +1,4 @@
-# access Directory Structure
+# access 目录结构
 
 **Expected package:** @vben/access — generateAccessible + ACL primitives (planned)
 

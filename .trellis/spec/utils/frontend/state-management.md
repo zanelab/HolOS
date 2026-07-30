@@ -4,5 +4,5 @@
 
 ## 禁止
 
-- Don't add module-level mutable state
-- Don't add singletons
+- 不要添加模块级可变状态
+- 不要添加单例

@@ -4,5 +4,5 @@
 
 ## 禁止
 
-- Don't add mutable state
-- Don't load async at runtime
+- 不要添加可变状态
+- 不要在运行时异步加载

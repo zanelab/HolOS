@@ -33,13 +33,13 @@ In app code (an app's `src/index.css`):
 
 The app consumes tokens **without redefining them** — Tailwind v4's `@theme inline` injects them into utility classes (`rounded-md` → `border-radius: var(--radius-md)`).
 
-## Adding a New Token
+## 添加新的 Token
 
 1. Add `/* Color */` group in `src/theme.css` under `@theme inline { ... }`
 2. Add `bg-` / `text-` / `border-` classes in `theme.css`'s `@theme` if it's a new color slot
 3. Test in `@vben/web-holos/src/index.css` (the dev target app)
 
-## Adding a New Plugin
+## 添加新的插件
 
 ```css
 @import 'tailwindcss';

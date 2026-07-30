@@ -1,8 +1,8 @@
 # @vben/types: Pure Data
 
-> Constants / types are static values, no runtime state.
+> 常量 / 类型是静态值，不含运行时状态。
 
 ## 禁止
 
-- Don't add module-level mutable variables
-- Don't add runtime-fetched values
+- 不要添加模块级可变变量
+- 不要添加运行时获取的值

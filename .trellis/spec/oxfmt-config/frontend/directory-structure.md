@@ -1,6 +1,6 @@
 # @vben/oxfmt-config Directory Structure
 
-> Config-only package consumed via workspace alias.
+> 仅含配置的包，通过工作区别名引用。
 
 ## 目录树 (verified)
 
@@ -15,9 +15,9 @@
 
 ## 约定
 
-- **Config objects** exported as named const
+- **配置对象** 以命名 const 导出
 - **Single barrel** at src/index.ts
-- **No real build step** - consumed via tsx
+- **无真实构建步骤** —— 通过 tsx 直接消费
 - **scripts/stub.mjs** provides fake dist/index.mjs
 
 ## 禁止

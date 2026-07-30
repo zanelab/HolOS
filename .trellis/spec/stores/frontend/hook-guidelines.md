@@ -5,4 +5,4 @@
 ## 禁止
 
 - Don't add Vue hooks inside defineStore
-- Don't duplicate store state in composables
+- 不要在 composables 中重复 store 状态

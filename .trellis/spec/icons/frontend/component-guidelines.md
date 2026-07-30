@@ -21,4 +21,4 @@ Usage:
 ## 禁止
 
 - Don't import raw icons from Iconify / @iconify/vue directly
-- Don't add <svg> inline to views
+- 不要在视图中嵌入 <svg>

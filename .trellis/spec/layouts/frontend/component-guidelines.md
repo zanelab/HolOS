@@ -1,4 +1,4 @@
-# layouts Component Guidelines
+# layouts 组件规范
 
 **Expected package:** @vben/layouts — BasicLayout / AuthenticationLayout (planned)
 

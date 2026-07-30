@@ -33,6 +33,6 @@
 
 ## 禁止
 
-- Don't use Express - use h3
-- Don't put real auth here - mock only
-- Don't add a real database
+- 不要使用 Express — 使用 h3
+- 这里不要放入真实的认证 — 仅作 mock
+- 不要添加真实数据库

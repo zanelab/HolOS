@@ -1,4 +1,4 @@
-# shadcn-ui Component Guidelines
+# shadcn-ui 组件规范
 
 **Expected package:** @vben-core/shadcn-ui — shadcn-vue primitives (planned)
 

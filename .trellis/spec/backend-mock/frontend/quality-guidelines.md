@@ -5,17 +5,17 @@
 ## 代码风格
 
 - 4 spaces TS
-- Single quotes
-- Async/await for endpoint handlers
+- 使用单引号
+- 端点处理器使用 async/await
 
 ## 禁止
 
-- Don't use Express
-- Don't use Generators
-- Don't commit .env
+- 不要使用 Express
+- 不要使用 Generators
+- 不要提交 .env
 - Don't console.log to debug
 
-## Start
+## 开始
 
 ```bash
 pnpm dev:backend-mock

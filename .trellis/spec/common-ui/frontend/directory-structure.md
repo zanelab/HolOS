@@ -1,4 +1,4 @@
-# common-ui Directory Structure
+# common-ui 目录结构
 
 **Expected package:** @vben/common-ui — fallback pages, profile/about/auth login (planned)
 

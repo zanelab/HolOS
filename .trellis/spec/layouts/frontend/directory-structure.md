@@ -1,4 +1,4 @@
-# layouts Directory Structure
+# layouts 目录结构
 
 **Expected package:** @vben/layouts — BasicLayout / AuthenticationLayout (planned)
 

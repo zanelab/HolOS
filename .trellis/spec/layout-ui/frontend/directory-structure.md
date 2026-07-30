@@ -1,4 +1,4 @@
-# layout-ui Directory Structure
+# layout-ui 目录结构
 
 **Expected package:** @vben-core/layout-ui — VbenLayout primitives (planned)
 

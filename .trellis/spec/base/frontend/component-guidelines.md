@@ -1,4 +1,4 @@
-# base Component Guidelines
+# base 组件规范
 
 **Expected package:** @vben-core/base — global types and shared interfaces (planned)
 

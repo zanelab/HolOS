@@ -1,8 +1,8 @@
-# Web-Holos Custom Hooks Guidelines
+# Web-Holos 自定义 Hooks 规范
 
-> 除非绝对必要，否则不要写新 hooks.
+> 除非绝对必要，否则不要编写新的 hooks。
 
-## Most actions map to existing helpers
+## 大部分动作映射到现有辅助函数
 
 | Action | Use |
 |---|---|
@@ -16,11 +16,11 @@
 
 - **One-line composable** rules: if `useFoo()` does not return reactive state or a stable function, **don't make it a hook** — make it a normal helper in `src/utils/`
 - **Naming**: `useFoo` (camel case, starts with `use`)
-- **File location**:
+- **文件位置**：
   - cross-module hooks → `src/hooks/`
   - page-scoped composables → co-located `useXxx.ts` next to the view
 
-## 可用的内置函数 (no need to re-implement)
+## 可用的内置函数（无需重新实现）
 
 - `usePreferences` from `@vben/preferences` — read/write app config
 - `useAccessStore` / `useUserStore` / `useAuthStore` from `@vben/stores`
@@ -31,5 +31,5 @@
 ## 禁止
 
 - ❌ Don't create wrapper hooks that just `return usePreferences()` — call `usePreferences()` directly
-- ❌ Don't put business logic in hooks unless **stateful across renders**
+- ❌ 除非 **跨渲染保持状态**，不要在 hook 中放业务逻辑
 - ❌ Don't use `watch` inside hooks without explicit `immediate: true`

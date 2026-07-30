@@ -9,5 +9,5 @@ export const config: Linter.Config[] = [...];
 
 ## 禁止
 
-- Don't disable strict mode
+- 不要关闭严格模式
 - 不要使用 any

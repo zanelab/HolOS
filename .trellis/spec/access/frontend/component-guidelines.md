@@ -1,4 +1,4 @@
-# access Component Guidelines
+# access 组件规范
 
 **Expected package:** @vben/access — generateAccessible + ACL primitives (planned)
 

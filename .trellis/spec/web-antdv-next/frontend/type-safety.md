@@ -4,7 +4,7 @@
 
 ## 必需模式
 
-### Route records
+### 路由记录
 ```ts
 import type { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [...];
@@ -36,6 +36,6 @@ import type { RouteRecordRaw } from 'vue-router';
 ## 禁止
 
 - Don't use any
-- Don't disable strict mode per-file
+- 不要在单个文件中关闭严格模式
 - Don't `as` cast to silence errors
 - Don't @ts-ignore without comment

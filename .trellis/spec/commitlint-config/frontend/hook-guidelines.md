@@ -1,6 +1,6 @@
 # @vben/commitlint-config: Not Applicable
 
-> Configuration packages don't have Vue hooks.
+> 配置类包不包含 Vue hooks。
 
 If runtime behavior needed, put it in @vben/node-utils or app composables.
 

@@ -7,13 +7,13 @@
 ## 概述
 
 <!--
-写出 project's frontend directory structure here.
+在此填写项目的前端目录结构。
 
 Questions to answer:
-- Where do components live?
-- How are features/modules organized?
-- Where are shared utilities?
-- How are assets organized?
+- 组件存放在哪里？
+- 功能/模块如何组织？
+- 共享工具放在哪里？
+- 资源如何组织？
 -->
 
 (To be filled by the team)
@@ -33,7 +33,7 @@ src/
 
 ## Module Organization
 
-<!-- How should new features be organized? -->
+<!-- 新功能应如何组织？ -->
 
 (To be filled by the team)
 

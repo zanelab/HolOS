@@ -21,7 +21,7 @@ The base config enables:
 
 ## 必需模式
 
-### Typing route records
+### 为路由记录加类型
 
 ```ts
 import type { RouteRecordRaw } from 'vue-router';
@@ -52,7 +52,7 @@ export async function fetchUserInfo() {
 }
 ```
 
-### Typing props
+### 为 props 加类型
 
 ```vue
 <script lang="ts" setup>
@@ -75,7 +75,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import type { UserInfo } from '#/api/core/user';
 ```
 
-## Typecheck Commands
+## 类型检查命令
 
 ```bash
 pnpm typecheck                       # local

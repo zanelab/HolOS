@@ -19,7 +19,7 @@
 - **`<VbenForm>`** / **`<VbenVxeGrid>`** from `@vben/common-ui` + `@vben/plugins/vxe-table`
 - **Async route components**: `() => import('#/views/foo.vue')`
 
-## Preferences Extension Pattern
+## Preferences 扩展模式
 
 ```ts
 import { definePreferencesExtension } from '@vben/preferences';
@@ -50,7 +50,7 @@ export const preferencesExtension = definePreferencesExtension<WebAntdPreference
 - Don't bypass `<VbenForm>` with raw `<a-form>`
 - Don't add inline CSS — use Tailwind classes
 
-## See Also
+## 参见
 
 - `web-tdesign/component-guidelines.md` for shared patterns
 - `web-holos/component-guidelines.md` (canonical example, first to be written)

@@ -4,10 +4,10 @@
 
 ## 代码风格
 
-- 4 spaces indent
+- 使用 4 空格缩进
 - Single quotes TS; double quotes HTML
-- No semicolons
-- Max line 120
+- 不使用分号
+- 单行最大长度 120
 - Trailing newline
 
 ## 命名约定
@@ -26,4 +26,4 @@
 - Don't use any
 - Don't add @ts-ignore without comment
 - Don't bypass hooks with --no-verify
-- Don't commit .env or secrets
+- 不要提交 .env 或密钥

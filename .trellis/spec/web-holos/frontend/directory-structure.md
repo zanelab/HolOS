@@ -1,4 +1,4 @@
-# Web-Holos Directory Structure
+# Web-Holos 目录结构
 
 > Source layout for `apps/web-holos/`
 

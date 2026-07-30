@@ -1,4 +1,4 @@
-# Web-Holos Quality Guidelines
+# Web-Holos 质量规范
 
 > Adopted from the team's `commitlint-config` + `eslint-config` + TDesign Vue best practices.
 
@@ -7,7 +7,7 @@
 - **4 spaces indent**, 2-space JSX
 - **Single quotes** for strings, **double quotes** for JSX/HTML attributes
 - **No semicolons in JS** if using Vben default (`@vben/eslint-config`) — keep that consistent
-- **Trailing newline** required at end of every file
+- 每个文件末尾 **带换行**
 - **Max line length** 120 (ESLint default)
 
 ## 命名约定
@@ -23,9 +23,9 @@
 - ❌ Don't use `@ts-ignore` — fix the type, or refactor to a `// @ts-expect-error` with a comment
 - ❌ Don't commit `.env`, tokens, or API keys
 - ❌ Don't use `console.log` for production diagnostics — use `logger` package
-- ❌ Don't bypass committed hooks (pre-commit / pre-push)
+- ❌ 不要绕过已提交的 hook（pre-commit / pre-push）
 
-## Commit Messages (commitlint)
+## 提交信息（commitlint）
 
 `feat(web-holos): ...` / `fix(web-holos): ...` / `chore: ...`
 

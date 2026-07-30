@@ -24,10 +24,10 @@
 
 - **Top-level keys**: auth, common, demos, page - each maps to its own JSON
 - **Nested keys** allowed: page.home.title, demos.vben.title
-- **Both languages land in same commit**
+- **两种语言在同一次提交中同时更新**
 - **fallbackLocale** is en-US
 
 ## 禁止
 
-- Don't put i18n strings in Vue components
-- Don't put translation logic here
+- 不要在 Vue 组件中写硬编码的 i18n 字符串
+- 不要在此处放翻译逻辑

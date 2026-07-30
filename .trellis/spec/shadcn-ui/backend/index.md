@@ -13,7 +13,7 @@
 
 ## 约定 (inherited from monorepo)
 
-> shadcn-vue primitives — buttons, inputs, dialogs. Wrapped as Vben-prefixed components.
+> shadcn-vue 原语—— 按钮、输入框、对话框。以 Vben 前缀组件形式封装。
 
 - **Language**: All documentation in **English** (some user-facing docs may be Chinese)
 - **TypeScript 严格模式** is required

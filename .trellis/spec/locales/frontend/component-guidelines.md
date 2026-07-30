@@ -31,5 +31,5 @@ const { t } = useI18n();
 
 ## 禁止
 
-- Don't put strings in Vue components
-- Don't use Chinese / English strings directly
+- 不要在 Vue 组件中写硬编码字符串
+- 不要直接使用中/英文字符串

@@ -1,6 +1,6 @@
 # @vben/types Directory Structure
 
-> Pure constants/types/preferences utilities package.
+> 纯常量 / 类型 / preferences 工具包。
 
 ## 目录树 (verified)
 
@@ -17,10 +17,10 @@
 
 - **Single barrel** at index.ts
 - **Pure values/types only** - no IO
-- **Tree-shake friendly** - each export individually named
+- **兼容 tree-shake** —— 每个导出单独命名
 
 ## 禁止
 
-- Don't add Vue code
-- Don't import runtime dependencies
-- Don't bundle into classes / namespaces
+- 不要添加 Vue 代码
+- 不要引入运行时依赖
+- 不要打包到类 / 命名空间中

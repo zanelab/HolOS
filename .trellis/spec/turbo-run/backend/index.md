@@ -8,7 +8,7 @@ Package **@vben/turbo-run** (v5.7.0) — vben monorepo shared library.
 
 - **Version**: 5.7.0
 - **Type**: module
-- **Scripts**: stub
+- **Scripts**：占位
 - **Deps** (top): @clack/prompts, @vben/node-utils, cac
 
 > HolOS (`@vben/web-holos`) consumes 本包 via pnpm workspace. The repo is initialized with **trellis init -u zane --claude**; see `.trellis/spec/` and `.trellis/tasks/` for project conventions.

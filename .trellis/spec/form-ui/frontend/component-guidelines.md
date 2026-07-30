@@ -1,4 +1,4 @@
-# form-ui Component Guidelines
+# form-ui 组件规范
 
 **Expected package:** @vben-core/form-ui — form input wrappers + validators (planned)
 

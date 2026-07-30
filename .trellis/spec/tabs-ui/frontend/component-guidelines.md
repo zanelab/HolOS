@@ -1,4 +1,4 @@
-# tabs-ui Component Guidelines
+# tabs-ui 组件规范
 
 **Expected package:** @vben-core/tabs-ui — tab UI primitives (planned)
 

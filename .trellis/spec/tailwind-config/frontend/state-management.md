@@ -2,7 +2,7 @@
 
 > 本包 declares **static** tokens. Theme **state** (light/dark) is managed by the **app** via `preferences` store.
 
-## How theme state flows
+## 主题状态如何流转
 
 ```
 ┌──────────────────────────────────────────┐
@@ -32,11 +32,11 @@
 - It's a CSS file, not a Vue composable — it can't import from `@vben/preferences`
 - Theme state → class on root → CSS selectors → token application. **无 JS in the loop.**
 
-## 何时 add a token
+## 何时添加一个 token
 
 Add a token to `@theme inline` only if:
-- ≥ 3 distinct Tailwind classes currently hard-code the same value
-- It maps to a meaningful semantic concept ("primary", "warn", "error", not "blue")
+- 至少 3 个不同的 Tailwind 类当前硬编码同一值
+- 对应有意义的语义概念（"主题"、"警示"、"错误"，而非 "蓝"）
 
 ## 何时 add a CSS variable fallback
 

@@ -18,11 +18,11 @@
 
 - **<IconifyIcon :icon="name">** - runtime-loaded from Iconify API
 - **<SvgFooIcon>** - local SVG components
-- **Tree-shaking**: import specific icons
-- **Auto-import**: via unplugin-vue-components
+- **Tree-shaking**：只 import 具体图标
+- **自动 import**：通过 unplugin-vue-components
 
 ## 禁止
 
-- Don't bundle the full Iconify icon set
-- Don't add inline <svg> in templates
-- Don't import icons from react-icons
+- 不要打包完整 Iconify 图标集
+- 不要在模板中嵌入 <svg>
+- 不要从 react-icons 导入图标

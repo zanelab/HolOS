@@ -1,4 +1,4 @@
-# form-ui Directory Structure
+# form-ui 目录结构
 
 **Expected package:** @vben-core/form-ui — form input wrappers + validators (planned)
 

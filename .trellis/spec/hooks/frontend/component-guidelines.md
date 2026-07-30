@@ -1,4 +1,4 @@
-# hooks Component Guidelines
+# hooks 组件规范
 
 **Expected package:** @vben/hooks — custom hooks (planned)
 

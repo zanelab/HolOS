@@ -16,9 +16,9 @@
 
 - **Single barrel** at index.ts
 - **Pure functions** only - no IO
-- **Tests in __tests__/ alongside source**
+- **测试放在 __tests__/与源码同位**
 
 ## 禁止
 
 - Don't add Vue code
-- Don't add side effects
+- 不要添加副作用

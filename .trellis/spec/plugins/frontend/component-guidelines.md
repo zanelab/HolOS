@@ -1,4 +1,4 @@
-# plugins Component Guidelines
+# plugins 组件规范
 
 **Expected package:** @vben/plugins — vite plugin adapters (planned)
 

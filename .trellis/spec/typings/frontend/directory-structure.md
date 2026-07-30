@@ -1,4 +1,4 @@
-# typings Directory Structure
+# typings 目录结构
 
 **Expected package:** @vben-core/typings — generic TS types (planned)
 

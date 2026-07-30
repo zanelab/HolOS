@@ -1,13 +1,13 @@
 # 状态管理
 
-> How state is managed 在本项目中。
+> 本项目中状态的管理方式。
 
 ---
 
 ## 概述
 
 <!--
-写出 project's state management conventions here.
+在此填写项目的状态管理约定。
 
 Questions to answer:
 - 使用哪种状态管理方案？

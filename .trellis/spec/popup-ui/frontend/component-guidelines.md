@@ -1,4 +1,4 @@
-# popup-ui Component Guidelines
+# popup-ui 组件规范
 
 **Expected package:** @vben-core/popup-ui — modal/drawer/dropdown/popover (planned)
 

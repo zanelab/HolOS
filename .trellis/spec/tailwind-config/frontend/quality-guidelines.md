@@ -2,14 +2,14 @@
 
 > Tailwind v4 — CSS-driven config, not JS.
 
-## Code Style
+## 代码风格
 
 - **2 spaces** indent for CSS (unlike TS which is 4)
 - **Single quotes** for CSS strings (when used)
 - **Sort `@source` globs alphabetically** by line — keeps diffs easy to read
 - **Comment group headers** as `/* Group Name */` above each token block in `theme.css`
 
-## 命名约定 Tokens
+## Tokens 的命名约定
 
 Use **semantic** names, not appearance:
 
@@ -23,7 +23,7 @@ Use **semantic** names, not appearance:
 
 Avoid `--color-bg-white` — when dark mode is enabled, `bg-bg-base` should automatically resolve to `bg-bg-base-dark` via the `.dark` selector.
 
-## Adding Tokens
+## 添加 Tokens
 
 ```css
 /* Group Name */

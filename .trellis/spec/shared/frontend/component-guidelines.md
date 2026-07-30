@@ -1,4 +1,4 @@
-# shared Component Guidelines
+# shared 组件规范
 
 **Expected package:** @vben-core/shared — runtime constants (planned)
 
