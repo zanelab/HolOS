@@ -36,7 +36,7 @@
 - ❌ Don't add `@ts-ignore` without a justified `// why: ...` comment.
 - ❌ Don't bypass any pre-commit hook with `--no-verify` (off by default — manual override only).
 - ❌ Don't commit `.env`, `*.local`, secret files.
-- ❌ Don't use `console.log` for production diagnostics — use the `logger` package or structured logging.
+- ❌ Don't use `console.log` for production diagnostics — 使用 `logger` package or structured logging.
 - ❌ Don't commit `node_modules`, `dist`, `.vite` — already in `.gitignore` but worth noting.
 
 ## Lint / 类型检查 Commands

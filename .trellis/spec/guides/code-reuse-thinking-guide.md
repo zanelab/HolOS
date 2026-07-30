@@ -146,7 +146,7 @@ of that replay model.
 
 ## Gotcha: Python if/elif/else Exhaustive Check
 
-**Problem**: Python's if/elif/else chains have no compile-time exhaustive check. When you add a new value to a `Literal` type (e.g., `Platform`), existing if/elif/else chains silently fall through to `else` with wrong defaults.
+**Problem**: Python's if/elif/else chains have no compile-time exhaustive 检查。 When you add a new value to a `Literal` type (e.g., `Platform`), existing if/elif/else chains silently fall through to `else` with wrong defaults.
 
 **Symptom**: New platform works partially — some methods return Claude defaults instead of platform-specific values. No error is raised.
 
@@ -201,7 +201,7 @@ When adding new files to `src/templates/trellis/scripts/`:
 
 That's it. `commands/update.ts` uses `getAllScripts()` directly — no manual sync needed.
 
-**Why this matters**: Without registration in `getAllScripts()`, `trellis update` won't sync the file to user projects. Bug fixes and features won't propagate.
+**为何 this matters**: Without registration in `getAllScripts()`, `trellis update` won't sync the file to user projects. Bug fixes and features won't propagate.
 
 **History**: Before v0.4.0-beta.3, `update.ts` had its own hand-maintained file list that frequently fell out of sync with `getAllScripts()`. This caused 11 Python files to be silently skipped during `trellis update`. The fix was to eliminate the duplicate list and use `getAllScripts()` as the single source of truth.
 

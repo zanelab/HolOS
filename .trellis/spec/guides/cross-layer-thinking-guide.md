@@ -134,7 +134,7 @@ In Trellis, command templates (e.g., `record-session.md`) exist in **multiple pl
 - [ ] For Gemini TOML: adapt line continuations (`\\` vs `\`) and triple-quoted strings
 - [ ] Run `/trellis:check-cross-layer` to verify nothing was missed
 
-**真实-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer check.
+**真实-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer 检查。
 
 ---
 
@@ -142,7 +142,7 @@ In Trellis, command templates (e.g., `record-session.md`) exist in **multiple pl
 
 Some generated files are both documentation and runtime input. In Trellis,
 `.trellis/workflow.md` is parsed by `get_context.py`, `workflow_phase.py`,
-SessionStart filters, and per-turn hooks. Template changes must be validated
+SessionStart filters, and per-turn hooks. Template changes 必须是 validated
 against both fresh init and upgrade paths.
 
 ### Checklist: After Modifying A Runtime-Parsed Template
@@ -188,7 +188,7 @@ audit for beta markers against the root release tree.
 `[Codex]` / `[Kilo, Antigravity, Windsurf]` to `[codex-sub-agent]` /
 `[codex-inline, Kilo, Antigravity, Windsurf]`. Fresh init was correct, but
 `trellis update` only merged `[workflow-state:*]` blocks and preserved stale
-markers outside those blocks. Result: upgraded projects got new hook scripts
+markers outside those blocks. 结果： upgraded projects got new hook scripts
 but old workflow routing, so `get_context.py --mode phase --platform codex`
 could return empty Phase 2.1 detail.
 
@@ -200,7 +200,7 @@ When a CLI auto-detects a mode by probing a remote resource (e.g., checking if `
 
 ### Before implementing:
 
-- [ ] Probe runs in **ALL** code paths that use the result (interactive, `-y`, `--flag` combos)
+- [ ] Probe runs in **ALL** code paths that 使用 result (interactive, `-y`, `--flag` combos)
 - [ ] 404 vs transient error are distinguished — don't treat both as "not found"
 - [ ] Transient errors **abort or retry**, never silently switch modes
 - [ ] Shared state (caches, prefetched data) is **reset** when context changes (e.g., user switches source)
@@ -212,7 +212,7 @@ When a CLI auto-detects a mode by probing a remote resource (e.g., checking if `
 - [ ] External format contracts (giget URI, raw URLs) are tested or at least documented as comments
 - [ ] Metadata reads consume a complete response or use a streaming parser — never parse a fixed-size prefix as full JSON
 - [ ] When reconstructing a composite identifier from parsed parts, verify **all** fields are included and in the **correct position** (e.g., `provider:repo/path#ref` not `provider:repo#ref/path`)
-- [ ] Verify that **action functions** called after a shortcut don't internally use the old catch-all fetch — they must use the probe-quality variant when error distinction matters
+- [ ] Verify that **action functions** called after a shortcut don't internally 使用 old catch-all fetch — they must 使用 probe-quality variant when error distinction matters
 
 **真实-world example**: Custom registry flow had 8 bugs across 3 review rounds: (1) probe only ran in interactive mode, (2) transient errors fell through to wrong mode, (3) giget URI had `#ref` in wrong position, (4) prefetched templates leaked across source switches, (5) `--template` shortcut bypassed probe but `downloadTemplateById` internally used catch-all `fetchTemplateIndex`, turning timeouts into "Template not found".
 
@@ -231,7 +231,7 @@ In Trellis, command templates (e.g., `record-session.md`) exist in **multiple pl
 - [ ] For Gemini TOML: adapt line continuations (`\\` vs `\`) and triple-quoted strings
 - [ ] Run `/trellis:check-cross-layer` to verify nothing was missed
 
-**真实-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer check.
+**真实-world example**: Updated `record-session.md` in Claude to use `--mode record`, but forgot iFlow, Kilo, OpenCode, and Gemini — caught by cross-layer 检查。
 
 ---
 
@@ -239,7 +239,7 @@ In Trellis, command templates (e.g., `record-session.md`) exist in **multiple pl
 
 Some generated files are both documentation and runtime input. In Trellis,
 `.trellis/workflow.md` is parsed by `get_context.py`, `workflow_phase.py`,
-SessionStart filters, and per-turn hooks. Template changes must be validated
+SessionStart filters, and per-turn hooks. Template changes 必须是 validated
 against both fresh init and upgrade paths.
 
 ### Checklist: After Modifying A Runtime-Parsed Template
@@ -258,7 +258,7 @@ against both fresh init and upgrade paths.
 `[Codex]` / `[Kilo, Antigravity, Windsurf]` to `[codex-sub-agent]` /
 `[codex-inline, Kilo, Antigravity, Windsurf]`. Fresh init was correct, but
 `trellis update` only merged `[workflow-state:*]` blocks and preserved stale
-markers outside those blocks. Result: upgraded projects got new hook scripts
+markers outside those blocks. 结果： upgraded projects got new hook scripts
 but old workflow routing, so `get_context.py --mode phase --platform codex`
 could return empty Phase 2.1 detail.
 
@@ -269,7 +269,7 @@ could return empty Phase 2.1 detail.
 When a CLI auto-detects a mode by probing a remote resource (e.g., checking if `index.json` exists to decide marketplace vs direct download):
 
 ### Before implementing:
-- [ ] Probe runs in **ALL** code paths that use the result (interactive, `-y`, `--flag` combos)
+- [ ] Probe runs in **ALL** code paths that 使用 result (interactive, `-y`, `--flag` combos)
 - [ ] 404 vs transient error are distinguished — don't treat both as "not found"
 - [ ] Transient errors **abort or retry**, never silently switch modes
 - [ ] Shared state (caches, prefetched data) is **reset** when context changes (e.g., user switches source)
@@ -280,7 +280,7 @@ When a CLI auto-detects a mode by probing a remote resource (e.g., checking if `
 - [ ] External format contracts (giget URI, raw URLs) are tested or at least documented as comments
 - [ ] Metadata reads consume a complete response or use a streaming parser — never parse a fixed-size prefix as full JSON
 - [ ] When reconstructing a composite identifier from parsed parts, verify **all** fields are included and in the **correct position** (e.g., `provider:repo/path#ref` not `provider:repo#ref/path`)
-- [ ] Verify that **action functions** called after a shortcut don't internally use the old catch-all fetch — they must use the probe-quality variant when error distinction matters
+- [ ] Verify that **action functions** called after a shortcut don't internally 使用 old catch-all fetch — they must 使用 probe-quality variant when error distinction matters
 
 **真实-world example**: Custom registry flow had 8 bugs across 3 review rounds: (1) probe only ran in interactive mode, (2) transient errors fell through to wrong mode, (3) giget URI had `#ref` in wrong position, (4) prefetched templates leaked across source switches, (5) `--template` shortcut bypassed probe but `downloadTemplateById` internally used catch-all `fetchTemplateIndex`, turning timeouts into "Template not found".
 
@@ -317,7 +317,7 @@ CLI input → event writer → events.jsonl → reader → filter → reducer �
 - [ ] Make filters and reducers consume the typed event guard, not local casts
 - [ ] Make display code consume reducer output or typed events, not raw JSON
 - [ ] Add at least one regression that proves history replay and live filtering
-      use the same filter model
+      使用 same filter model
 
 **真实-world example**: Thread channels added `kind: "thread"`, `description`,
 `context`, labels, and `lastSeq`. The first implementation replayed thread

@@ -15,7 +15,7 @@
 
 ## 何时 Write a New Hook
 
-- Used by >= 3 views / components
+- 被使用 >= 3 views / components
 - Returns reactive state OR stable async function
 - Non-trivial logic (> 10 lines)
 

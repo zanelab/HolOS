@@ -30,7 +30,7 @@
 ## 原因 theme.css doesn't read theme state
 
 - It's a CSS file, not a Vue composable — it can't import from `@vben/preferences`
-- Theme state → class on root → CSS selectors → token application. **No JS in the loop.**
+- Theme state → class on root → CSS selectors → token application. **无 JS in the loop.**
 
 ## 何时 add a token
 

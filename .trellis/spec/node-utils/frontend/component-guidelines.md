@@ -36,5 +36,5 @@ console.log(formatDuration(123456));        // "2m 3s"
 
 - ❌ Don't bundle functions into a class or namespaced object (loses tree-shaking).
 - ❌ Don't import Node built-ins at top-level unless necessary — keep imports lean.
-- ❌ Don't add async variants of pure sync helpers (use the existing async path, e.g. `fs/promises`).
+- ❌ Don't add async variants of pure sync helpers (使用 existing async path, e.g. `fs/promises`).
 - ❌ Don't add console output — keep helpers side-effect free.
