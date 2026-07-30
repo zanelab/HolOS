@@ -1,51 +1,42 @@
-# Hook Guidelines
+# layout-ui Custom Hooks
 
-> How hooks are used in this project.
+> **PLACEHOLDER DOCS** - This package does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. Replace these files with real content when the package is added.
 
----
+## Expected Conventions
 
-## Overview
+- For Vue apps: composables go in src/composables/
+- Co-located hooks in src/views/<feature>/ for one-feature usage
+- Shared hooks in src/hooks/
+- For libs: package itself has no Vue hooks (consumed via Vue apps)
 
-<!--
-Document your project's hook conventions here.
+## Example (synthetic)
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+```ts
+// src/composables/use-x-resource.ts
+import { ref, shallowRef } from "vue";
 
-(To be filled by the team)
+export function useXResource(loader: () => Promise<XData>) {
+  const data = shallowRef<XData>();
+  const loading = ref(false);
+  async function refresh() {
+    loading.value = true;
+    try { data.value = await loader(); }
+    finally { loading.value = false; }
+  }
+  return { data, loading, refresh };
+}
+```
 
----
+## Built-ins (always check first)
 
-## Custom Hook Patterns
+| Concern | Hook | Source |
+|---|---|---|
+| App config | usePreferences() | @vben/preferences |
+| Pinia | useAccessStore / useUserStore / useAuthStore | @vben/stores |
+| i18n | useI18n() | vue-i18n |
 
-<!-- How to create and structure custom hooks -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Data Fetching
-
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- Do not implement against this phantom package before it exists
+- Do not wrap usePreferences() in another composable
+- Do not put pure business logic in a hook (use src/utils/ instead)

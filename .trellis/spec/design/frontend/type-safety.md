@@ -1,51 +1,30 @@
-# Type Safety
+# design Type Safety
 
-> Type safety patterns in this project.
+> **PLACEHOLDER DOCS** - This package does not exist in the workspace at this time. Expected conventions are based on vben v5.7.0 monorepo. Replace these files with real content when the package is added.
 
----
+## Expected Config
 
-## Overview
+- Apps: tsconfig.json extends @vben/tsconfig/web-app.json
+- Libs: tsconfig.json extends @vben/tsconfig/library.json
+- Strict mode ON (no implicit any, strict null checks)
 
-<!--
-Document your project's type safety conventions here.
+## Expected Patterns
 
-Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
--->
+```ts
+import type { RouteRecordRaw } from "vue-router";
+const routes: RouteRecordRaw[] = [...];
 
-(To be filled by the team)
+// Composables types
+interface Props { title: string; count?: number; }
+const props = withDefaults(defineProps<Props>(), { count: 0 });
 
----
+// API responses
+export interface XResponse { id: string; }
+```
 
-## Type Organization
+## Forbidden
 
-<!-- Where types are defined, shared types vs local types -->
-
-(To be filled by the team)
-
----
-
-## Validation
-
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Patterns
-
-<!-- Type utilities, generics, type guards -->
-
-(To be filled by the team)
-
----
-
-## Forbidden Patterns
-
-<!-- any, type assertions, etc. -->
-
-(To be filled by the team)
+- Do not use any
+- Do not disable strict mode per-file
+- Do not use as cast to silence errors
+- Do not implement against this phantom package

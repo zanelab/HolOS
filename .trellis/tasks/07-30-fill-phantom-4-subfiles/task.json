@@ -1,7 +1,7 @@
 {
-  "id": "fill-phantom-docs-best-guess",
-  "name": "fill-phantom-docs-best-guess",
-  "title": "填 18 phantom specs 的 2 sub-files (best-guess, no real source code)",
+  "id": "fill-phantom-4-subfiles",
+  "name": "fill-phantom-4-subfiles",
+  "title": "填 18 phantom specs 的 4 sub-files (hook/state/quality/type)",
   "description": "",
   "status": "in_progress",
   "dev_type": null,
