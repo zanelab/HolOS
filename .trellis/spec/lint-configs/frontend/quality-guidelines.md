@@ -1,51 +1,73 @@
-# Quality Guidelines
+# lint-configs sub-package Quality Guidelines
 
-> Code quality standards for frontend development.
+> Flat Lint config + TypeScript + Vue 3.
 
----
+## Style
 
-## 概述
+```ts
+import tseslint from 'typescript-eslint';
 
-<!--
-写出 project's quality standards here.
+export default tseslint.config(
+  ...tseslint.configs.recommendedTypeChecked,
+  { rules: { /* ... */ } },
+);
+```
 
-Questions to answer:
-- What patterns are forbidden?
-- What linting rules do you enforce?
-- What are your testing requirements?
-- What code review standards apply?
--->
+## Rules Format
 
-(To be filled by the team)
+- Severity: `0` (off) / `1` (warn) / `2` (error)
+- Array format: `[level, options]`
+- Object form: `{ 'rule-name': level | [level, options] }`
 
----
+## Naming
 
-## 禁止 Patterns
+| Thing | Convention |
+|---|---|
+| Plugin | `eslint-plugin-*` (legacy) or `eslint-plugin-vue` |
+| Flat config name | camelCase + `.config.ts` (`eslint.config.ts`) |
+| Rules dictionary | kebab-case keys (`@typescript-eslint/no-explicit-any`) |
 
-<!-- Patterns that should never be used and why -->
+## Patterns
 
-(To be filled by the team)
+### Re-export from index
 
----
+```ts
+// eslint-config/index.ts
+import baseConfig from './base';
+export default baseConfig;
+```
 
-## 必需模式
+### Per-file overrides
 
-<!-- Patterns that must always be used -->
+```ts
+export default tseslint.config(
+  ...baseConfig,
+  { 
+    files: ['scripts/**/*.ts'],
+    rules: { 'no-console': 'off' },
+  },
+);
+```
 
-(To be filled by the team)
+## Pre-commit Hooks
 
----
+- OxLint (fast linter, runs first)
+- Lint (detailed rules via `types:lint`)
+- Stylelint (CSS / Vue `<style>`)
 
-## 测试ing Requirements
+## Forbidden
 
-<!-- What level of testing is expected -->
+- ❌ 不要 use legacy `.eslintrc.*` format — flat config only
+- ❌ 不要 commit `.eslintcache`(已 gitignored)
+- ❌ 不要 add parser-applicable rules in flat config dict (use `languageOptions`)
+- ❌ 不要 use `overrides` — use top-level files in 数组 elements
+- ❌ 不要 put Vue plugins for Vue 2 — Vue 3 only
+- ❌ 不要 enable rules for non-existent code (e.g., `vue/no-v-html` ok with templates)
+- ❌ 不要 commit npm-debug.log
 
-(To be filled by the team)
+## Lint Command
 
----
-
-## Code Review Checklist
-
-<!-- What reviewers should check -->
-
-(To be filled by the team)
+```bash
+pnpm lint            # 全 workspace
+pnpm typecheck       # TS check
+```

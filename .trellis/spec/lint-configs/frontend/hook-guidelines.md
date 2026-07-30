@@ -1,51 +1,32 @@
-# Hook Guidelines
+# lint-configs sub-package: No Hooks
 
-> How hooks are used 在本项目中。
+> Config package, no Vue hooks.
 
----
+## Where to Run Lint
 
-## 概述
+- **Pre-commit**: lefthook → Lint on staged files
+- **CI**: `pnpm lint` runs Lint on whole workspace
+- **Editor**: VS Code Lint extension (`dbaeumer.vscode-eslint`)
 
-<!--
-写出 project's hook conventions here.
+## Built-ins (this package exports)
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+- 1 default export: flat config array
+- Re-exports of sub-modules
 
-(To be filled by the team)
+## Doesn't Export Hooks
 
----
+Configs are evaluated once at startup. There's no reactive concept — the same rules apply whether you commit at 9am or 9pm.
 
-## Custom Hook Patterns
+```ts
+// ❌ Don't try to wrap config in reactive ref
+import { ref } from 'vue';
+import baseConfig from 'lint-configs sub-package';
+const cfg = ref(baseConfig);  // makes no sense
+```
 
-<!-- How to create and structure custom hooks -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## Data Fetching
-
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
-
-(To be filled by the team)
-
----
-
-## 命名约定 约定
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ 不要在 `lint-configs sub-package` 加 Vue / Pinia
+- ❌ 不要 add runtime changes
+- ❌ 不要 use `useXxx` exports
+- ❌ 不要 mutate config at runtime (read-only reference)

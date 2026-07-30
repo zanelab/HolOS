@@ -1,31 +1,70 @@
-# @vben/web-ele Custom Hooks
+# web-ele Custom Hooks
 
-> 除非绝对必要，否则不要编写新的 hooks。
+> Vue 3 + Pinia + @vben/preferences hooks. Don't write new hooks unless necessary.
 
-## 内置函数（始终优先检查）
+## Built-ins (always check first)
 
 | Concern | Hook | Source |
 |---|---|---|
-| App config | usePreferences() | @vben/preferences |
-| Pinia stores | useAccessStore, useUserStore, useAuthStore | @vben/stores |
-| i18n | useI18n() | vue-i18n |
-| Router | useRouter(), useRoute() | vue-router |
-| Form | useVbenForm() | @vben/common-ui |
-| Table | useVbenVxeGrid() | @vben/plugins/vxe-table |
+| App config | `usePreferences()` | @vben/preferences |
+| Pinia stores | `useAccessStore`, `useUserStore`, `useAuthStore` | @vben/stores |
+| i18n | `useI18n()` | vue-i18n |
+| Router | `useRouter()`, `useRoute()` | vue-router |
+| Form | `useVbenForm()` | @vben/common-ui |
+| Grid | `useVbenVxeGrid()` | @vben/plugins/vxe-table |
+| UI library adapter | 随每个 app 自定义 | this app's adapter |
 
-## 何时编写新 Hook
+## When to Write a New Hook
 
-- 被 ≥ 3 个 views / components 使用
-- Returns reactive state OR stable async function
-- 非平凡逻辑（> 10 行）
+- Used by ≥ 3 views / components
+- Returns **reactive state** OR a stable async function
+- Non-trivial logic (> 10 lines)
 
-## 约定
+## Convention
 
-- use-<name>.ts (kebab-case, `use` prefix)
-- Co-located for one-feature hooks; shared under src/hooks/
+- `use-<name>.ts` (kebab-case, `use` prefix)
+- Co-located for one-feature hooks; shared under `src/hooks/`
 
-## 禁止
+## Example: useAsyncResource
 
-- Don't wrap usePreferences() in another useFoo()
-- 不要将纯业务逻辑写在 hook 中
-- 不要在 <script setup> 之外使用 hooks
+```ts
+// src/hooks/use-async-resource.ts
+import { ref, shallowRef } from 'vue';
+
+export function useAsyncResource<T>(loader: () => Promise<T>) {
+  const data = shallowRef<T>();
+  const loading = ref(false);
+  const error = ref<unknown>();
+
+  async function refresh() {
+    loading.value = true;
+    try { data.value = await loader(); }
+    catch (e) { error.value = e; }
+    finally { loading.value = false; }
+  }
+
+  return { data, loading, error, refresh };
+}
+```
+
+## For element-plus Specific
+
+```ts
+// For Naive UI
+import { useMessage } from 'naive-ui';
+export function useToast() {
+  const msg = useMessage();
+  return {
+    success: (content: string) => msg.success(content),
+    error: (content: string) => msg.error(content),
+  };
+}
+```
+
+## Forbidden
+
+- ❌ Don't wrap usePreferences() in another useFoo()
+- ❌ Don't put pure business logic in a hook
+- ❌ Don't use hooks outside <script setup>
+- ❌ Don't make localStorage-wrappers "hooks"
+- ❌ Don't create per-flavor mixin — composition API only

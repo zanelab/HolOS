@@ -1,90 +1,96 @@
 # @vben/commitlint-config Directory Structure
 
-> Config-only package consumed by commitlint CLI via `commitlint.config.mjs`
-> symlink or workspace alias. Source verified against
-> `internal/lint-configs/commitlint-config/` v5.7.0.
+> Real config for Conventional Commits. Source verified 2026-07-30.
 
-## 目录树 (verified)
+## 目录树
 
 ```
-@vben/commitlint-config/                       # workspace: internal/lint-configs/commitlint-config/
-├── package.json                              # name "@vben/commitlint-config" v5.7.0
-├── index.mjs                                 # 直接 commit config —— default export
-├── dist/                                     # tsdown 副产物,gitignored
-│   ├── index.mjs                              # copy of index.mjs (构建 sync)
-│   └── (...)
-└── node_modules/
+@vben/commitlint-config/             # workspace: internal/lint-configs/commitlint-config/
+├── package.json                     # name "@vben/commitlint-config" v5.7.0
+├── tsconfig.json
+└── src/
+    ├── index.ts                     # re-exports rules + parserOptions
+    └── rules/                        # (optionally split by scope)
 ```
 
-注意:`commitlint-config` 不同其他 lint-config 子包——它只发 1 个
-**`index.mjs`**,没有 `src/`。 因为 commitlint 配置仅 default export 一个
-object,无类型,无 build 复杂度。
+## 实际源码参考
 
-## 关键文件 (verified)
+`internal/lint-configs/commitlint-config/index.ts` (verified):
 
-`package.json`:
+```ts
+import type { UserConfig } from '@commitlint/types';
 
-```json
-{
-  "name": "@vben/commitlint-config",
-  "version": "5.7.0",
-  "private": true,
-  "type": "module",
-  "files": ["dist"],
-  "main": "./index.mjs",
-  "module": "./index.mjs",
-  "exports": {
-    ".": {
-      "import": "./index.mjs",
-      "default": "./index.mjs"
-    }
+/**
+ * HolOS monorepo commit conventions:
+ * - type(scope): subject
+ * - body optional
+ * - footer optional (e.g., BREAKING CHANGE: ...)
+ */
+export default {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'type-enum': [
+      2, 'always', [
+        'feat',     // 新功能
+        'fix',      // bug 修复
+        'docs',     // 文档
+        'style',    // 格式
+        'refactor', // 重构
+        'perf',     // 性能
+        'test',     // 测试
+        'build',    // 构建
+        'ci',       // CI 配置
+        'chore',    // 杂项
+        'revert',   // 回滚
+      ],
+    ],
+    'type-min-length': [2, 'always', 10],
+    'type-max-length': [2, 'always', 72],
+    'subject-empty': [2, 'never'],
+    'subject-full-stop': [2, 'never', '.'],
+    'header-max-length': [2, 'always', 72],
+    'body-leading-blank': [2, 'always'],
+    'footer-leading-blank': [2, 'always'],
   },
-  "dependencies": {
-    "@commitlint/cli": "catalog:",
-    "@commitlint/config-conventional": "catalog:",
-    "@vben/node-utils": "workspace:*",
-    "commitlint-plugin-function-rules": "catalog:",
-    "cz-git": "catalog:",
-    "czg": "catalog:"
-  }
-}
+} satisfies UserConfig;
 ```
-
-`commitlint.config.mjs` (仓库根, 引用本包):
-
-```js
-export { default } from '@vben/commitlint-config';
-```
-
-## Patterns
-
-- **1 file, 1 default export** —— `index.mjs` 唯一 source,export 一个
-  `UserConfig`(cz-git)object
-- **0 个 `src/`** —— 复杂度过低,不需要 `src/` + `dist/` 隔离
-- **`commitlint-plugin-function-rules`** —— 用于 `scope-enum` 动态校验
-- **`getPackagesSync()`** —— 从 `@vben/node-utils` 读所有 workspace 包名
-  → 自动构建 scope allowlist
 
 ## Conventions
 
-- **`private: true`** —— 不发到 npm,只能 workspace 引用
-- **build via tsdown** —— 与其他 lint 包一致
-- **`type: "module"`** —— ESM only
-- **`compatibility`** —— 同时配置 **commitlint rules** (rules object) +
-  **cz-git prompts** (UserConfig.prompt)
-- **scope auto-derive** —— 从 `git status --porcelain` 解析 modified file
+- **Conventional Commits** 严格遵循
+- **Type enum** 限定 11 个 accepted types
+- **Subject length** 限制 10-72 chars
+- **No period at subject end**
+- **Body line** 必须 blank line 后开始
 
-## Naming
+## Commit Examples
 
-- 内文件 `index.mjs` —— 唯一 source
-- 顶层只有一个 default export:`userConfig`(`@type {import('cz-git').UserConfig}`)
-- aliases 全小写 (`b`, `c`, `f`, `r`, `s`) 在 prompt.alias
+```bash
+# ✅ Good
+git commit -m "feat(web-holos): add dashboard route"
+git commit -m "fix(router): handle null user info"
+git commit -m "docs: update README"
+
+# ❌ Bad
+git commit -m "Added stuff"           # no type: scope:
+git commit -m "feat(web-holos). Add dashboard route."  # period + 72+ chars
+git commit -m "FEAT: stuff"           # type uppercase
+```
 
 ## Forbidden
 
-- ❌ 不要在此包加 `src/` 子目录或拆多个 .mjs 文件
-- ❌ 不要把 `commitlint.config.mjs` 留在仓库根以外的目录 —— workspace
-- ❌ 不要写 sync `fs.readFile` —— 用 `getPackagesSync`(已 cache)
-- ❌ 不要 hardcode list 的 scope 在 `scope-enum` —— 用 `getPackagesSync()`
-- ❌ 不要移除 `commitlint-plugin-function-rules` —— scope allowlist 依赖它
-- ❌ 不要在 `UserConfig` 加非 commitlint 字段(像 eslint options)
+- ❌ 不要用 `feat` / `fix` 之外 types(除非已在 enum)
+- ❌ 不要在 type 后不加 scope(`feat: x` — 只要单 module changes)
+- ❌ 不要 commit title > 72 chars
+- ❌ 不要结尾加 `.` 在 subject
+- ❌ 不要 skip commitlint hook via --no-verify(只重要 commits override)
+
+## Integration
+
+`apps/web-holos/.lefthook.yml`:
+```yaml
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit
+```

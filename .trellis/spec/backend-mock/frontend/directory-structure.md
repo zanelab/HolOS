@@ -2,150 +2,116 @@
 
 > Real layout for `apps/backend-mock/`. Source verified 2026-07-30.
 
-## 目录树
+## Purpose
+
+`@vben/backend-mock` is the **Nitro-based mock backend** that ships
+alongside the workspace. It hosts the demo API endpoints the web-*
+apps hit during dev: login, user info, menus, tables, demo data,
+timezone, system tables. It is **not** a production backend — it lives
+in `apps/` (not `packages/`) and is dev-only.
+
+## 目录树 (verified from `apps/backend-mock/`)
 
 ```
-@vben/backend-mock/                 # workspace: apps/backend-mock/
+backend-mock/                       # workspace: apps/backend-mock/
 ├── package.json                    # name "@vben/backend-mock" v5.7.0
-├── nitro.config.ts                 # Nitro server config
-├── tsconfig.json
-├── tsconfig.build.json             # 用于 build dist
-├── error.ts                        # h3 createError helpers
+├── nitro.config.ts                 # CORS, dev/prod error handler
+├── tsconfig.json + tsconfig.build.json
+├── error.ts                        # NitroErrorHandler — prints stack
 ├── README.md
-├── .env                            # local mock env
-└── api/                            # ❗ 直接 api/, NOT src/api/
-    ├── auth/                       # /api/auth/*
-    │   ├── codes.ts                # GET  — 验证 codes
-    │   ├── login.post.ts           # POST — login
-    │   ├── logout.post.ts          # POST — logout
-    │   └── refresh.post.ts         # POST — refresh token
-    ├── demo/                       # demo endpoints
-    │   ├── bigint.ts
-    │   └── ...
-    ├── menu/
-    │   └── all.ts                  # /api/menu/all — used by router/access.ts
-    ├── system/
-    │   └── ...
-    ├── table/
-    │   └── list.ts
-    ├── timezone/
-    ├── user/
-    └── status.ts                   # GET /api/status — health
+├── api/                            # HTTP endpoints (file-based routing)
+│   ├── auth/
+│   │   ├── codes.ts                # GET /api/auth/codes
+│   │   ├── login.post.ts           # POST /api/auth/login
+│   │   ├── logout.post.ts
+│   │   └── refresh.post.ts
+│   ├── demo/
+│   │   └── bigint.ts
+│   ├── menu/
+│   │   └── all.ts                  # GET /api/menu/all
+│   ├── system/
+│   │   ├── dept/
+│   │   ├── menu/
+│   │   ├── role/
+│   │   └── user/
+│   ├── table/
+│   │   └── list.ts
+│   ├── timezone/
+│   │   ├── getTimezone.ts
+│   │   ├── getTimezoneOptions.ts
+│   │   └── setTimezone.ts
+│   ├── user/
+│   │   └── info.ts                 # GET /api/user/info
+│   ├── status.ts                   # GET /api/status?status=NNN
+│   ├── test.get.ts                 # GET /api/test
+│   ├── test.post.ts                # POST /api/test
+│   └── upload.ts
+├── middleware/
+│   └── 1.api.ts                    # CORS + 模拟环境禁用写
+├── routes/
+│   └── [...].ts                    # 根目录广告 / 落地页
+└── utils/
+    ├── cookie-utils.ts             # setRefreshTokenCookie / clearRefreshTokenCookie
+    ├── jwt-utils.ts                # generateAccessToken / verifyAccessToken
+    ├── mock-data.ts                # MOCK_USERS, MOCK_MENUS, MOCK_TABLE
+    ├── response.ts                 # useResponseSuccess / useResponseError / forbiddenResponse
+    └── timezone-utils.ts
 ```
 
-## 真实源码参考 (verified)
-
-`apps/backend-mock/api/auth/login.post.ts`:
+## Real source (verified)
 
 ```ts
-import { defineEventHandler, readBody, createError } from 'h3';
+// apps/backend-mock/nitro.config.ts
+import errorHandler from './error';
 
-interface LoginRequest {
-  username: string;
-  password: string;
-}
-
-interface LoginResponse {
-  access_token: string;
-  refresh_token: string;
-  token_type: 'Bearer';
-  expires_in: number;
-}
-
-export default defineEventHandler(async (event): Promise<LoginResponse> => {
-  const body = await readBody<LoginRequest>(event);
-
-  if (!body.username || !body.password) {
-    throw createError({
-      statusCode: 400,
-      message: 'Missing username or password',
-    });
-  }
-
-  if (body.username !== 'vben' || body.password !== 'vben123') {
-    throw createError({
-      statusCode: 401,
-      message: 'Invalid credentials',
-    });
-  }
-
-  return {
-    access_token: 'mock-access-token-' + Date.now(),
-    refresh_token: 'mock-refresh-token-' + Date.now(),
-    token_type: 'Bearer',
-    expires_in: 3600,
-  };
-});
-```
-
-`apps/backend-mock/api/menu/all.ts`:
-
-```ts
-import { defineEventHandler } from 'h3';
-
-interface MenuItem {
-  id: string;
-  path: string;
-  title: string;
-  icon?: string;
-  children?: MenuItem[];
-}
-
-export default defineEventHandler((event): MenuItem[] => {
-  // Mock: 静态 menu tree
-  return [
-    {
-      id: 'dashboard',
-      path: '/dashboard',
-      title: '概览',
-      icon: 'lucide:layout-dashboard',
-      children: [
-        { id: 'analytics', path: '/dashboard/analytics', title: '分析页' },
-      ],
+process.env.COMPATIBILITY_DATE = new Date().toISOString();
+export default defineNitroConfig({
+  devErrorHandler: errorHandler,
+  errorHandler: '~/error',
+  routeRules: {
+    '/api/**': {
+      cors: true,
+      headers: {
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': '...',
+        'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Expose-Headers': '*',
+      },
     },
-    // ...
-  ];
+  },
 });
 ```
 
 ## Conventions
 
-- **直接 api/ 目录** (非 src/api/) — Nitro auto-discovers
-- **Filename convention**: `<resource>.<method>.ts`
-  - `login.post.ts` → POST /api/login
-  - `codes.ts` → GET /api/codes
-  - `all.ts` → GET /api/all
-- **use `defineEventHandler`** from `h3` — Nitro's HTTP layer
-- **Mock data only** — no real DB, no real auth
-- **In-memory state** — 每次 server restart 数据 丢失
+- **File-based routing** — URL path mirrors file path.
+- **Filename convention**: `<resource>.<method>.ts` for HTTP-method-
+  specific handlers (`test.get.ts`, `login.post.ts`); plain `<name>.ts`
+  for method-agnostic.
+- **Folder structure** — `api/<resource>/<handler>.ts` (e.g.,
+  `api/auth/login.post.ts`).
+- **Middleware** is folder-based and ordered by filename prefix.
+- **Helpers** in `utils/` — `~/utils/response`, `~/utils/jwt-utils`,
+  `~/utils/mock-data`, `~/utils/cookie-utils`.
+- **Run via** `pnpm dev:backend-mock` (port 5320 by default).
 
-## Real App Integration
+## Naming
 
-App consumption 通过 `@vben/request`:
-
-```ts
-// apps/web-tdesign/src/api/request.ts
-import { createRequestClient } from '@vben/request';
-
-export const requestClient = createRequestClient({
-  baseURL: '/api',
-  // 前端走 vite proxy 到 localhost:5320
-});
-```
-
-```ts
-// Usage in a view
-const userInfo = await requestClient.post('/auth/login', {
-  username: 'vben',
-  password: 'vben123',
-});
-```
+| Thing | Convention | Example |
+|---|---|---|
+| Folder | `<resource>/` | `auth/`, `user/`, `menu/` |
+| Handler | `<name>.<method>.ts` | `login.post.ts`, `test.get.ts` |
+| Generic handler | `<name>.ts` | `info.ts`, `all.ts` |
+| Middleware | `<order>.<name>.ts` | `1.api.ts` |
+| Utility | `<name>-utils.ts` | `jwt-utils.ts` |
 
 ## Forbidden
 
-- ❌ 不要加 real DB / Redis — Nitro mock 保持 in-memory only
-- ❌ 不要 Express / Koa middleware — 用 Nitro h3 handlers
-- ❌ 不要持久化 auth tokens 到 disk (security)
-- ❌ 不要 import `@vben/web-*` packages — 这是 server-side,不依赖 app
-- ❌ 不要 create sources/ 目录 — 直接 api/ 顶级
-- ❌ 不要 commit `.env` — 即使 mock secrets
+- ❌ 不要 use Express — Nitro + h3 only
+- ❌ 不要 这里放真实 authentication — mock-only
+- ❌ 不要 add real database — in-memory `MOCK_*` only
+- ❌ 不要 bypass `useResponseSuccess` / `useResponseError` — uniform shape
+- ❌ 不要 mutate `MOCK_USERS` at runtime — treat as immutable
+- ❌ 不要 ship `*.sql` / connection strings — there is no DB
+- ❌ 不要 add `tsx` scripts — Nitro handles ts compilation

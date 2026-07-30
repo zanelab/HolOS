@@ -1,9 +1,32 @@
-# @vben/eslint-config: Not Applicable
+# @vben/eslint-config: No Hooks
 
-> 配置类包不包含 Vue hooks。
+> Config package, no Vue hooks.
 
-If runtime behavior needed, put it in @vben/node-utils or app composables.
+## Where to Run ESLint
 
-## 禁止
+- **Pre-commit**: lefthook → ESLint on staged files
+- **CI**: `pnpm lint` runs ESLint on whole workspace
+- **Editor**: VS Code ESLint extension (`dbaeumer.vscode-eslint`)
 
-- 不要在此处添加 Vue hooks
+## Built-ins (this package exports)
+
+- 1 default export: flat config array
+- Re-exports of sub-modules
+
+## Doesn't Export Hooks
+
+Configs are evaluated once at startup. There's no reactive concept — the same rules apply whether you commit at 9am or 9pm.
+
+```ts
+// ❌ Don't try to wrap config in reactive ref
+import { ref } from 'vue';
+import baseConfig from '@vben/eslint-config';
+const cfg = ref(baseConfig);  // makes no sense
+```
+
+## Forbidden
+
+- ❌ 不要在 `@vben/eslint-config` 加 Vue / Pinia
+- ❌ 不要 add runtime changes
+- ❌ 不要 use `useXxx` exports
+- ❌ 不要 mutate config at runtime (read-only reference)

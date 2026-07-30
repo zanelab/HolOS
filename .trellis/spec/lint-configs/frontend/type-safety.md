@@ -1,51 +1,72 @@
-# Type Safety
+# lint-configs sub-package Type Safety
 
-> Type safety patterns 在本项目中。
+> Strict-mode TS for Lint flat config.
 
----
+## TS Config
 
-## 概述
+```json
+{
+  "extends": "@vben/tsconfig/library.json"
+}
+```
 
-<!--
-写出 project's type safety conventions here.
+Enables `strict`, `noUnusedLocals`, `verbatimModuleSyntax`.
 
-Questions to answer:
-- What type system do you use?
-- How are types organized?
-- What validation library do you use?
-- How do you handle type inference?
--->
+## Required Patterns
 
-(To be filled by the team)
+### 1. Re-export flat config
 
----
+```ts
+import type { Linter } from 'eslint';
 
-## Type Organization
+// 类型 strict 验证 flat config shape
+const config: Linter.Config[] = [
+  {
+    rules: { /* ... */ },
+  },
+];
 
-<!-- Where types are defined, shared types vs local types -->
+export default config;
+```
 
-(To be filled by the team)
+### 2. Type the ParserOptions
 
----
+```ts
+import type { ParserOptions } from '@typescript-eslint/parser';
 
-## Validation
+const parserOptions: ParserOptions = {
+  ecmaVersion: 'latest',
+  sourceType: 'module',
+  project: './tsconfig.json',
+};
+```
 
-<!-- Runtime validation patterns (Zod, Yup, io-ts, etc.) -->
+### 3. Rule with Options
 
-(To be filled by the team)
+```ts
+rules: {
+  '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+  'vue/no-v-html': ['error', { allow: ['::v-deep', '::v-slotted'] }],
+}
+```
 
----
+## Type-Safe Rule Keys
 
-## Common Patterns
+```ts
+import type { Linter } from 'eslint';
 
-<!-- Type utilities, generics, type guards -->
+// Lint types expose rule keys as a literal union
+type RuleKey = keyof Linter.RulesRecord;  // string
+```
 
-(To be filled by the team)
+Lint type system catches typos in rule keys.
 
----
+## Forbidden
 
-## 禁止 Patterns
-
-<!-- any, type assertions, etc. -->
-
-(To be filled by the team)
+- ❌ 不要用 `any` for rule values
+- ❌ 不要 disable strict mode per-file
+- ❌ 不要 use `as` cast to suppress errors
+- ❌ 不要 add Vue / Pinia imports to this package
+- ❌ 不要 bundle parse plugin — declare as app deps
+- ❌ 不要 load config at runtime in `index.ts` (CI / editor do it)
+- ❌ 不要 add `skipLibCheck: true` per-file

@@ -1,116 +1,156 @@
 # @vben/backend-mock Type Safety
 
-> Strict-mode TS for Nitro handlers.
+> h3 typed handlers, uniform response envelope, strict mode.
 
-## TS Config
+## Purpose
 
-`apps/backend-mock/tsconfig.json`:
+`@vben/backend-mock` is the strict-mode showcase for **Nitro + h3**.
+Every handler is typed via `H3Event<EventHandlerRequest>`, the response
+envelope is constant, and `import type` is mandatory.
 
-```json
-{
-  "extends": "@vben/tsconfig/node.json"
+## Handler typing
+
+```ts
+// apps/backend-mock/utils/response.ts (verified)
+import type { EventHandlerRequest, H3Event } from 'h3';
+import { setResponseStatus } from 'h3';
+
+export function useResponseSuccess<T = any>(data: T) {
+  return { code: 0, data, error: null, message: 'ok' };
+}
+
+export function useResponseError(message: string, error: any = null) {
+  return { code: -1, data: null, error, message };
+}
+
+export function forbiddenResponse(
+  event: H3Event<EventHandlerRequest>,
+  message = 'Forbidden Exception',
+) {
+  setResponseStatus(event, 403);
+  return useResponseError(message, message);
+}
+
+export function unAuthorizedResponse(event: H3Event<EventHandlerRequest>) {
+  setResponseStatus(event, 401);
+  return useResponseError('Unauthorized Exception', 'Unauthorized Exception');
 }
 ```
 
-Node config enables:
-- `"strict": true`
-- `"noUnusedLocals": true`
-- `"target": "ES2022"` (Node 22+)
-
-## Required Patterns
-
-### 1. Define Event Handler with Type
+## Typed JWT payload
 
 ```ts
-// api/auth/login.post.ts
-interface LoginRequest {
+// apps/backend-mock/utils/jwt-utils.ts (verified)
+import type { UserInfo } from './mock-data';
+
+export interface UserPayload extends UserInfo {
+  iat: number;
+  exp: number;
+}
+
+export function generateAccessToken(user: UserInfo) {
+  return jwt.sign(user, ACCESS_TOKEN_SECRET, { expiresIn: '7d' });
+}
+
+export function verifyAccessToken(
+  event: H3Event<EventHandlerRequest>,
+): null | Omit<UserInfo, 'password'> {
+  // ...
+}
+```
+
+## Typed body parsing
+
+```ts
+// apps/backend-mock/api/auth/login.post.ts
+import { readBody, setResponseStatus } from 'h3';
+
+interface LoginBody {
   username: string;
   password: string;
 }
 
-interface LoginResponse {
-  access_token: string;
-  refresh_token: string;
-  token_type: 'Bearer';
-  expires_in: number;
-}
-
-export default defineEventHandler(async (event): Promise<LoginResponse> => {
-  const body = await readBody<LoginRequest>(event);
+export default defineEventHandler(async (event) => {
+  const body = await readBody<LoginBody>(event);
+  const { password, username } = body;
   // ...
-  return { /* LoginResponse */ };
 });
 ```
 
-### 2. Type-safe ReadBody
+## Strict-mode patterns
+
+### 1. Discriminated status
 
 ```ts
-// ✅ Generic param
-const body = await readBody<LoginRequest>(event);
+// ✅ Good — typed helper
+export function setResponseStatus(event: H3Event, code: number): void;
 
-// ✅ Body parsing returns undefined for empty — narrow
-if (!body) {
-  throw createError({ statusCode: 400, message: 'Empty body' });
+// ❌ Bad — string code
+setResponseStatus(event, '500' as any);
+```
+
+### 2. Typed handlers
+
+```ts
+// ✅ Good — explicit handler
+import { defineEventHandler } from 'h3';
+export default defineEventHandler((event) => 'OK');
+
+// ❌ Bad — untyped event
+export default (event: any) => 'OK';
+```
+
+### 3. Generic envelope
+
+```ts
+// ✅ Good — generic data
+function useResponseSuccess<T = any>(data: T) {
+  return { code: 0, data, error: null, message: 'ok' };
+}
+
+// ❌ Bad — bypass envelope
+return { data: user }; // missing code/error/message
+```
+
+## TS config
+
+```json
+// apps/backend-mock/tsconfig.json
+{
+  "extends": "@vben/tsconfig/nitro.json",
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./*"]
+    }
+  }
 }
 ```
 
-### 3. Error Helper
+Strict mode + `verbatimModuleSyntax` + `noUnusedLocals`.
 
-```ts
-// createError from h3 — type-safe
-throw createError({
-  statusCode: 401,
-  statusMessage: 'Unauthorized',
-  message: 'Invalid credentials',
-});
+## Conventions
 
-// ❌ Bad — throw plain Error
-throw new Error('Unauthorized');  // 500 status
-```
+- **`import type`** for `H3Event`, `EventHandlerRequest`, `UserInfo`,
+  `UserPayload`.
+- **`defineEventHandler` / `eventHandler` typed** — `event` is typed.
+- **Generic envelope** — `useResponseSuccess<T = any>(data: T)`.
+- **No `as any` for handler inputs** — `readBody<T>()` typing.
+- **Strict status code** — `setResponseStatus(event, 400)`, not `'400'`.
 
-### 4. Type imports
+## Typecheck
 
-```ts
-import { defineEventHandler, readBody, createError, type EventHandlerRequest, type H3Event } from 'h3';
-import type { NitroApp } from 'nitropack';
-```
-
-## Sharing Types
-
-`api/types.ts` for cross-endpoint interfaces:
-
-```ts
-// api/types.ts
-export interface ApiResponse<T = unknown> {
-  code: number;
-  message: string;
-  data: T;
-}
-
-export interface PaginatedList<T> {
-  items: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-}
-
-export interface User {
-  id: string;
-  username: string;
-  realName: string;
-  email?: string;
-  avatar?: string;
-  roles: string[];
-}
+```bash
+pnpm typecheck
+pnpm typecheck --filter @vben/backend-mock
 ```
 
 ## Forbidden
 
-- ❌ 不要用 `any` — 用类型定义 in `types.ts`
-- ❌ 不要 `throw new Error()` — 用 h3 `createError()` (返回 proper status)
-- ❌ 不要用 `as` cast to silence errors — refactor
-- ❌ 不要 return `Promise<any>` — 显式 generic
-- ❌ 不要 disable strict mode per-file
-- ❌ 不要 skip `@ts-ignore` / `@ts-expect-error` without `// why:` comment
-- ❌ 不要用 Node legacy APIs (`require` 等) — strict ESM workspace
-- ❌ 不要 export API routes that don't match `requestClient`'s types in app
+- ❌ 不要 use `any` for handler bodies — `readBody<T>()` instead
+- ❌ 不要 disable `strict: true` in `tsconfig.json`
+- ❌ 不要 `as` casts to silence type errors — refactor
+- ❌ 不要 use `@ts-ignore` without `// why:` comment
+- ❌ 不要 bypass `useResponseSuccess` / `useResponseError` — uniform envelope
+- ❌ 不要 use untyped `event` params — explicit `H3Event<EventHandlerRequest>`
+- ❌ 不要 expose `MOCK_USERS.password` in responses — strip via `Omit<>`
+- ❌ 不要 `Promise<any>` for sync handlers — `T` directly

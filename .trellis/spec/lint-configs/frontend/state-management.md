@@ -1,51 +1,33 @@
-# State Management
+# lint-configs sub-package: Static Config
 
-> How state is managed 在本项目中。
+> Config is a static array of objects. No state.
 
----
+## Implications
 
-## 概述
+- Loaded once per Lint run
+- Same config produces same lint results (modulo updated rules)
+- No init / teardown needed
 
-<!--
-写出 project's state management conventions here.
+## Why Static
 
-Questions to answer:
-- What state management solution do you use?
-- How is local vs global state decided?
-- How do you handle server state?
-- What are the patterns for derived state?
--->
+- **Reproducibility**: dev / CI / editor all use same config
+- **Git-trackable**: config changes are diffs in PRs
+- **Lightweight**: no runtime overhead
 
-(To be filled by the team)
+## Example
 
----
+```ts
+// realtime example from this package
+import baseConfig from 'lint-configs sub-package';
 
-## 状态 Categories
+// Read-only — don't mutate
+const rules = baseConfig[0]?.rules;
+```
 
-<!-- Local state, global state, server state, URL state -->
+## Forbidden
 
-(To be filled by the team)
-
----
-
-## 何时使用 Global State
-
-<!-- Criteria for promoting state to global -->
-
-(To be filled by the team)
-
----
-
-## Server State
-
-<!-- How server data is cached and synchronized -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- State management mistakes your team has made -->
-
-(To be filled by the team)
+- ❌ 不要 add reactive config loaders (Vue refs etc.)
+- ❌ 不要 mutate exported config
+- ❌ 不要 cache config across runs (re-evaluate for safety)
+- ❌ 不要 add side effects on import
+- ❌ 不要 spin up runtime services (this is static config)

@@ -1,47 +1,98 @@
-# @vben/web-naive Directory Structure
+# web-naive Directory Structure
 
-> Vue 3 +  UI-framework conventions.
+> Real layout for `apps/{'ui_lib': 'naive-ui', 'name_zh': 'Web-Naive (Naive UI)', 'color_theme': 'light', 'adapters': ['naive-ui', '@vben/form-naive'], 'icon': 'lucide:circle-dot', 'lang': 'vue + naive-ui'} app/`. Source verified 2026-07-30.
 
-## 目录树（2026-07-30 核对）
+## 目录树 (verified)
 
 ```
-@vben/web-naive/
-├── package.json                # name "@vben/web-naive" v5.7.0
-├── vite.config.ts              # uses @vben/vite-config
-├── tsconfig.json
+web-naive/
+├── package.json                    # name "web-naive" v5.7.0
+├── vite.config.ts                  # uses @vben/vite-config
+├── tsconfig.json + tsconfig.node.json
 ├── index.html
 ├── public/
 └── src/
-    ├── main.ts                 # initPreferences + dynamic import("./bootstrap")
-    ├── bootstrap.ts
+    ├── main.ts                     # initPreferences + dynamic import('./bootstrap')
+    ├── bootstrap.ts                # 异步加载（冷启动 perf）
     ├── app.vue
-    ├── preferences.ts          # defineOverridesPreferences
-    ├── adapter/                # UI-framework adapter (flavor-specific)
-    │   ├── form.ts
-    │   └── vxe-table.ts
+    ├── preferences.ts              # defineOverridesPreferences
+    ├── adapter/                    # UI 框架适配器
+    │   ├── form.ts                 # useVbenForm 表单 adapter
+    │   ├── (component/index.ts)    # naive-ui wrapper
+    │   └── vxe-table.ts            # 表格 adapter
     ├── api/
     │   ├── index.ts
-    │   ├── request.ts
-    │   └── core/{auth,user,menu}.ts
-    ├── layouts/{basic,auth}.vue
-    ├── locales/index.ts + langs/{zh-CN,en-US}
-    ├── router/{index.ts, guard.ts, access.ts, routes/{core,index,modules}}
-    ├── store/
+    │   ├── request.ts              # requestClient axios wrapper
+    │   └── core/{auth, user, menu}.ts
+    ├── layouts/
+    │   ├── basic.vue               # BasicLayout (与 tdesign / antd 通用)
+    │   ├── auth.vue                # AuthPageLayout
+    │   └── index.ts
+    ├── locales/
+    │   ├── index.ts
+    │   └── langs/{zh-CN, en-US}/...
+    ├── router/
+    │   ├── index.ts                # createVueRouter
+    │   ├── guard.ts                # accessToken check + dynamicRoute addRoute
+    │   ├── access.ts               # fetchMenuListAsync + generateAccessible
+    │   └── routes/
+    │       ├── core.ts             # Root + Auth + 404
+    │       ├── index.ts            # mergeRouteModules + assemble
+    │       └── modules/            # 每个 feature 一个 .ts
+    ├── store/                      # pinia setup
     └── views/
-        ├── _core/{about,profile,authentication,fallback}
-        ├── dashboard/{analytics,workspace}
-        └── demos/<flavor>/
+        ├── _core/{about, profile, authentication, fallback}/
+        ├── dashboard/{analytics, workspace}/
+        └── demos/{ 'naive-ui' }/  # flavor-specific demos
 ```
 
-## 约定
+## 实际 Verified
 
-- **Adapter layer** isolates UI-framework code
-- **API surface** through src/api/request.ts
-- **Routes** core.ts framework-only, modules/<feature> business
-- **Locales** zh-CN and en-US both land in same commit
+`apps/web-naive/src/preferences.ts`:
+```ts
+export const overridesPreferences = defineOverridesPreferences({
+  app: { name: import.meta.env.VITE_APP_TITLE },
+});
+```
 
-## 禁止
+`apps/web-naive/src/router/routes/core.ts`:
+```ts
+const coreRoutes: RouteRecordRaw[] = [
+  { meta: { icon: 'lucide:home' }, name: 'Root', path: '/', redirect: preferences.app.defaultHomePath },
+  // Auth, FallbackNotFound...
+];
+```
 
-- Don't import UI lib directly outside src/adapter
-- Don't add routes to routes/core.ts
-- 不要在视图层调用 fetch()
+## Conventions
+
+- **Adapter layer** 隔离 UI 框架 (`naive-ui`) — view code 只 import adapters
+- **API surface** through `requestClient` — no direct `fetch()` in views
+- **Routes** core.ts framework-only, modules/<feature>.ts business
+- **Locales** zh-CN + en-US both in same commit
+- **Enums** shared → @vben/constants; local → src/enums/
+
+## Adapter Layer (改 for naive-ui)
+
+```ts
+// src/adapter/component/index.ts (verified)
+import { Button as NsButton } from 'naive-ui';
+
+export const Button = {
+  install(app, options) {
+    app.use(NsButton, {
+      theme: options.theme ?? 'light',
+    });
+  },
+};
+
+// Etc for Input, Select, Modal, ...
+```
+
+## Forbidden
+
+- ❌ 不要 import `naive-ui` directly from views — go through src/adapter
+- ❌ 不要 add routes to `routes/core.ts` — use `modules/`
+- ❌ 不要 `fetch()` in views — use `requestClient`
+- ❌ 不要 bypass layout via inline `<router-view>` in `modules/`
+- ❌ 不要 mutate props in `<script setup>` (Vue 3 reactivity is one-way)
+- ❌ 不要 commit `node_modules/`, `dist/`, `.vite/`

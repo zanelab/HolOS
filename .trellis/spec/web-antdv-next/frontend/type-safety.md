@@ -1,41 +1,84 @@
-# @vben/web-antdv-next Type Safety
+# web-antdv-next Type Safety
 
-> 严格模式 TS 通过 @vben/tsconfig/web-app.json.
+> Strict-mode TS via @vben/tsconfig/web-app.json.
 
-## 必需模式
+## TS Config
 
-### 路由记录
-```ts
-import type { RouteRecordRaw } from 'vue-router';
-const routes: RouteRecordRaw[] = [...];
-```
-
-### API responses
-```ts
-import { requestClient } from '#/api/request';
-export async function fetchFoo() {
-  return requestClient.get<FooResponse>('/foo');
+```json
+{
+  "extends": "@vben/tsconfig/web-app.json"
 }
 ```
 
-### Props
+启用 strict mode / noUnusedLocals / noUnusedParameters / noImplicitOverride.
+
+## Required Patterns
+
+### Route records
+
+```ts
+import type { RouteRecordRaw } from 'vue-router';
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/analytics',
+    component: () => import('#/views/dashboard/analytics/index.vue'),
+    meta: { title: 'Analytics' },
+  },
+];
+```
+
+### API responses
+
+```ts
+import { requestClient } from '#/api/request';
+export interface UserInfo { id: string; realName: string; email?: string; }
+export async function fetchUserInfo() {
+  return requestClient.get<UserInfo>('/user/info');
+}
+```
+
+### Props (Vue 3.4+)
+
 ```vue
-<script setup lang="ts">
+<script lang="ts" setup>
 interface Props { title: string; count?: number; }
 const props = withDefaults(defineProps<Props>(), { count: 0 });
 </script>
 ```
 
-## 类型导入
+## Type Imports
 
 Always `import type`:
+
 ```ts
 import type { RouteRecordRaw } from 'vue-router';
+import type { UserInfo } from '#/api/core/user';
 ```
 
-## 禁止
+## ant-design-vue v4 Type Patterns
 
-- Don't use any
-- 不要在单个文件中关闭严格模式
-- Don't `as` cast to silence errors
-- Don't @ts-ignore without comment
+```ts
+import type { ButtonProps, SelectProps } from 'ant-design-vue v4';
+
+interface ActionProps extends ButtonProps {
+  // app-specific extensions
+  customAction?: string;
+}
+```
+
+## Typecheck
+
+```bash
+pnpm typecheck
+pnpm typecheck --filter web-antdv-next
+```
+
+## Forbidden
+
+- ❌ Don't use `any`
+- ❌ Don't disable strict mode per-file
+- ❌ Don't use `as` cast to silence errors — refactor to typed function
+- ❌ Don't `@ts-ignore` without `// why:`
+- ❌ Don't override `skipLibCheck: true` per-file
+- ❌ Don't bypass strict mode for ant-design-vue v4 libs (forward issues to maintainer)

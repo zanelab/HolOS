@@ -1,28 +1,62 @@
-# @vben/oxlint-config "Component" Style - Config Object
+# oxlint-config "Component" Style — Flat Config
 
-> 无 Vue 组件。 "Components" are typed config objects.
+> ESLint flat config = a flat array of config objects.
 
-## 模式
+## Pattern: Flat config array
 
 ```ts
-import type { Linter } from "eslint";
-export const config: Linter.Config[] = [
-  /* config entries */
-];
+import tseslint from 'typescript-eslint';
+import vue from 'eslint-plugin-vue';
+import oxlint from 'eslint-plugin-oxlint';
+
+export default tseslint.config(
+  // Step 1: Base TypeScript rules
+  ...tseslint.configs.recommendedTypeChecked,
+  // Step 2: Vue 3 plugin
+  ...vue.configs['flat/recommended'],
+  // Step 3: OxLint bridge (runs OxLint over .ts files)
+  ...oxlint.configs['flat/recommended'],
+  // Step 4: Custom rules
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+      'vue/multi-word-component-names': 'off',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+    },
+  },
+  // Step 5: Per-file overrides
+  {
+    files: ['*.config.{js,ts}', 'scripts/**/*.ts'],
+    rules: { 'no-console': 'off' },
+  },
+);
 ```
 
-## 用法
+## Real Usage
 
 ```ts
-import { config as eslintConfig } from "@vben/oxlint-config";
+// apps/web-holos/eslint.config.ts (real)
+import baseConfig from 'oxlint-config';
+
 export default [
-  ...eslintConfig,
-  // app-specific overrides
+  ...baseConfig,
+  {
+    files: ['**/*.vue'],
+    rules: { 'vue/no-v-html': ['error', { allow: ['::v-deep', '::v-slotted'] }] },
+  },
 ];
 ```
 
-## 禁止
+## Tree-shake 验证
 
-- Don't add side-effect functions
-- Don't add CLI/runtime code
-- Don't import runtime deps - zero-dep
+Apps 只需要 import default — tree-shaking 后只 bundle 实际使用规则。
+
+## Forbidden
+
+- ❌ 不要 export class-based configs — flat 数组 only
+- ❌ 不要 include `globals:` — Vue 3 types + browser fields provided by tsplugin
+- ❌ 不要在 flat config 用 `extends:` (deprecated)
+- ❌ 不要 write `eslintrc: { root: true }` — flat config has no root concept
+- ❌ 不要 bundle ESLint plugins — let apps `pnpm install` them
+- ❌ 不要 have `parserOptions` in nested objects — top-level only

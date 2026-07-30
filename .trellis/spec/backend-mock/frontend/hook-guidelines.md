@@ -1,50 +1,134 @@
-# @vben/backend-mock: No Hooks
+# @vben/backend-mock Hook Guidelines
 
-> Nitro Mock Server has no Vue hooks. Mock endpoints are HTTP handlers.
+> No Vue hooks. Helper functions live in `utils/`.
 
-## 真实 Example
+## Purpose
 
-`apps/backend-mock/api/_app.ts` (Nitro 顶层 handler):
+`@vben/backend-mock` does not define `useXxx()` composables. The
+"hooks" here are **utility functions** in `apps/backend-mock/utils/`
+(`response.ts`, `jwt-utils.ts`, `cookie-utils.ts`, `mock-data.ts`,
+`timezone-utils.ts`). Handlers in `api/` import these utilities
+directly.
+
+## Real utility: response envelope
 
 ```ts
-import { defineEventHandler } from 'h3';
+// apps/backend-mock/utils/response.ts (verified)
+import type { EventHandlerRequest, H3Event } from 'h3';
+import { setResponseStatus } from 'h3';
+
+export function useResponseSuccess<T = any>(data: T) {
+  return { code: 0, data, error: null, message: 'ok' };
+}
+
+export function useResponseError(message: string, error: any = null) {
+  return { code: -1, data: null, error, message };
+}
+
+export function forbiddenResponse(
+  event: H3Event<EventHandlerRequest>,
+  message = 'Forbidden Exception',
+) {
+  setResponseStatus(event, 403);
+  return useResponseError(message, message);
+}
+
+export function unAuthorizedResponse(event: H3Event<EventHandlerRequest>) {
+  setResponseStatus(event, 401);
+  return useResponseError('Unauthorized Exception', 'Unauthorized Exception');
+}
+
+export function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export function pagination<T = any>(
+  pageNo: number,
+  pageSize: number,
+  array: T[],
+): T[] {
+  const offset = (pageNo - 1) * Number(pageSize);
+  return offset + Number(pageSize) >= array.length
+    ? array.slice(offset)
+    : array.slice(offset, offset + Number(pageSize));
+}
+```
+
+## Real utility: JWT
+
+```ts
+// apps/backend-mock/utils/jwt-utils.ts (verified)
+import type { EventHandlerRequest, H3Event } from 'h3';
+import { getHeader } from 'h3';
+import jwt from 'jsonwebtoken';
+
+import { MOCK_USERS } from './mock-data';
+
+const ACCESS_TOKEN_SECRET = 'access_token_secret';
+const REFRESH_TOKEN_SECRET = 'refresh_token_secret';
+
+export function generateAccessToken(user: UserInfo) {
+  return jwt.sign(user, ACCESS_TOKEN_SECRET, { expiresIn: '7d' });
+}
+
+export function verifyAccessToken(event: H3Event<EventHandlerRequest>) {
+  const authHeader = getHeader(event, 'Authorization');
+  if (!authHeader?.startsWith('Bearer')) return null;
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET) as UserPayload;
+    const user = MOCK_USERS.find((item) => item.username === decoded.username);
+    return user ? { ...user, password: undefined } : null;
+  } catch {
+    return null;
+  }
+}
+```
+
+## How handlers use these helpers
+
+```ts
+// apps/backend-mock/api/auth/login.post.ts (real)
+import { forbiddenResponse, useResponseError, useResponseSuccess } from '~/utils/response';
+import { generateAccessToken, generateRefreshToken } from '~/utils/jwt-utils';
+import { MOCK_USERS } from '~/utils/mock-data';
 
 export default defineEventHandler(async (event) => {
-  // Middleware-like behavior — runs on every request
-  console.log(`[${new Date().toISOString()}] ${event.method} ${event.path}`);
-  return; // 继续到 next handler
+  const { password, username } = await readBody(event);
+  // ...
+  const user = MOCK_USERS.find(...);
+  if (!user) return forbiddenResponse(event, 'Username or password is incorrect.');
+  return useResponseSuccess({
+    ...user,
+    accessToken: generateAccessToken(user),
+  });
 });
 ```
 
-但这不是 "hook" — 这是 middleware pattern,Nitro specific.
+## Conventions
 
-## Where to Define Mock Endpoints
+- **Helpers in `utils/`** — no `useXxx` Vue naming, only `useXxx` response helpers.
+- **Pure functions** — `useResponseSuccess`, `pagination`, `sleep`.
+- **Helpers take `event` as first arg** when they need to set status.
+- **Typed by h3** — `H3Event<EventHandlerRequest>` for handler context.
+- **No Pinia / Vue refs** in this package.
+- **No `import type` from apps** — apps are runtime, not types.
 
-- **单 endpoint**: `api/<resource>/<action>.<method>.ts`
-- **Batched resources**: `api/<group>/<action>.ts`
-- **Health check**: `api/status.ts` (root endpoint)
+## Naming
 
-## Naming Convention in Detail
-
-| Filename | URL |
-|---|---|
-| `login.post.ts` | POST /api/login |
-| `codes.get.ts` | GET /api/codes |
-| `[id].ts` | GET /api/:id |
-| `user/[id].get.ts` | GET /api/user/:id |
-
-## Built-ins (Nitro-specific, not Vue hooks)
-
-| Concern | What to use |
-|---|---|
-| Pre-handler | `middleware/` directory + `defineEventHandler` |
-| Shared types | `api/types.ts` + import |
-| Error handler | `error.ts` at root + `createError` |
+| Thing | Convention | Example |
+|---|---|---|
+| Helper file | `<topic>-utils.ts` | `jwt-utils.ts`, `cookie-utils.ts` |
+| Function | `verbXxx` | `useResponseSuccess`, `verifyAccessToken` |
+| Status helper | `forbiddenResponse(event, msg)` | — |
+| Pagination | `pagination(pageNo, pageSize, array)` | — |
 
 ## Forbidden
 
-- ❌ 不要 add Vue / React / Pinia 到 `@vben/backend-mock`
-- ❌ 不要 add `useXxx` composables
-- ❌ 不要 add `/hooks/` dir (this isn't a Vue app)
-- ❌ 不要 add `nuxt/`, `next/`, etc. — Nitro is the runtime
-- ❌ 不要 add real DB persistence — purely mock
+- ❌ 不要 write `useXxx()` Vue composables here — h3 handlers only
+- ❌ 不要 import Vue runtime — Nitro is server runtime
+- ❌ 不要 add Pinia stores — Nitro + h3 is the only state container
+- ❌ 不要 bypass `useResponseSuccess` — uniform envelope
+- ❌ 不要 take `event` as a context-less helper — pass it explicitly
+- ❌ 不要 mutate `MOCK_USERS` / `MOCK_MENUS` — treat as immutable
+- ❌ 不要 add `console.log` — Nitro logger handles it

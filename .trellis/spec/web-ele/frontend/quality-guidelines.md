@@ -1,29 +1,46 @@
-# @vben/web-ele Quality Guidelines
+# web-ele Quality Guidelines
 
-> 严格模式 TS + 4-space + OxLint + ESLint + Stylelint + Commitlint.
+> Strict-mode TS + 4-space + OxLint + ESLint + Stylelint + Commitlint.
 
-## 代码风格
+## Coding Style
 
-- 使用 4 空格缩进
-- Single quotes TS; double quotes HTML
-- 不使用分号
-- 单行最大长度 120
-- Trailing newline
+- **4 spaces** TS / Vue indent
+- **Single quotes** TS; **double quotes** HTML
+- **No semicolons** in TS
+- **Max line length** 120
+- **Trailing newline** required
 
-## 命名约定
+## Naming
 
 | Thing | Convention |
 |---|---|
-| Page file | PascalCase.vue |
-| Component | kebab-case.vue |
-| Composable | useCamelCase |
-| Utility | kebab-case.ts |
-| Pinia store | useXxxStore |
-| Constant | UPPER_SNAKE_CASE |
+| Vue page file | `PascalCase.vue` |
+| Component | `kebab-case.vue` |
+| Composable | `useCamelCase` |
+| Utility | `kebab-case.ts` |
+| Pinia store | `useXxxStore` |
+| Constant | `UPPER_SNAKE_CASE` |
 
-## 禁止
+## Pre-commit Hooks (auto-fired)
 
-- Don't use any
-- Don't add @ts-ignore without comment
-- Don't bypass hooks with --no-verify
-- 不要提交 .env 或密钥
+- **OxLint** — fast lint
+- **OxFmt** — auto-formatter (staged files)
+- **ESLint** — for rules OxLint misses
+- **Stylelint** — CSS / Vue `<style>` lint
+- **Commitlint** — `feat():` / `fix():` / `chore():` enforced
+
+## element-plus 风格 Notes
+
+- Use element-plus 符合 framework idiomatic patterns
+- Don't mix Reactive frameworks(Vue 3 only here)
+- Theme 切换: prefer `<element-plusConfigProvider>` over manual CSS
+
+## Forbidden
+
+- ❌ Don't use `any` (use `unknown` + narrow)
+- ❌ Don't add `@ts-ignore` without `// why:` comment
+- ❌ Don't bypass pre-commit hooks with `--no-verify`
+- ❌ Don't commit `.env`, `*.local`, secrets
+- ❌ Don't use `console.log` for production diagnostics
+- ❌ Don't mix `web-tdesign` package imports in this app's source
+- ❌ Don't write app-specific CSS that should go to `src/index.css`

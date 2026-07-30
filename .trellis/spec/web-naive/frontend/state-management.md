@@ -1,23 +1,65 @@
-# @vben/web-naive State Management
+# web-naive State Management
 
-> 选择最合适的简单容器。不要一开始就上 Pinia。
+> Pick the simplest container that fits. Don't reach for Pinia first.
 
 ## Decision Tree
 
 | Where the state lives | Use |
 |---|---|
-| 单组件、一次渲染 | ref() / reactive() |
-| 单组件、深度子组件 | provide() / inject() |
-| 跨页面、需持久化 | preferences store |
+| One component, one render | `ref()` / `reactive()` |
+| One component, deep children | `provide()` / `inject()` |
+| Cross-page, persisted | `preferences` store (@vben/preferences) |
 | Cross-page, transient | Pinia store (@vben/stores) |
-| Server cache | API + useAsyncResource |
+| Server cache | API + `useAsyncResource` |
 
-## Pinia 状态存储（标准 3 个）
+## Pinia Stores (canonical 3)
 
-- useAccessStore - tokens / access routes / flags
-- useAuthStore - login / logout / token expiry
-- useUserStore - current user, avatar, homePath
+```ts
+import { useAccessStore } from '@vben/stores';
+const accessStore = useAccessStore();
+accessStore.setAccessMenus(menus);
+accessStore.setIsAccessChecked(true);
+```
 
-## App-Specific Pattern
+- **useAccessStore** — tokens, access routes, access flags
+- **useAuthStore** — login / logout / token expiry modal
+- **useUserStore** — current user, avatar, homePath
 
-`preferences.ts` may declare a typed preferences extension.
+## preferences — the only persisted state
+
+```ts
+// src/preferences.ts
+export const overridesPreferences = defineOverridesPreferences({
+  app: {
+    name: import.meta.env.VITE_APP_TITLE,
+    defaultHomePath: '/dashboard',  // can override
+  },
+});
+```
+
+Persisted in `localStorage` 键 `vben-<namespace>-<version>-<env>-preferences`.
+
+## naive-ui 状态差异
+
+Ui 框架 specific state:
+```ts
+// Naive UI - useLoadingBar
+import { useLoadingBar } from 'naive-ui';
+const loadingBar = useLoadingBar();
+loadingBar.start(); // 全局 loading
+loadingBar.finish();
+
+// Element Plus - ElMessage / ElMessageBox
+import { ElMessage } from 'element-plus';
+ElMessage.success('Saved');
+```
+
+These 应该包装进 `useToast()` / `useLoading()` composables, not directly 用。
+
+## Forbidden
+
+- ❌ Don't persist auth tokens in localStorage (XSS risk)
+- ❌ Don't use Vuex — Pinia only
+- ❌ Don't mutate preferences outside the store API
+- ❌ Don't add new Pinia stores per feature — keep shared stores ≤ 5
+- ❌ Don't pollute Pinia with each-flavor-specific state (UI state belongs in adapter)
